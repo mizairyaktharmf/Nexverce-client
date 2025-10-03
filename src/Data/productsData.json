@@ -7,7 +7,7 @@
     "price": "49.99",
     "tag": "#Trending",
     "category": "Education",
-    "image": "/education.png",
+    "image": "/images/education.png",
     "type": "topPick"
   },
   {
@@ -17,7 +17,7 @@
     "price": "89.99",
     "tag": "#BestSeller",
     "category": "Tech",
-    "image": "public/amazon.png",
+    "image": "/images/amazon.png",
     "type": "topPick"
   },
   {
@@ -27,7 +27,7 @@
     "price": "19.99/month",
     "tag": "#Marketing",
     "category": "Marketing",
-    "image": "public/marketing.png",
+    "image": "/images/marketing.png",
     "type": "marketplace"
   },
   {
@@ -37,7 +37,7 @@
     "price": "99.99",
     "tag": "#DealOfTheDay",
     "category": "AI",
-    "image": "public/education.png",
+    "image": "/images/education.png",
     "endTime": "2025-10-05T23:59:59",
     "type": "deal"
   },
@@ -48,7 +48,7 @@
     "price": "Free Trial",
     "tag": "#AI",
     "category": "AI",
-    "image": "public/education.png",
+    "image": "/images/education.png",
     "type": "comparison"
   },
   {
@@ -58,7 +58,7 @@
     "price": "Monthly",
     "tag": "#AI",
     "category": "AI",
-    "image": "public/education.png",
+    "image": "/images/education.png",
     "type": "comparison"
   },
   {
@@ -68,7 +68,7 @@
     "price": "Monthly",
     "tag": "#AI",
     "category": "AI",
-    "image": "public/technology.png",
+    "image": "/images/technology.png",
     "type": "topPick"
   },
   {
@@ -78,7 +78,7 @@
     "price": "Monthly",
     "tag": "#AI",
     "category": "AI",
-    "image": "public/technology.png",
+    "image": "/images/technology.png",
     "type": "topPick"
   },
     {
@@ -88,7 +88,7 @@
     "price": "19.99/month",
     "tag": "#Marketing",
     "category": "Marketing",
-    "image": "public/marketing.png",
+    "image": "/images/marketing.png",
     "type": "marketplace"
   },
     {
@@ -98,7 +98,7 @@
     "price": "19.99/month",
     "tag": "#Marketing",
     "category": "Marketing",
-    "image": "public/marketing.png",
+    "image": "/images/marketing.png",
     "type": "marketplace"
   },
    {
@@ -108,7 +108,7 @@
     "price": "99.99",
     "tag": "#DealOfTheDay",
     "category": "Finance",
-    "image": "public/fitness.png",
+    "image": "/images/finance.png",
     "endTime": "2025-10-10T23:59:59",
     "type": "deal"
 
