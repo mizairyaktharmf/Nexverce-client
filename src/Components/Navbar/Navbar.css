@@ -1,0 +1,215 @@
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  gap: 5rem;
+  background: whitesmoke;
+  margin: 0 auto;
+  position: sticky;
+  z-index: 100;
+}
+
+.homeLogo {
+  object-fit: cover;
+  height: 6.5rem;
+  width: 13rem;
+  cursor: pointer;
+}
+
+/* ===== Desktop Menu ===== */
+.desktopMenu {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  font-family: sans-serif;
+}
+
+/* Remove default list dots & spacing */
+ul, li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.desktopMenu li {
+  position: relative;
+  margin: 0 15px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #1a1a1a;
+  transition: all 0.3s ease;
+}
+
+.desktopMenu li:hover {
+  color:rgba(58, 26, 107); /* your accent color */
+  transform: translateY(-2px);
+}
+
+/* ===== Dropdown ===== */
+.dropdownMenu {
+  display: none;
+  position: absolute;
+  top: 120%;
+  left: 0;
+  background: #ffffff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  box-shadow: 0px 6px 18px rgba(0,0,0,0.12);
+  min-width: 250px;
+  padding: 10px;
+  z-index: 999;
+  animation: fadeIn 0.25s ease;
+}
+
+.dropdown:hover .dropdownMenu {
+  display: block;
+}
+
+/* ===== Dropdown Item with SubMenu ===== */
+.dropdownItem {
+  position: relative;
+  border-radius: 6px;
+  margin: 6px 0;
+  transition: background 0.2s ease;
+}
+
+.dropdownItemTitle {
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: 500;
+  display: block;
+  color: #333;
+}
+
+.dropdownItemTitle:hover {
+  background: #f9f9f9;
+  border-radius: 6px;
+  color: #3a1a6b;
+}
+
+/* ===== SubMenu (Right Side Boxes) ===== */
+.subMenu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background: #ffffff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  box-shadow: 0px 6px 18px rgba(0,0,0,0.12);
+  min-width: 220px;
+  padding: 10px;
+  animation: fadeIn 0.25s ease;
+}
+
+.dropdown:hover .dropdownMenu,
+.dropdownMenu:hover {
+  display: block;
+}
+.dropdownItem:hover .subMenu,
+.subMenu:hover {
+  display: block;
+}
+
+.subMenu li {
+  padding: 10px 12px;
+  font-size: 13px;
+  color: #444;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.subMenu li:hover {
+  background: #f5f5f5;
+  color: #3a1a6b;
+  transform: translateX(2px);
+}
+
+
+.searchContent{
+    display: flex;
+    margin-left: 3rem;
+    
+}
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.searchBoxBtn{
+  padding: 6px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid #3a1a6b;
+  background-color: white;
+  color: #3a1a6b;
+  transition: all 0.2s ease;
+}
+.searchBoxBtn:hover {
+  background-color: #3a1a6b;
+  color: #fff;
+  transform: translateY(-2px);
+}
+.searchBox input {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s ease;
+  width: 150px;
+}
+
+.searchBox input:focus {
+  border-color: #3a1a6b;
+  box-shadow: 0 0 5px rgba(58, 26, 107, 0.3);
+}
+
+
+.authContent{
+    display: flex;
+    margin-left: 5rem;
+}
+.authButtons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.authButtons button {
+  padding: 6px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid #3a1a6b;
+  background-color: white;
+  color: #3a1a6b;
+  transition: all 0.2s ease;
+}
+
+.authButtons button:hover {
+  background-color: #3a1a6b;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+
+/* ===== Animations ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

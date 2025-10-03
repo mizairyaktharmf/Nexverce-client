@@ -1,0 +1,168 @@
+.footer {
+  width: 100%; /* full width */
+  max-width: 1150px;
+  margin: 0 auto; /* center the container horizontally */
+  display: flex;
+  justify-content: center; /* center horizontally */
+  align-items: center;     /* center vertically */
+  background-color: transparent;
+  color: black;
+  position: relative;
+  overflow: hidden;
+  padding: 1rem 0; /* add some top/bottom spacing */
+  text-align: center; /* ensures text inside is centered */
+  flex-direction: column; /* optional if you want stacked content */
+}
+
+
+.footerContent {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding-top: 2rem;
+  opacity: 0;
+  transform: translateY(50px);
+  animation: slideUp 1s ease forwards;
+  gap: 3rem;
+}
+
+
+.footerLeftBox, .footerRightBox {
+  flex: 1;
+  padding: 2rem;
+  border-radius: 1rem;
+  background: #eaeaea;
+  flex-direction: column;
+  gap: 0.1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4); 
+}
+
+/* Left content */
+.footerLeftContent {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footerLeftContentTitle {
+  font-weight: 700;
+  font-size: 30px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  line-height: 1.2;
+  animation: fadeIn 1s ease forwards;
+}
+
+.footerLeftContentInput {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  font-family: "Poppins", sans-serif;
+  width: 70%;
+  max-width: 350px;
+  transition: all 0.3s ease;
+}
+
+.footerLeftContentInput:focus {
+  outline: none;
+  border: 1px solid #0077ff;
+  box-shadow: 0 0 8px rgba(0, 119, 255, 0.5);
+  color: black;
+}
+
+.footerLeftContentBtn {
+  padding: 8px 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #2c0f54;
+  color: #fff;
+  width: fit-content;
+  transition: background 0.3s, transform 0.3s ease;
+}
+
+.footerLeftContentBtn:hover {
+  transform: translateY(-2px);
+}
+
+/* Right content */
+.footerContentRight {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  animation: fadeInRight 1s ease forwards;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  justify-content: center;
+}
+
+.linkImg {
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.linkImg:hover {
+  transform: scale(1.2) rotate(10deg);
+  filter: brightness(1.2);
+}
+
+/* Animations */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+  .footerContent {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footerLeftBox, .footerRightBox {
+    width: 90%;
+  }
+
+  .footerLeftContentInput {
+    width: 90%;
+    max-width: none;
+  }
+
+  .footerContentRight {
+    justify-content: center;
+    margin-top: 1rem;
+   
+  }
+  .links{
+     gap: 2rem;
+  }
+  .linkImg {
+    width: 55px;
+    height: 55px;
+  }
+}
