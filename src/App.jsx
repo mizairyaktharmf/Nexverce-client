@@ -9,6 +9,8 @@ import Categories from "./Components/Categories/Categories";
 import FeaturedProducts from "./Components/FeaturedProducts/FeaturedProducts";
 import Footer from "./Components/Footer/Footer";
 import PageImage from "./Components/NexCodeNova/PageImage";
+import CategoryPage from "./Components/Categories/CategoryPage";
+import PostPage from "./Components/Categories/PostPage";
 
 
 function App() {
@@ -32,7 +34,9 @@ function App() {
             </>
           }
         />
-
+         
+        <Route path="/category/:slug" element={<CategoryPage/>} />
+        <Route path="/post/:slug" element={<PostPage/>} />
         {/* About Page */}
         <Route path="/about" element={<About/>} /> 
       </Routes>

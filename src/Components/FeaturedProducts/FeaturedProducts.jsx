@@ -5,7 +5,7 @@ import productsData from "../../Data/productsData.json";
 function FeaturedProducts() {
   // Filters
   const topPicks = productsData.filter(p => p.type === "topPick");
-  const highlights = ["Education", "Finance", "Tech"];
+  const highlights = ["education", "finance", "technology"];
   const deals = productsData.filter(p => p.type === "deal");
   const marketplace = productsData.filter(p => p.type === "marketplace");
   const comparison = productsData.filter(p => p.type === "comparison");
