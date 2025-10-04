@@ -46,7 +46,7 @@ ul, li {
 }
 
 .desktopMenu li:hover {
-  color:rgba(58, 26, 107); /* your accent color */
+  color:rgba(58, 26, 107); 
   transform: translateY(-2px);
 }
 
@@ -201,6 +201,13 @@ ul, li {
   transform: translateY(-2px);
 }
 
+.mobMenue{
+    display: none;
+    object-fit: cover;
+    height: 4rem;
+    cursor: pointer;
+}
+
 
 /* ===== Animations ===== */
 @keyframes fadeIn {
@@ -212,4 +219,42 @@ ul, li {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+
+/* Mobile breakpoints */
+@media screen and (max-width:750px) {
+    .mobMenue{
+        display: flex;
+    }
+    .desktopMenu{
+        display: none;
+    }
+    .searchContent{
+        display: none;
+    }
+    .authContent{
+        display: none;
+    }
+    .homeLogo{
+        object-fit: cover;
+        height: 4.5rem;
+        width: 13rem;
+        margin-left: 0.5rem;
+    }
+}
+
+@media screen and (max-width:1080px) {
+    .mobMenue{
+        display: flex;
+    }
+    .desktopMenu{
+        display: none;
+    }
+   .searchContent{
+        display: none;
+    }
+    .authContent{
+        display: none;
+    }
 }
