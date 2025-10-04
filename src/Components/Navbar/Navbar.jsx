@@ -12,7 +12,7 @@ function Navbar() {
         src={homeLogo} 
         alt="nexverce home logo" 
         className="homeLogo" 
-        onClick={() => setShowMenue(!showMenue)} // optional toggle via logo
+       
       />
 
       {/* ===== Desktop Menu ===== */}
