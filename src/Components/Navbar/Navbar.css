@@ -29,7 +29,6 @@
   font-family: sans-serif;
 }
 
-/* Remove default list dots & spacing */
 ul, li {
   list-style: none;
   margin: 0;
@@ -46,7 +45,7 @@ ul, li {
 }
 
 .desktopMenu li:hover {
-  color:rgba(58, 26, 107); 
+  color: rgba(58, 26, 107);
   transform: translateY(-2px);
 }
 
@@ -70,7 +69,6 @@ ul, li {
   display: block;
 }
 
-/* ===== Dropdown Item with SubMenu ===== */
 .dropdownItem {
   position: relative;
   border-radius: 6px;
@@ -92,7 +90,7 @@ ul, li {
   color: #3a1a6b;
 }
 
-/* ===== SubMenu (Right Side Boxes) ===== */
+/* ===== SubMenu ===== */
 .subMenu {
   display: none;
   position: absolute;
@@ -130,18 +128,17 @@ ul, li {
   transform: translateX(2px);
 }
 
-
-.searchContent{
-    display: flex;
-    margin-left: 3rem;
-    
+.searchContent {
+  display: flex;
+  margin-left: 3rem;
 }
+
 .searchBox {
   display: flex;
   align-items: center;
   gap: 2px;
 }
-.searchBoxBtn{
+.searchBoxBtn {
   padding: 6px 14px;
   font-size: 14px;
   font-weight: 500;
@@ -166,17 +163,16 @@ ul, li {
   transition: all 0.2s ease;
   width: 150px;
 }
-
 .searchBox input:focus {
   border-color: #3a1a6b;
   box-shadow: 0 0 5px rgba(58, 26, 107, 0.3);
 }
 
-
-.authContent{
-    display: flex;
-    margin-left: 5rem;
+.authContent {
+  display: flex;
+  margin-left: 5rem;
 }
+
 .authButtons {
   display: flex;
   align-items: center;
@@ -201,60 +197,85 @@ ul, li {
   transform: translateY(-2px);
 }
 
-.mobMenue{
-    display: none;
-    object-fit: cover;
-    height: 4rem;
-    cursor: pointer;
+.mobMenue {
+  object-fit: cover;
+  display: none;
+  height: 4rem;
+  cursor: pointer;
 }
 
+/* ===== Mobile Menu (New) ===== */
+.mobileMenue {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 50%;
+  max-width: 320px;
+  background: #fff;
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+  animation: slideIn 0.3s ease forwards;
+}
+
+.mobileMenue li {
+  padding: 12px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.mobileMenue li:hover {
+  background: #3a1a6b;
+  color: #fff;
+}
+
+.mobileMenue .subMenu li {
+  background: #fff;
+  box-shadow: none;
+  border-left: 3px solid #3a1a6b;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.mobileMenue .subMenu li:hover {
+  background: #3a1a6b;
+  color: #fff;
+}
 
 /* ===== Animations ===== */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-
-/* Mobile breakpoints */
-@media screen and (max-width:750px) {
-    .mobMenue{
-        display: flex;
-    }
-    .desktopMenu{
-        display: none;
-    }
-    .searchContent{
-        display: none;
-    }
-    .authContent{
-        display: none;
-    }
-    .homeLogo{
-        object-fit: cover;
-        height: 4.5rem;
-        width: 13rem;
-        margin-left: 0.5rem;
-    }
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
 }
 
+/* ===== Responsive ===== */
 @media screen and (max-width:1080px) {
-    .mobMenue{
-        display: flex;
-    }
-    .desktopMenu{
-        display: none;
-    }
-   .searchContent{
-        display: none;
-    }
-    .authContent{
-        display: none;
-    }
+  .mobMenue { display: flex; }
+  .desktopMenu, .searchContent, .authContent { display: none; }
+
+  .homeLogo {
+    height: 4.5rem;
+    width: 10rem;
+  }
+}
+
+@media screen and (max-width:750px) {
+  .mobileMenue {
+    width: 70%;
+  }
 }
