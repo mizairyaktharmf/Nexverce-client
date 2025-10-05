@@ -36,7 +36,7 @@ function App() {
         />
          
         <Route path="/category/:slug" element={<CategoryPage/>} />
-        <Route path="/post/:slug" element={<PostPage/>} />
+        <Route path="/post/:id" element={<PostPage/>} />
         {/* About Page */}
         <Route path="/about" element={<About/>} /> 
       </Routes>

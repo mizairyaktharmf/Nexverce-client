@@ -1,23 +1,24 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import productsData from "../../Data/productsData.json"; 
+import { useParams, Link } from "react-router-dom";
+import productsData from "../../Data/productsData.json";
 import "./CategoryPage.css";
 
 function CategoryPage() {
   const { slug } = useParams();
 
-  // Filter posts by slug mapping
+  // Category mapping for slugs
   const slugToCategoryMap = {
     education: "Education",
     finance: "Finance",
     technology: "Technology",
     health: "Health",
     marketing: "Marketing",
-    entertainment: "Entertainment"
+    entertainment: "Entertainment",
   };
 
   const categoryName = slugToCategoryMap[slug] || "";
 
+  // Filter posts that match category
   const categoryPosts = productsData.filter(
     (post) => post.category.toLowerCase() === categoryName.toLowerCase()
   );
@@ -36,13 +37,19 @@ function CategoryPage() {
       <div className="categoryGrid">
         {categoryPosts.map((post) => (
           <div key={post.id} className="categoryPostCard">
-            <img src={post.image} alt={post.title} className="postImg" />
-            <span className="postTag">{post.tag}</span>
-            <h3>{post.title}</h3>
-            <p>{post.description}</p>
-            
-            {post.price && <p><strong>Price: </strong>{post.price}</p>}
-            <button className="readBtn">read more</button>
+            <Link to={`/post/${post.id}`} className="postLink">
+              <img src={post.image} alt={post.title} className="postImg" />
+              <span className="postTag">{post.tag}</span>
+              <h3>{post.title}</h3>
+              <p>{post.description}</p>
+              {post.price && (
+                <p>
+                  <strong>Price: </strong>
+                  {post.price}
+                </p>
+              )}
+              <button className="readBtn">Read More</button>
+            </Link>
           </div>
         ))}
       </div>
