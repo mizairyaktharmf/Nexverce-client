@@ -5,42 +5,95 @@
   padding: 3rem 1rem;
 }
 
+.categoryPage h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #3a1a6b;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
 .categoryGrid {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  gap: 1.8rem;
   justify-content: center;
 }
 
 .categoryPostCard {
-  background: #f3f3f3;
-  padding: 1.5rem;
-  border-radius: 12px;
+  position: relative;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  padding: 1.2rem;
   min-width: 250px;
   max-width: 300px;
   text-align: center;
-  transition: 0.3s;
+  transition: all 0.3s ease;
+  overflow: hidden;
 }
 
 .categoryPostCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
-.postImg {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 1rem;
+.categoryPostCard img {
+ width: 70px; 
+  height: 70px; 
+  object-fit: contain; 
+  margin-top: 1rem; 
 }
 
 .postTag {
-  display: inline-block;
-  margin-top: 0.5rem;
-  padding: 2px 6px;
+  position: absolute;
+  top: 12px;
+  right: 12px;
   background: #3a1a6b;
   color: #fff;
+  padding: 4px 10px;
   border-radius: 6px;
   font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.categoryPostCard h3 {
+  font-size: 1.1rem;
+  color: #333;
+  margin: 0.5rem 0;
+  font-weight: 600;
+}
+
+.categoryPostCard p {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.readBtn {
+  background: #3a1a6b;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+
+}
+
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .categoryGrid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .categoryPostCard {
+    width: 90%;
+  }
 }

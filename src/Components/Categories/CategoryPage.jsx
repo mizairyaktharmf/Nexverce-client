@@ -10,7 +10,7 @@ function CategoryPage() {
   const slugToCategoryMap = {
     education: "Education",
     finance: "Finance",
-    technology: "technology",
+    technology: "Technology",
     health: "Health",
     marketing: "Marketing",
     entertainment: "Entertainment"
@@ -32,15 +32,17 @@ function CategoryPage() {
 
   return (
     <section className="categoryPage">
-      <h2 style={{ textAlign: "center", marginBottom: "2rem" }}>{categoryName}</h2>
+      <h2>{categoryName}</h2>
       <div className="categoryGrid">
         {categoryPosts.map((post) => (
           <div key={post.id} className="categoryPostCard">
             <img src={post.image} alt={post.title} className="postImg" />
+            <span className="postTag">{post.tag}</span>
             <h3>{post.title}</h3>
             <p>{post.description}</p>
+            
             {post.price && <p><strong>Price: </strong>{post.price}</p>}
-            <span className="postTag">{post.tag}</span>
+            <button className="readBtn">read more</button>
           </div>
         ))}
       </div>

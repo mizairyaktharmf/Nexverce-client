@@ -5,8 +5,8 @@
     "description": "Boost your coding skills with Python.",
     "price": "49.99",
     "tag": "#Trending",
-    "category": "education",
-    "image": "/images/education.png",
+    "category": "education", 
+    "image": "/images/education.png", 
     "type": "topPick",
     "content": "<p>Learn Python from scratch with this comprehensive Udemy course. Includes hands-on exercises and projects for practical learning.</p><p>Topics: Python basics, data structures, OOP, web scraping, and more.</p>",
     "slug": "udemy-python-course"
@@ -43,7 +43,7 @@
     "tag": "#DealOfTheDay",
     "category": "technology",
     "image": "/images/education.png",
-    "endTime": "2025-10-05T23:59:59",
+    "endTime": "2025-10-06T23:59:59",
     "type": "deal",
     "content": "<p>Grab this AI content writer at 50% discount for a limited time. Ideal for bloggers, marketers, and writers.</p>",
     "slug": "50-percent-off-ai-tool"

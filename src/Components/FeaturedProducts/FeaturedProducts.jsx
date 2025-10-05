@@ -8,7 +8,7 @@ function FeaturedProducts() {
   const highlights = ["education", "finance", "technology"];
   const deals = productsData.filter(p => p.type === "deal");
   const marketplace = productsData.filter(p => p.type === "marketplace");
-  const comparison = productsData.filter(p => p.type === "comparison");
+  
 
   // set Countdown state for all deals
   const [countdowns, setCountdowns] = useState({});
