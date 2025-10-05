@@ -35,7 +35,7 @@ function PostPage() {
           )}
       
           <div className="postButtons">
-            <button className="buyBtn">Grab Deal</button>
+            <button className="linkBtn">Grab Deal</button>
             <Link
               to={`/category/${post.category.toLowerCase()}`}
               className="backBtn"
