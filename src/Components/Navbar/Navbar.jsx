@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import "./Navbar.css";
+import { useNavigate } from "react-router-dom";
 import homeLogo from "../../assets/nexvercelogo.png";
 import MobileMenu from "../../assets/MobileMenu.png";
 import { FaRegHeart } from 'react-icons/fa';
@@ -10,6 +11,16 @@ function Navbar() {
 
   const handleDropdownToggle = (menu) => {
     setActiveDropdown((prev) => (prev === menu ? null : menu));
+  };
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    if (searchTerm.trim()) {
+      navigate(`/search?q=${searchTerm}`);
+      setSearchTerm("");
+    }
   };
 
   return (
@@ -95,8 +106,14 @@ function Navbar() {
 
         <div className="searchContent">
           <li className="searchBox">
-            <input type="text" placeholder="Search..." />
-            <div className="searchBoxBtn">Search</div>
+            <input 
+              type="text" 
+              placeholder="Search..." 
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+            />
+            <div className="searchBoxBtn" onClick={handleSearch}>Search</div>
           </li>
         </div>
 

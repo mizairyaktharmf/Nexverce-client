@@ -12,6 +12,7 @@ import PageImage from "./Components/NexCodeNova/PageImage";
 import CategoryPage from "./Components/Categories/CategoryPage";
 import PostPage from "./Components/Categories/PostPage";
 import WhyChoose from "./Components/WhyChoose/WhyChoose";
+import SearchResultsPage from "./Components/SearchPost/SearchResultsPage";
 
 
 function App() {
@@ -38,6 +39,8 @@ function App() {
          
         <Route path="/category/:slug" element={<CategoryPage/>} />
         <Route path="/post/:id" element={<PostPage/>} />
+        <Route path="/search" element={<SearchResultsPage/>} />
+
         {/* About Page */}
         <Route path="/about" element={<About/>} /> 
       </Routes>
