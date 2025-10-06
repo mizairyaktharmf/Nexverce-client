@@ -28,6 +28,7 @@
   padding: 0;
   font-size: 1rem;
   font-family: sans-serif;
+  
 }
 
 ul, li {
@@ -261,6 +262,37 @@ ul, li {
 .mobileMenue .subMenu li:hover {
   background: #3a1a6b;
   color: #fff;
+}
+
+.mobSearchContent {
+  display: flex;
+  margin-left: 3rem;
+}
+
+
+
+.mobAuthContent {
+  display: flex;
+  margin-left: 5rem;
+}
+
+/* ===== Link Styling Fix ===== */
+.navbar a,
+.navbar .navLink {
+  color: #1a1a1a;             /* Normal color */
+  text-decoration: none;      /* Remove underline */
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.navbar a:hover,
+.navbar .navLink:hover {
+  color: #3a1a6b;             /* Hover color */
+}
+
+.navbar a:visited,
+.navbar .navLink:visited {
+  color: #1a1a1a;             /* Prevent purple visited color */
 }
 
 

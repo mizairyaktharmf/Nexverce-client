@@ -1,25 +1,26 @@
 import React, { useState } from 'react';
 import "./Navbar.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import homeLogo from "../../assets/nexvercelogo.png";
 import MobileMenu from "../../assets/MobileMenu.png";
 import { FaRegHeart } from 'react-icons/fa';
 
 function Navbar() {
   const [showMenue, setShowMenue] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null); // 👈 Added for mobile dropdown toggle
+  const [activeDropdown, setActiveDropdown] = useState(null);
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
 
   const handleDropdownToggle = (menu) => {
     setActiveDropdown((prev) => (prev === menu ? null : menu));
   };
 
-  const [searchTerm, setSearchTerm] = useState("");
-  const navigate = useNavigate();
-
   const handleSearch = () => {
     if (searchTerm.trim()) {
       navigate(`/search?q=${searchTerm}`);
       setSearchTerm("");
+      setShowMenue(false); // Close mobile menu if open
     }
   };
 
@@ -33,7 +34,9 @@ function Navbar() {
 
       {/* ===== Desktop Menu ===== */}
       <ul className="desktopMenu">
-        <li>Home</li>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
 
         <li className="dropdown">
           <span>Categories ▾</span>
@@ -100,9 +103,13 @@ function Navbar() {
           </ul>
         </li>
 
-        <li>About</li>
-        <li > 
-          <FaRegHeart style={{ color: "#3a1a6b"}} /> Wishlist</li>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
+
+        <li>
+          <Link  to="/"><FaRegHeart style={{ color: "#3a1a6b"}} /> Wishlist</Link>
+        </li>
 
         <div className="searchContent">
           <li className="searchBox">
@@ -137,11 +144,23 @@ function Navbar() {
       {showMenue && (
         <ul className="mobileMenueul">
           <div className="mobileMenue">
-            <li onClick={() => setShowMenue(false)}>Home</li>
 
+            {/* Home */}
+            <li>
+              <Link 
+                to="/" 
+                className="navLink" 
+                onClick={() => setShowMenue(false)}
+              >
+                Home
+              </Link>
+            </li>
+
+            {/* Categories */}
             <li className="dropdown">
               <span>Categories ▾</span>
               <ul className="dropdownMenu">
+
                 {/* 1. Education */}
                 <li className="dropdownItem">
                   <span 
@@ -246,23 +265,50 @@ function Navbar() {
               </ul>
             </li>
 
-            <li onClick={() => setShowMenue(false)}>About</li>
-            <li onClick={() => setShowMenue(false)}><FaRegHeart style={{ color: "#3a1a6b"}} /> Wishlist</li>
+            {/* About */}
+            <li>
+              <Link 
+                to="/about" 
+                className="navLink" 
+                onClick={() => setShowMenue(false)}
+              >
+                About
+              </Link>
+            </li>
+
+            {/* Wishlist */}
+            <li>
+              <Link 
+                to="/"
+                className="navLink" 
+                onClick={() => setShowMenue(false)}
+              >
+                <FaRegHeart style={{ color: "#3a1a6b" }} /> Wishlist
+              </Link>
+            </li>
           </div>
 
-            <div className="mobSearchContent">
-              <li className="searchBox">
-                <input type="text" placeholder="Search..." />
-                <div className="searchBoxBtn">Search</div>
-              </li>
-            </div>
+          {/* Mobile Search */}
+          <div className="mobSearchContent">
+            <li className="searchBox">
+              <input 
+                type="text" 
+                placeholder="Search..." 
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+              />
+              <div className="searchBoxBtn" onClick={handleSearch}>Search</div>
+            </li>
+          </div>
 
-            <div className="mobAuthContent">
-              <li className="authButtons">
-                <button className="loginBtn" onClick={() => setShowMenue(false)}>Login</button>
-                <button className="signupBtn" onClick={() => setShowMenue(false)}>Sign Up</button>
-              </li>
-            </div>
+          {/* Mobile Auth Buttons */}
+          <div className="mobAuthContent">
+            <li className="authButtons">
+              <button className="loginBtn" onClick={() => setShowMenue(false)}>Login</button>
+              <button className="signupBtn" onClick={() => setShowMenue(false)}>Sign Up</button>
+            </li>
+          </div>
         </ul>
       )}
     </nav>
