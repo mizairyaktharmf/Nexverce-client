@@ -11,6 +11,7 @@ import Footer from "./Components/Footer/Footer";
 import PageImage from "./Components/NexCodeNova/PageImage";
 import CategoryPage from "./Components/Categories/CategoryPage";
 import PostPage from "./Components/Categories/PostPage";
+import WhyChoose from "./Components/WhyChoose/WhyChoose";
 
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
           element={
             <>
               <HeroSection/>
-              <NexCodeNova/>
+              <WhyChoose/>
               <Categories/>
               <FeaturedProducts/>
               <PageImage/>
