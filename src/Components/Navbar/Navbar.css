@@ -282,6 +282,7 @@ ul, li {
   .homeLogo {
     height: 4.5rem;
     width: 10rem;
+    margin-right: 6rem;
   }
 }
 
