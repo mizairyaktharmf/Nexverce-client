@@ -3,73 +3,27 @@
   position: relative;
   z-index: 10;
   text-align: center;
-  padding-top: 10px;
+  padding-top: 40px;
   background: rgba(58, 26, 107);
-
-
+  /* background: linear-gradient(135deg, #3a1a6b, #2e0f5d); */
 }
 
-/* ===== Animations ===== */
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(50px); /* start lower */
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0); /* slide into place */
-  }
-}
 
 .introTitle {
   font-weight: 700;
   font-size: 50px;
   font-family: "Poppins", sans-serif;
   color: whitesmoke;
-  margin-bottom: 1rem;
-  opacity: 0;
-  animation: slideUp 0.8s ease forwards;
-  animation-delay: 0.2s;
 }
 
 .introDesc {
-  margin: 1.5rem;
+  margin-top: 0.50rem;
   font-weight: 400;
   font-size: 20px;
   font-family: Arial, Helvetica, sans-serif;
   color: rgb(192, 187, 187);
-  opacity: 0;
-  animation: slideUp 0.8s ease forwards;
-  animation-delay: 0.4s;
 }
 
-/* Button */
-.exploreSoltn {
-  display: inline-block;
-  padding: 0.75rem 1rem;
-  margin: 1rem 1rem;
-  border: 1px solid rgb(102, 99, 99);
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0px 6px 18px rgba(0,0,0,0.12);
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  min-width: 150px;
-  min-height: 50px;
-  text-align: center;
-  opacity: 0;
-  animation: slideUp 0.8s ease forwards;
-  animation-delay: 0.6s; /* button comes after text */
-}
-
-.exploreSoltn:hover {
-  background-color: #3a1a6b;
-  color: #fff;
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0px 8px 22px rgba(0,0,0,0.18);
-}
 
 
 /* Tablet Responsive */

@@ -24,7 +24,6 @@ function WhyChoose() {
   return (
     <section className="whyChoose">
       <div className="whyChooseContainer">
-        <h2>Why Choose Nexverce?</h2>
         <p className="whySubtitle">
           Discover smarter, verified deals — trusted by thousands of users worldwide.
         </p>
@@ -38,6 +37,9 @@ function WhyChoose() {
             </div>
           ))}
         </div>
+          <div to="/services" className="exploreSoltn">
+                Explore Now
+          </div>
       </div>
     </section>
   );

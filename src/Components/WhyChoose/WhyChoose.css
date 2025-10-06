@@ -1,9 +1,9 @@
 .whyChoose {
-    background: rgba(58, 26, 107);
+  background: rgba(58, 26, 107);
   /* background: linear-gradient(135deg, #3a1a6b, #2e0f5d); */
   color: #fff;
-
   text-align: center;
+  padding-top: 20px;
 }
 
 .whyChooseContainer {
@@ -19,7 +19,7 @@
 .whySubtitle {
   font-size: 1.1rem;
   color: #dcdcdc;
-  margin-bottom: 1rem;
+  margin: 1rem;
 }
 
 .whyCards {
@@ -51,10 +51,29 @@
 
 .whyCard h3 {
   font-size: 1.2rem;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.5rem;
+  
 }
 
 .whyCard p {
   color: #e0e0e0;
   font-size: 0.95rem;
+}
+/* Button */
+.exploreSoltn {
+  display: inline-block;
+  padding: 0.75rem 1rem;
+  margin: 0.75em 0.75rem;
+  border: 1px solid rgb(102, 99, 99);
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 6px 18px rgba(0,0,0,0.12);
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+  color: black;
+}
+.exploreSoltn:hover {
+  transform: translateY(-5px)
 }
