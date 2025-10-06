@@ -26,7 +26,10 @@ function PostPage() {
 
         <div className="postTextContent">
           <h1 className="postTitle">{post.title}</h1>
-          <p className="postDescription">{post.content || post.description}</p>
+          <div
+            className="postContent"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          ></div>
 
           {post.price && (
             <p className="postPrice">

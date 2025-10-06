@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./FeaturedProducts.css";
 import productsData from "../../Data/productsData.json";
+import { useNavigate } from "react-router-dom";
+
 
 function FeaturedProducts() {
   // Filters
@@ -8,10 +10,10 @@ function FeaturedProducts() {
   const highlights = ["education", "finance", "technology"];
   const deals = productsData.filter(p => p.type === "deal");
   const marketplace = productsData.filter(p => p.type === "marketplace");
-  
 
   // set Countdown state for all deals
   const [countdowns, setCountdowns] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -55,7 +57,7 @@ function FeaturedProducts() {
               <img src={item.image} alt={item.title} className="CardImg"/>
               <span className="tag">{item.tag}</span>
               <h4>{item.title}</h4>
-              <button className="buyBtn">Explore Now</button>
+              <button className="buyBtn" onClick={() => navigate(`/post/${item.id}`)}>Explore Now</button>
             </div>
           ))}
         </div>
@@ -75,7 +77,7 @@ function FeaturedProducts() {
                 />
                 <h4>{cat} Pick</h4>
                 <p>{product ? product.description : "Top pick in this category"}</p>
-                <button className="buyBtn">Explore Now</button>
+                <button className="buyBtn" onClick={() => navigate(`/post/${product.id}`)}>Explore Now</button>
               </div>
             );
           })}
@@ -93,7 +95,7 @@ function FeaturedProducts() {
               <h4>{deal.title}</h4>
               <p>{deal.description}</p>
               <div className="countdown">{countdowns[deal.id] || "Loading..."}</div>
-              <button className="buyBtn">Grab Deal</button>
+              <button className="buyBtn" onClick={() => navigate(`/post/${deal.id}`)}>Grab Deal</button>
             </div>
           </div>
         ))}
@@ -109,7 +111,7 @@ function FeaturedProducts() {
               <h4>{item.title}</h4>
               <p>{item.price}</p>
               <span>★★★★☆</span><br/>
-              <button className="buyBtn">Shop Now</button>
+              <button className="buyBtn" onClick={() => navigate(`/post/${item.id}`)}>Shop Now</button>
             </div>
           ))}
         </div>

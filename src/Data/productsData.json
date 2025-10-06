@@ -1,16 +1,17 @@
 [
-  {
-    "id": 1,
-    "title": "Udemy Python Course",
-    "description": "Boost your coding skills with Python.",
-    "price": "49.99",
-    "tag": "#Trending",
-    "category": "education", 
-    "image": "/images/education.png", 
-    "type": "topPick",
-    "content": "<p>Learn Python from scratch with this comprehensive Udemy course. Includes hands-on exercises and projects for practical learning.</p><p>Topics: Python basics, data structures, OOP, web scraping, and more.</p>",
-    "slug": "udemy-python-course"
-  },
+{
+  "id": 1,
+  "title": "Udemy Python Course",
+  "description": "Boost your coding skills with Python.",
+  "price": "49.99",
+  "tag": "#Trending",
+  "category": "education",
+  "image": "/images/education.png",
+  "type": "topPick",
+  "slug": "udemy-python-course",
+  "content": "<div class=\"postContentWrapper\"><p>Learn Python from scratch with this comprehensive Udemy course. Includes hands-on exercises and projects for practical learning.</p><img src=\"/images/python-course-banner.jpg\" alt=\"Python Course Banner\" class=\"postInnerImg\" /><p>This course covers everything from basic syntax to advanced object-oriented programming (OOP). You’ll build real-world projects to understand each topic deeply.</p><img src=\"/images/python-project-example.jpg\" alt=\"Python Project Example\" class=\"postInnerImg\" /><h3>What You’ll Learn:</h3><ul><li>Python fundamentals and syntax</li><li>Data structures and algorithms</li><li>Object-oriented programming</li><li>Web scraping and automation</li><li>Working with APIs and databases</li></ul><p>By the end of this course, you’ll have strong programming foundations and the confidence to build your own apps or work on data science projects.</p><img src=\"/images/python-certificate.jpg\" alt=\"Python Certificate\" class=\"postInnerImg\" /></div>"
+},
+
   {
     "id": 2,
     "title": "Amazon Gadget",
