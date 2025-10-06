@@ -1,15 +1,13 @@
 import React, { useRef } from 'react'
 import './Footer.css';
-import facebookicon from '../../../src/assets/facebook.png'
+import tiktokicon from '../../../src/assets/tiktok.png'
 import instagramicon from '../../../src/assets/instagram.png'
-import linkdinicon from '../../../src/assets/linkdin.png'
-import whatsappicon from '../../../src/assets/whatsapp.png'
+
+
 
 const socialLinks = [
-  { name: "Facebook", url: "https://www.facebook.com/", icon: facebookicon },
+  { name: "Tiktok", url: "https://www.tiktok.com/", icon: tiktokicon },
   { name: "Instagram", url: "https://www.instagram.com/", icon: instagramicon },
-  { name: "Linkdin", url: "https://www.linkedin.com/company/nexcode-nova/", icon: linkdinicon },
-  { name: "Whatsapp", url: "https://wa.me/971562393573?text=Hello%20NexCodeNova!", icon: whatsappicon },
 ];
 
 function Footer() {

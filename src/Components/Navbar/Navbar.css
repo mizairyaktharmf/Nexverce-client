@@ -3,6 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   top: 0;
   gap: 6rem;
   background: whitesmoke;
