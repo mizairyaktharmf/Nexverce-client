@@ -78,70 +78,96 @@ ul, li {
   padding: 10px;
   z-index: 999;
   animation: fadeIn 0.25s ease;
+  
 }
 
-.dropdown:hover .dropdownMenu {
-  display: block;
-}
 
-.dropdownItem {
+/* ===== Categories Dropdown (Main 7 Items) ===== */
+.dropdown {
   position: relative;
-  border-radius: 6px;
-  margin: 6px 0;
-  transition: background 0.2s ease;
 }
 
-.dropdownItemTitle {
-  padding: 10px 15px;
-  font-size: 14px;
+.dropdown > span {
+  cursor: pointer;
   font-weight: 500;
-  display: block;
-  color: #333;
+  color: #1a1a1a;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
 }
 
-.dropdownItemTitle:hover {
-  background: #f9f9f9;
-  border-radius: 6px;
+.dropdown > span:hover {
   color: #3a1a6b;
+  transform: translateY(-1px);
 }
 
-/* ===== SubMenu ===== */
-.subMenu {
+/* Dropdown box */
+.dropdownMenu {
   display: none;
   position: absolute;
-  top: 0;
-  left: 100%;
+  top: 130%;
+  left: 0;
   background: #ffffff;
-  border: 1px solid #eee;
-  border-radius: 8px;
-  box-shadow: 0px 6px 18px rgba(0,0,0,0.12);
-  min-width: 220px;
-  padding: 10px;
+  border: 1px solid #ececec;
+  border-radius: 12px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.12);
+  min-width: 250px;
+  padding: 12px;
+  z-index: 999;
   animation: fadeIn 0.25s ease;
+  transition: all 0.25s ease;
 }
 
+/* Show on hover or click */
 .dropdown:hover .dropdownMenu,
-.dropdownMenu:hover {
-  display: block;
-}
-.dropdownItem:hover .subMenu,
-.subMenu:hover {
+.dropdown.active .dropdownMenu {
   display: block;
 }
 
-.subMenu li {
-  padding: 10px 12px;
-  font-size: 13px;
-  color: #444;
-  border-radius: 4px;
-  transition: all 0.2s ease;
+/* Each category item */
+.dropdownMenu li {
+  margin: 6px 0;
+  border-radius: 8px;
+  background: #fafafa;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.04);
+  transition: all 0.25s ease;
+  overflow: hidden;
 }
 
-.subMenu li:hover {
-  background: #f5f5f5;
+.dropdownMenu li a {
+  display: block;
+  padding: 10px 14px;
+  text-decoration: none;
+  color: #222;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+/* Hover effect */
+.dropdownMenu li:hover {
+  transform: translateY(-2px);
+  background: #f9f6ff;
+  box-shadow: 0px 4px 12px rgba(58, 26, 107, 0.15);
+}
+
+.dropdownMenu li:hover a {
   color: #3a1a6b;
-  transform: translateX(2px);
 }
+
+/* Subtle fade animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 .searchContent {
   display: flex;
