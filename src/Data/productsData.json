@@ -57,7 +57,7 @@
     "tag": "#AI",
     "category": "ai",
     "image": "/images/education.png",
-    "type": "highlights",
+    "type": "topPick",
     "content": "<p>Jasper AI is a top choice for copywriting. Generate engaging content, ads, and social posts in seconds.</p>",
     "slug": "jasper-ai"
   },
@@ -69,7 +69,7 @@
     "tag": "#AI",
     "category": "technology",
     "image": "/images/education.png",
-    "type": "highlights",
+    "type": "marketplace",
     "content": "<p>Writesonic offers AI-powered writing assistance at an affordable price. Perfect for blogs, marketing copy, and social media content.</p>",
     "slug": "writesonic"
   },

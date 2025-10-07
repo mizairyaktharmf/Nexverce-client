@@ -1,5 +1,5 @@
 .featuredProducts {
-  width: 90%;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 3rem 1rem;
@@ -21,13 +21,12 @@
 /* Sections */
 .sectionBlock {
   margin-bottom: 3rem;
-  margin-left: 2rem;
 }
 
 /* Slider */
 .slider {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   overflow-x: auto;
   scroll-behavior: smooth;
 }
