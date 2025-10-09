@@ -127,7 +127,7 @@ function Navbar() {
           </li>
 
           <li>
-            <Link to="/about" onClick={() => setShowMenu(false)}>
+            <Link to="/" onClick={() => setShowMenu(false)}>
               About
             </Link>
           </li>
