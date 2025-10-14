@@ -4,10 +4,11 @@
     "title": "Email Marketing with Constant Contact",
     "description": "Boost your marketing campaigns using Constant Contact.",
     "price": "49.99",
-    "tag": "#Trending",
+    "tag": "#DealOfTheDay",
     "category": "marketing",
     "image": "/images/marketing.png",
-    "type": "topPick",
+    "type": "deal",
+    "endTime": "2025-11-06T23:59:59",
     "slug": "constant-contact-course",
     "content": "<div class=\"postContentWrapper\">\n  <h2>Take Your Email Marketing to the Next Level with Constant Contact!</h2>\n  <p>Discover the power of <strong>Constant Contact</strong>, a leading email marketing platform trusted by businesses worldwide. With Constant Contact, you can easily create engaging newsletters, automate campaigns, and manage your contacts efficiently.</p>\n  <img src=\"/images/constant-contact-banner.jpg\" alt=\"Constant Contact Banner\" class=\"postInnerImg\" />\n  <h3>What You’ll Learn:</h3>\n  <ul>\n    <li>How to create professional email campaigns</li>\n    <li>Organize and segment your contacts for better targeting</li>\n    <li>Set up marketing automation and drip campaigns</li>\n    <li>Track campaign performance with analytics</li>\n    <li>Integrate Constant Contact with your website and apps</li>\n  </ul>\n  <p>By the end of this guide, you'll be confident in building effective email campaigns that engage your audience, drive traffic, and increase conversions.</p>\n  <img src=\"/images/constant-contact-dashboard.jpg\" alt=\"Constant Contact Dashboard\" class=\"postInnerImg\" />\n  <p><strong>Start leveraging email marketing today and grow your business with Constant Contact!</strong></p>\n</div>"
   },
