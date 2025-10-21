@@ -134,5 +134,19 @@
     "type": "deal",
     "content": "<p>Take advantage of 40% off this AI content writing tool, perfect for financial bloggers and marketers.</p>",
     "slug": "40-percent-off-ai-tool"
-  }
+  },
+  {
+  "id": 12,
+  "title": "Get 1 Month Free of Perplexity Pro + grab the offer with my Referral Link",
+  "description": "Discover Perplexity AI — the smarter, faster way to search with direct answers and free Pro access through my exclusive referral link.",
+  "price": "0",
+  "tag": "#ExclusiveOffer",
+  "category": "marketing",
+  "image": "/images/perplexity-ai.png",
+  "type": "deal",
+  "endTime": "2025-12-25T23:59:59",
+  "slug": "perplexity-ai-referral-offer",
+  "content": "<div class=\"postContentWrapper\">\n  <h2>Get 1 Month Free of Perplexity Pro + Support Me with My Link</h2>\n  <p>Have you ever wished for smarter search that gives direct answers with sources, not just a list of links? Meet <strong>Perplexity AI</strong> — an AI-powered answer engine that can boost your productivity.</p>\n  <img src=\"/images/perplexity-banner.jpg\" alt=\"Perplexity AI Banner\" class=\"postInnerImg\" />\n  <h3>What’s the Offer:</h3>\n  <p>I’m sharing my <strong>exclusive referral link</strong> for Perplexity. When you sign up using my link, you’ll get <strong>one month free</strong> of Perplexity Pro (or equivalent $20 value), and I’ll get a reward too.</p>\n  <h3>Why Upgrade to Pro:</h3>\n  <ul>\n    <li>Faster, more advanced AI models</li>\n    <li>More queries and better performance</li>\n    <li>Perfect for research, content creation, work, and study</li>\n  </ul>\n  <h3>How to Claim:</h3>\n  <ol>\n    <li>Click my referral link.</li>\n    <li>Create a new account.</li>\n    <li>Upgrade to Pro (or follow the steps as required).</li>\n    <li>Enjoy your free month — and I get a reward!</li>\n  </ol>\n  <h3>Important Details:</h3>\n  <ul>\n    <li>Must be a new account (never had Pro before)</li>\n    <li>My link must be used so we both benefit</li>\n    <li>The free month cap is up to 12 redemptions per referral link (standard referral programme)</li>\n    <li>Student version: If you’re a student, join their Campus Partner programme for extra benefits</li>\n  </ul>\n  <h3>Why I’m Sharing This:</h3>\n  <p>It helps me get rewards while you get value. If you love boosting your productivity, this is a win-win!</p>\n  <h3>Call to Action:</h3>\n  <p>👉 <strong>Click my link and let’s both benefit.</strong> Let’s boost our search game together!</p>\n  <p class=\"postCredit\">Powered by <strong>Nexverce</strong></p>\n</div>"
+}
+
 ]
