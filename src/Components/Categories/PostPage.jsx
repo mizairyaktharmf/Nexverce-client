@@ -38,7 +38,19 @@ function PostPage() {
           )}
       
           <div className="postButtons">
-            <button className="linkBtn">Grab Deal</button>
+            {post.referralLink ? (
+              <a
+                href={post.referralLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="linkBtn"
+              >
+                Grab Deal
+              </a>
+            ) : (
+              <button className="linkBtn" disabled>No Link Available</button>
+            )}
+
             <Link
               to={`/category/${post.category.toLowerCase()}`}
               className="backBtn"
