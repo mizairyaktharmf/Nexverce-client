@@ -1,16 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import productsData from "../../Data/productsData.json";
 import "./PostPage.css";
 
 function PostPage() {
   const { id } = useParams();
-  const post = productsData.find((p) => p.id.toString() === id);
+  const [post, setPost] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  if (!post) {
+  useEffect(() => {
+    const fetchPost = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/products/${id}`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch post");
+        }
+        const data = await response.json();
+        setPost(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPost();
+  }, [id]);
+
+  if (loading) {
     return (
       <div style={{ textAlign: "center", padding: "3rem" }}>
-        <h2>Post not found</h2>
+        <h2>Loading post...</h2>
+      </div>
+    );
+  }
+
+  if (error || !post) {
+    return (
+      <div style={{ textAlign: "center", padding: "3rem" }}>
+        <h2>{error ? `Error: ${error}` : "Post not found"}</h2>
         <Link to="/" className="backBtn">Go Back</Link>
       </div>
     );
@@ -36,7 +64,7 @@ function PostPage() {
               <strong>Price:</strong> {post.price}
             </p>
           )}
-      
+
           <div className="postButtons">
             {post.referralLink ? (
               <a
@@ -48,11 +76,13 @@ function PostPage() {
                 Grab Deal
               </a>
             ) : (
-              <button className="linkBtn" disabled>No Link Available</button>
+              <button className="linkBtn" disabled>
+                No Link Available
+              </button>
             )}
 
             <Link
-              to={`/category/${post.category.toLowerCase()}`}
+              to={`/category/${post.category?.toLowerCase()}`}
               className="backBtn"
             >
               ← Back to {post.category}
