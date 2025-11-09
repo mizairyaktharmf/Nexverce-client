@@ -11,7 +11,7 @@ function SearchResultsPage() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://localhost:5000/products");
+        const response = await fetch("https://nexverce-backend.onrender.com");
         const data = await response.json();
         setProducts(data);
         setLoading(false);

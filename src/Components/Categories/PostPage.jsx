@@ -11,7 +11,7 @@ function PostPage() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/products/${id}`);
+        const response = await fetch(`https://nexverce-backend.onrender.com/${id}`);
         if (!response.ok) {
           throw new Error("Failed to fetch post");
         }
