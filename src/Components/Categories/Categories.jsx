@@ -1,50 +1,65 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Categories.css";
-import education from '../../../src/assets/education.png'
-import finance from '../../../src/assets/finance.png'
-import fitness from '../../../src/assets/fitness.png'
-import gaming from '../../../src/assets/gaming.png'
-import marketing from '../../../src/assets/marketing.png'
-import technology from '../../../src/assets/technology.png'
 
+// ✅ Local category images
+import education from "../../../src/assets/education.png";
+import finance from "../../../src/assets/finance.png";
+import fitness from "../../../src/assets/fitness.png";
+import gaming from "../../../src/assets/gaming.png";
+import marketing from "../../../src/assets/marketing.png";
+import technology from "../../../src/assets/technology.png";
+
+// ✅ Category data (matches exactly what’s saved in MongoDB from admin panel)
 const categoriesData = [
-  { 
+  {
     title: "Education & E-Learning",
-    description: "Find top courses, learning platforms, and tools to boost knowledge.",
+    value: "Education",
+    description:
+      "Find top courses, learning platforms, and tools to boost your knowledge.",
     image: education,
-    slug: "education"
+    slug: "education",
   },
   {
     title: "Finance & Investment",
-    description: "Discover apps, tools, and platforms to manage money and invest wisely.",
+    value: "Finance",
+    description:
+      "Discover apps, tools, and platforms to manage money and invest wisely.",
     image: finance,
-    slug: "finance"
+    slug: "finance",
   },
   {
     title: "Technology & Gadgets",
-    description: "Explore the latest tech products and software for personal & professional use.",
+    value: "Technology",
+    description:
+      "Explore the latest tech products and software for personal & professional use.",
     image: technology,
-    slug: "technology"
+    slug: "technology",
   },
   {
     title: "Health & Fitness",
-    description: "Get access to wellness apps, fitness tools, and health resources.",
+    value: "Health",
+    description:
+      "Get access to wellness apps, fitness tools, and health resources.",
     image: fitness,
-    slug: "health"
+    slug: "health",
   },
   {
-    title: "Marketing & Business Tools",
-    description: "Find digital marketing tools, SaaS, and productivity software to grow business.",
+    title: "Marketing & Business",
+    value: "Marketing",
+    description:
+      "Find digital marketing tools, SaaS, and productivity software to grow your business.",
     image: marketing,
-    slug: "marketing"
+    slug: "marketing",
   },
   {
     title: "Entertainment & Gaming",
-    description: "Discover streaming services, gaming platforms, and fun tools.",
+    value: "Lifestyle",
+    description:
+      "Discover streaming services, gaming platforms, and entertainment tools.",
     image: gaming,
-    slug: "entertainment"
-  }
+    slug: "lifestyle", // ✅ matches backend category “Lifestyle”
+  },
 ];
 
 function Categories() {
@@ -58,18 +73,26 @@ function Categories() {
     <section className="categories">
       <div className="categoriesContent">
         <h2 className="categoriesTitle">Explore Our Categories</h2>
-        <p className="categoriesDesc">Browse the main categories of tools and resources available at Nexverce.</p>
+        <p className="categoriesDesc">
+          Browse the main categories of tools and resources available at{" "}
+          <strong>Nexverce</strong>.
+        </p>
       </div>
 
       <div className="categoriesGrid">
         {categoriesData.map((category, index) => (
-          <div 
-            key={index} 
+          <div
+            key={index}
             className="categoryCard"
             onClick={() => handleCategoryClick(category.slug)}
             style={{ cursor: "pointer" }}
           >
-            <img className="categoryCardImg" src={category.image} alt={category.title} />
+            <img
+              className="categoryCardImg"
+              src={category.image}
+              alt={category.title}
+              loading="lazy"
+            />
             <h3 className="categoryCardTitle">{category.title}</h3>
             <p className="categoryCardDesc">{category.description}</p>
           </div>
