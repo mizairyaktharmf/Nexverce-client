@@ -58,7 +58,7 @@ const categoriesData = [
     description:
       "Discover streaming services, gaming platforms, and entertainment tools.",
     image: gaming,
-    slug: "lifestyle", // ✅ matches backend category “Lifestyle”
+    slug: "lifestyle", 
   },
 ];
 

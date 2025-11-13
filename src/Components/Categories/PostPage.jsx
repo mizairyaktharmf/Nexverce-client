@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import "./PostPage.css";
-import API_BASE from "../../Config/Api"; // ✅ Using your centralized API file
+import API_BASE from "../../Config/Api";
 
 function PostPage() {
   const { id } = useParams();
@@ -9,13 +9,27 @@ function PostPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // ✅ Fetch single post by ID
+  // Currency mapping
+  const currencySymbol = {
+    USD: "$",
+    EUR: "€",
+    AED: "د.إ",
+    LKR: "Rs ",
+    JPY: "¥",
+    INR: "₹",
+  };
+
+  // Fetch single post
   useEffect(() => {
     const fetchPost = async () => {
       try {
         setLoading(true);
         const response = await fetch(`${API_BASE}/${id}`);
-        if (!response.ok) throw new Error("Failed to fetch post data");
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch post data");
+        }
+
         const data = await response.json();
         setPost(data);
       } catch (err) {
@@ -28,7 +42,7 @@ function PostPage() {
     fetchPost();
   }, [id]);
 
-  // ✅ Loading state
+  // Loading UI
   if (loading) {
     return (
       <div style={{ textAlign: "center", padding: "3rem" }}>
@@ -37,23 +51,24 @@ function PostPage() {
     );
   }
 
-  // ✅ Error or missing post state
+  // Error or missing post
   if (error || !post) {
     return (
       <div style={{ textAlign: "center", padding: "3rem" }}>
         <h2>{error ? `Error: ${error}` : "Post not found"}</h2>
-        <Link to="/" className="backBtn">
-          ← Back to Home
-        </Link>
+        <Link to="/" className="backBtn">← Back to Home</Link>
       </div>
     );
   }
 
-  // ✅ Main post content
+  // Currency symbol
+  const symbol = currencySymbol[post.currency] || "";
+
   return (
     <section className="postPage">
       <div className="postContainer">
-        {/* --- Image Section --- */}
+
+        {/* IMAGE BLOCK */}
         <div className="postImageWrapper">
           {post.image ? (
             <img
@@ -82,7 +97,7 @@ function PostPage() {
           {post.tag && <span className="postPageTag">{post.tag}</span>}
         </div>
 
-        {/* --- Text Content --- */}
+        {/* TEXT CONTENT BLOCK */}
         <div className="postTextContent">
           <h1 className="postTitle">{post.title}</h1>
 
@@ -93,14 +108,17 @@ function PostPage() {
             }}
           ></div>
 
+          {/* PRICE BLOCK */}
           {post.price && (
             <p className="postPrice">
-              <strong>Price:</strong> {post.price}
+              <strong>Price:</strong> {symbol}{post.price}
             </p>
           )}
 
-          {/* --- Buttons --- */}
+          {/* BUTTONS */}
           <div className="postButtons">
+
+            {/* Grab Deal */}
             {post.referralLink ? (
               <a
                 href={post.referralLink}

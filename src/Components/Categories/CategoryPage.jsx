@@ -9,7 +9,7 @@ function CategoryPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // ✅ Map slugs to how they’re stored in MongoDB (admin category values)
+  // Category mapping
   const slugToCategoryMap = {
     education: "Education",
     finance: "Finance",
@@ -21,6 +21,16 @@ function CategoryPage() {
 
   const categoryName = slugToCategoryMap[slug] || slug;
 
+  // Currency symbol support (same as PostPage)
+  const currencySymbols = {
+    USD: "$",
+    EUR: "€",
+    AED: "د.إ",
+    LKR: "Rs ",
+    JPY: "¥",
+    INR: "₹",
+  };
+
   useEffect(() => {
     const fetchCategoryPosts = async () => {
       try {
@@ -29,7 +39,6 @@ function CategoryPage() {
         if (!response.ok) throw new Error("Failed to fetch posts");
         const data = await response.json();
 
-        // ✅ Filter: only published and correct category
         const filtered = data.filter(
           (post) =>
             post.status === "published" &&
@@ -77,24 +86,31 @@ function CategoryPage() {
     <section className="categoryPage">
       <h2>{categoryName}</h2>
       <div className="categoryGrid">
-        {categoryPosts.map((post) => (
-          <div key={post._id} className="categoryPostCard">
-            <Link to={`/post/${post._id}`} className="postLink">
-              {post.image && (
-                <img src={post.image} alt={post.title} className="postImg" />
-              )}
-              {post.tag && <span className="postTag">{post.tag}</span>}
-              <h3>{post.title}</h3>
-              <p>{post.description}</p>
-              {post.price && (
-                <p>
-                  <strong>Price:</strong> {post.price}
-                </p>
-              )}
-              <button className="readBtn">Read More</button>
-            </Link>
-          </div>
-        ))}
+        {categoryPosts.map((post) => {
+          const symbol = currencySymbols[post.currency] || "";
+
+          return (
+            <div key={post._id} className="categoryPostCard">
+              <Link to={`/post/${post._id}`} className="postLink">
+                {post.image && (
+                  <img src={post.image} alt={post.title} className="postImg" />
+                )}
+                {post.tag && <span className="postTag">{post.tag}</span>}
+
+                <h3>{post.title}</h3>
+                <p>{post.description}</p>
+
+                {post.price && (
+                  <p>
+                    <strong>Price:</strong> {symbol}{post.price}
+                  </p>
+                )}
+
+                <button className="readBtn">Read More</button>
+              </Link>
+            </div>
+          );
+        })}
       </div>
     </section>
   );
