@@ -19,16 +19,14 @@ function PostPage() {
     INR: "₹",
   };
 
-  // Fetch single post
+  // Fetch Single Post
   useEffect(() => {
     const fetchPost = async () => {
       try {
         setLoading(true);
         const response = await fetch(`${API_BASE}/${id}`);
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch post data");
-        }
+        if (!response.ok) throw new Error("Failed to fetch post");
 
         const data = await response.json();
         setPost(data);
@@ -42,26 +40,25 @@ function PostPage() {
     fetchPost();
   }, [id]);
 
-  // Loading UI
+  // Loading
   if (loading) {
     return (
-      <div style={{ textAlign: "center", padding: "3rem" }}>
+      <div className="post-loading">
         <h2>Loading post...</h2>
       </div>
     );
   }
 
-  // Error or missing post
+  // Error
   if (error || !post) {
     return (
-      <div style={{ textAlign: "center", padding: "3rem" }}>
+      <div className="post-loading">
         <h2>{error ? `Error: ${error}` : "Post not found"}</h2>
         <Link to="/" className="backBtn">← Back to Home</Link>
       </div>
     );
   }
 
-  // Currency symbol
   const symbol = currencySymbol[post.currency] || "";
 
   return (
@@ -78,29 +75,17 @@ function PostPage() {
               loading="lazy"
             />
           ) : (
-            <div
-              style={{
-                width: "100%",
-                height: "300px",
-                background: "#f3f4f6",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "#888",
-                fontSize: "1rem",
-              }}
-            >
-              No Image Available
-            </div>
+            <div className="noImageBox">No Image Available</div>
           )}
 
           {post.tag && <span className="postPageTag">{post.tag}</span>}
         </div>
 
-        {/* TEXT CONTENT BLOCK */}
+        {/* TEXT CONTENT */}
         <div className="postTextContent">
           <h1 className="postTitle">{post.title}</h1>
 
+          {/* CONTENT WITHOUT BOX */}
           <div
             className="postContent"
             dangerouslySetInnerHTML={{
@@ -108,7 +93,7 @@ function PostPage() {
             }}
           ></div>
 
-          {/* PRICE BLOCK */}
+          {/* PRICE */}
           {post.price && (
             <p className="postPrice">
               <strong>Price:</strong> {symbol}{post.price}
@@ -118,7 +103,6 @@ function PostPage() {
           {/* BUTTONS */}
           <div className="postButtons">
 
-            {/* Grab Deal */}
             {post.referralLink ? (
               <a
                 href={post.referralLink}
@@ -129,12 +113,9 @@ function PostPage() {
                 Grab Deal
               </a>
             ) : (
-              <button className="linkBtn" disabled>
-                No Link Available
-              </button>
+              <button className="linkBtn" disabled>No Link Available</button>
             )}
 
-            {/* Back to Category */}
             {post.category && (
               <Link
                 to={`/category/${post.category.toLowerCase()}`}
