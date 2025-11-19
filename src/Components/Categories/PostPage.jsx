@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import "./PostPage.css";
 import API_BASE from "../../Config/Api";
-import BlockRenderer from "../../components/BlockRenderer";
+import BlockRenderer from "../../Components/BlockRenderer";
 
 function PostPage() {
   const { id } = useParams();
