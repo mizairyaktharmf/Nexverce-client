@@ -24,18 +24,31 @@ function PostPage() {
     const fetchPost = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`${API_BASE}/${id}`);
 
+        const res = await fetch(`${API_BASE}/${id}`);
         if (!res.ok) throw new Error("Failed to fetch post");
 
         const data = await res.json();
 
+        /* ====================================================
+            FIXED CONTENT PARSING (WORKS FOR ALL CASES)
+        ==================================================== */
         let contentBlocksParsed = [];
 
         try {
-          contentBlocksParsed = Array.isArray(data.contentBlocks)
-            ? data.contentBlocks
-            : JSON.parse(data.contentBlocks || "[]");
+          const raw =
+            data.contentBlocks ||
+            data.blocks ||
+            data.content ||
+            null;
+
+          if (!raw) {
+            contentBlocksParsed = [];
+          } else if (Array.isArray(raw)) {
+            contentBlocksParsed = raw;
+          } else {
+            contentBlocksParsed = JSON.parse(raw);
+          }
         } catch {
           contentBlocksParsed = [];
         }
@@ -54,6 +67,7 @@ function PostPage() {
     fetchPost();
   }, [id]);
 
+  // Loading
   if (loading) {
     return (
       <div className="post-loading">
@@ -62,6 +76,7 @@ function PostPage() {
     );
   }
 
+  // Error
   if (error || !post) {
     return (
       <div className="post-loading">
