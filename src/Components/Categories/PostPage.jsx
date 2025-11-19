@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import "./PostPage.css";
 import API_BASE from "../../Config/Api";
+import BlockRenderer from "../../components/BlockRenderer";
 
 function PostPage() {
   const { id } = useParams();
@@ -19,17 +20,30 @@ function PostPage() {
     INR: "₹",
   };
 
-  // Fetch Single Post
   useEffect(() => {
     const fetchPost = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`${API_BASE}/${id}`);
+        const res = await fetch(`${API_BASE}/${id}`);
 
-        if (!response.ok) throw new Error("Failed to fetch post");
+        if (!res.ok) throw new Error("Failed to fetch post");
 
-        const data = await response.json();
-        setPost(data);
+        const data = await res.json();
+
+        let contentBlocksParsed = [];
+
+        try {
+          contentBlocksParsed = Array.isArray(data.contentBlocks)
+            ? data.contentBlocks
+            : JSON.parse(data.contentBlocks || "[]");
+        } catch {
+          contentBlocksParsed = [];
+        }
+
+        setPost({
+          ...data,
+          contentBlocks: contentBlocksParsed,
+        });
       } catch (err) {
         setError(err.message);
       } finally {
@@ -40,20 +54,18 @@ function PostPage() {
     fetchPost();
   }, [id]);
 
-  // Loading
   if (loading) {
     return (
       <div className="post-loading">
-        <h2>Loading post...</h2>
+        <h2>Loading your article...</h2>
       </div>
     );
   }
 
-  // Error
   if (error || !post) {
     return (
       <div className="post-loading">
-        <h2>{error ? `Error: ${error}` : "Post not found"}</h2>
+        <h2>{error ? error : "Post not found"}</h2>
         <Link to="/" className="backBtn">← Back to Home</Link>
       </div>
     );
@@ -63,68 +75,77 @@ function PostPage() {
 
   return (
     <section className="postPage">
-      <div className="postContainer">
+      <div className="postContainer premiumPost">
 
-        {/* IMAGE BLOCK */}
-        <div className="postImageWrapper">
+        {/* HEADER IMAGE */}
+        <div className="postHeaderImage">
           {post.image ? (
             <img
               src={post.image}
               alt={post.title}
-              className="postPageImg"
+              className="mainPostImage"
               loading="lazy"
             />
           ) : (
             <div className="noImageBox">No Image Available</div>
           )}
-
-          {post.tag && <span className="postPageTag">{post.tag}</span>}
         </div>
 
-        {/* TEXT CONTENT */}
-        <div className="postTextContent">
-          <h1 className="postTitle">{post.title}</h1>
+        {/* CONTENT */}
+        <div className="postMainContent">
 
-          {/* CONTENT WITHOUT BOX */}
-          <div
-            className="postContent"
-            dangerouslySetInnerHTML={{
-              __html: post.content || "<p>No content available.</p>",
-            }}
-          ></div>
+          {/* TITLE */}
+          <h1 className="postTitlePremium">{post.title}</h1>
+
+          {/* TAG */}
+          {post.tag && (
+            <span className="premiumTag">{post.tag}</span>
+          )}
+
+          {/* BLOCKS */}
+          <div className="premiumBlocksWrapper">
+            {post.contentBlocks?.length > 0 ? (
+              post.contentBlocks.map((block) => (
+                <BlockRenderer key={block.id} block={block} />
+              ))
+            ) : (
+              <p>No content available.</p>
+            )}
+          </div>
 
           {/* PRICE */}
           {post.price && (
-            <p className="postPrice">
-              <strong>Price:</strong> {symbol}{post.price}
+            <p className="premiumPriceTag">
+              <span>Price:</span> {symbol}{post.price}
             </p>
           )}
 
           {/* BUTTONS */}
-          <div className="postButtons">
+          <div className="premiumButtons">
 
             {post.referralLink ? (
               <a
                 href={post.referralLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="linkBtn"
+                className="premiumBtn dealBtn"
               >
-                Grab Deal
+                🔥 Grab Deal
               </a>
             ) : (
-              <button className="linkBtn" disabled>No Link Available</button>
+              <button className="premiumBtn disabledBtn">No Link Available</button>
             )}
 
             {post.category && (
               <Link
                 to={`/category/${post.category.toLowerCase()}`}
-                className="backBtn"
+                className="premiumBtn backBtnPremium"
               >
                 ← Back to {post.category}
               </Link>
             )}
           </div>
+
         </div>
       </div>
     </section>
