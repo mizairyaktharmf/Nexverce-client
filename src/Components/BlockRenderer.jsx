@@ -1,42 +1,49 @@
+import React from "react";
+import "./BlockRenderer.css";
+
 export default function BlockRenderer({ block }) {
   if (!block) return null;
 
   switch (block.type) {
-    case "text":
-      return <p className="text-block">{block.data?.text}</p>;
 
+    // TEXT BLOCK
+    case "text":
+      return (
+        <div className="br-text-block">
+          <p>{block.data?.text}</p>
+        </div>
+      );
+
+    // PROS & CONS
     case "procons":
       return (
-        <div className="pros-cons-block">
-          <h3>Pros</h3>
-          <ul>
-            {block.data?.pros?.split("\n").map((p, i) => (
-              <li key={i}>{p}</li>
-            ))}
-          </ul>
+        <div className="br-procons">
+          <div className="br-pros">
+            <h3>✅ Pros</h3>
+            <ul>
+              {block.data?.pros?.split("\n").map((p, i) => (
+                <li key={i}>{p}</li>
+              ))}
+            </ul>
+          </div>
 
-          <h3>Cons</h3>
-          <ul>
-            {block.data?.cons?.split("\n").map((c, i) => (
-              <li key={i}>{c}</li>
-            ))}
-          </ul>
+          <div className="br-cons">
+            <h3>❌ Cons</h3>
+            <ul>
+              {block.data?.cons?.split("\n").map((c, i) => (
+                <li key={i}>{c}</li>
+              ))}
+            </ul>
+          </div>
         </div>
       );
 
-    case "faq":
-      return (
-        <div className="faq-block">
-          <strong>Q: {block.data?.question}</strong>
-          <p>A: {block.data?.answer}</p>
-        </div>
-      );
-
+    // CTA BUTTON
     case "cta":
       return (
         <a
           href={block.data?.link}
-          className="cta-block"
+          className="br-cta-btn"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -44,6 +51,16 @@ export default function BlockRenderer({ block }) {
         </a>
       );
 
+    // FAQ BLOCK
+    case "faq":
+      return (
+        <div className="br-faq">
+          <h3>❓ {block.data?.question}</h3>
+          <p>{block.data?.answer}</p>
+        </div>
+      );
+
+    // DEFAULT
     default:
       return null;
   }
