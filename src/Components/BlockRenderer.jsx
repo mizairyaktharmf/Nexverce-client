@@ -1,5 +1,5 @@
 import React from "react";
-import "./BlockRenderer.css";
+
 
 export default function BlockRenderer({ block }) {
   if (!block) return null;
