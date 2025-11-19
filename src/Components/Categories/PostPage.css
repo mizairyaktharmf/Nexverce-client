@@ -1,5 +1,5 @@
 /* ================================
-   PREMUIM POST PAGE — NEXVERCE STYLE
+   PREMIUM POST PAGE — NEXVERCE STYLE
 =================================== */
 
 .postPage {
@@ -70,7 +70,7 @@
   margin-bottom: 1rem;
 }
 
-/* MAIN CONTENT WRAPPER */
+/* BLOCK CONTENT WRAPPER */
 .premiumBlocksWrapper {
   display: flex;
   flex-direction: column;
@@ -132,14 +132,14 @@
   color: white;
 }
 
-/* DISABLED BTN */
+/* DISABLED BUTTON */
 .disabledBtn {
   background: rgba(255, 255, 255, 0.15);
   color: #aaa;
   cursor: not-allowed;
 }
 
-/* LOADING & ERROR */
+/* LOADING | ERROR STATE */
 .post-loading {
   text-align: center;
   padding: 3rem;
