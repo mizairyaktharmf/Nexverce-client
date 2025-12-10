@@ -16,25 +16,32 @@ export default function BlockRenderer({ block }) {
 
     // PROS & CONS
     case "procons":
+      const pros = block.data?.pros?.split("\n").filter(p => p.trim()) || [];
+      const cons = block.data?.cons?.split("\n").filter(c => c.trim()) || [];
+
       return (
         <div className="br-procons">
-          <div className="br-pros">
-            <h3>✅ Pros</h3>
-            <ul>
-              {block.data?.pros?.split("\n").map((p, i) => (
-                <li key={i}>{p}</li>
-              ))}
-            </ul>
-          </div>
+          {pros.length > 0 && (
+            <div className="br-pros">
+              <h3>✅ Benefits</h3>
+              <ul>
+                {pros.map((p, i) => (
+                  <li key={i}>{p}</li>
+                ))}
+              </ul>
+            </div>
+          )}
 
-          <div className="br-cons">
-            <h3>❌ Cons</h3>
-            <ul>
-              {block.data?.cons?.split("\n").map((c, i) => (
-                <li key={i}>{c}</li>
-              ))}
-            </ul>
-          </div>
+          {cons.length > 0 && (
+            <div className="br-cons">
+              <h3>❌ Cons</h3>
+              <ul>
+                {cons.map((c, i) => (
+                  <li key={i}>{c}</li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       );
 
@@ -42,12 +49,12 @@ export default function BlockRenderer({ block }) {
     case "cta":
       return (
         <a
-          href={block.data?.link}
+          href={block.data?.link || "#"}
           className="br-cta-btn"
           target="_blank"
           rel="noopener noreferrer"
         >
-          {block.data?.label}
+          {block.data?.label || "Click Here"}
         </a>
       );
 
@@ -60,8 +67,9 @@ export default function BlockRenderer({ block }) {
         </div>
       );
 
-    // DEFAULT
+    // DEFAULT - Unknown block type
     default:
+      console.warn(`Unknown block type: ${block.type}`, block);
       return null;
   }
 }

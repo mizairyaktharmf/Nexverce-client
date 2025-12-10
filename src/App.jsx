@@ -4,6 +4,7 @@ import ScrollToTop from "./Components/ScrollToTop";
 import About from "./Components/About/About";
 import Navbar from "./Components/Navbar/Navbar";
 import HeroSection from "./Components/HeroSection/HeroSection";
+import LandingPage from "./Components/LandingPage/LandingPage";
 import NexCodeNova from "./Components/NexCodeNova/NexCodeNova";
 import Categories from "./Components/Categories/Categories";
 import FeaturedProducts from "./Components/FeaturedProducts/FeaturedProducts";
@@ -36,10 +37,13 @@ function App() {
             </>
           }
         />
-         
+
         <Route path="/category/:slug" element={<CategoryPage/>} />
         <Route path="/post/:id" element={<PostPage/>} />
         <Route path="/search" element={<SearchResultsPage/>} />
+
+        {/* Landing Page Route */}
+        <Route path="/lp/:slug" element={<LandingPage/>} />
 
         {/* About Page */}
         <Route path="/about" element={<About/>} /> 
