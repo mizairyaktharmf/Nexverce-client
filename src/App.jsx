@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./Components/ScrollToTop";
 import About from "./Components/About/About";
 import Navbar from "./Components/Navbar/Navbar";
@@ -14,6 +14,9 @@ import CategoryPage from "./Components/Categories/CategoryPage";
 import PostPage from "./Components/Categories/PostPage";
 import WhyChoose from "./Components/WhyChoose/WhyChoose";
 import SearchResultsPage from "./Components/SearchPost/SearchResultsPage";
+import PrivacyPolicy from "./Components/PrivacyPolicy/PrivacyPolicy";
+import AboutUs from "./Components/AboutUs/AboutUs";
+import ContactUs from "./Components/ContactUs/ContactUs";
 
 
 function App() {
@@ -46,7 +49,12 @@ function App() {
         <Route path="/lp/:slug" element={<LandingPage/>} />
 
         {/* About Page */}
-        <Route path="/about" element={<About/>} /> 
+        <Route path="/about" element={<About/>} />
+
+        {/* Legal & Info Pages */}
+        <Route path="/privacy-policy" element={<PrivacyPolicy/>} />
+        <Route path="/about-us" element={<AboutUs/>} />
+        <Route path="/contact" element={<ContactUs/>} /> 
       </Routes>
     </Router>
   );

@@ -1,4 +1,5 @@
 import React, { useRef } from 'react'
+import { Link } from 'react-router-dom';
 import './Footer.css';
 import tiktokicon from '../../../src/assets/tiktok.png'
 import instagramicon from '../../../src/assets/instagram.png'
@@ -6,8 +7,8 @@ import instagramicon from '../../../src/assets/instagram.png'
 
 
 const socialLinks = [
-  { name: "Tiktok", url: "https://www.tiktok.com/", icon: tiktokicon },
-  { name: "Instagram", url: "https://www.instagram.com/", icon: instagramicon },
+  { name: "Tiktok", url: "https://www.tiktok.com/@nexverce", icon: tiktokicon },
+  { name: "Instagram", url: "https://www.instagram.com/nexverce", icon: instagramicon },
 ];
 
 function Footer() {
@@ -49,6 +50,27 @@ function Footer() {
               ))}
             </div>
           </div>
+
+          {/* Footer Navigation Links */}
+          <div style={{
+            marginTop: "1.5rem",
+            textAlign: "center",
+            padding: "0 1rem"
+          }}>
+            <div style={{
+              display: "flex",
+              justifyContent: "center",
+              gap: "1.5rem",
+              flexWrap: "wrap",
+              marginBottom: "1rem"
+            }}>
+              <Link to="/about-us" style={{ color: "#0077ff", textDecoration: "none", fontSize: "14px" }}>About Us</Link>
+              <Link to="/contact" style={{ color: "#0077ff", textDecoration: "none", fontSize: "14px" }}>Contact</Link>
+              <Link to="/privacy-policy" style={{ color: "#0077ff", textDecoration: "none", fontSize: "14px" }}>Privacy Policy</Link>
+              <a href="mailto:contact@nexverce.com" style={{ color: "#0077ff", textDecoration: "none", fontSize: "14px" }}>contact@nexverce.com</a>
+            </div>
+          </div>
+
           <div style={{
           marginTop :"1rem",
           textAlign: "center",
@@ -60,9 +82,9 @@ function Footer() {
         </div>
         </div>
 
-        
 
-      </div>  
+
+      </div>
     </section>
   )
 }
