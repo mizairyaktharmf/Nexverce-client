@@ -27,7 +27,7 @@ function App() {
       <Navbar/>
       <ScrollToTop/>
       <Routes>
-        {/* Home Page */}
+        {/*  Home Page */}
         <Route
           path="/"
           element={
