@@ -52,7 +52,7 @@ function App() {
         {/* Landing Page Route */}
         <Route path="/lp/:slug" element={<LandingPage/>} />
 
-        {/* About Page */}
+        {/* About Page page  */}
         <Route path="/about" element={<About/>} />
 
         {/* Legal & Info Pages */}
