@@ -4,7 +4,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from "../../components/u
 import { Badge } from "../../components/ui/badge";
 import { Button } from "../../components/ui/button";
 
-// ✅ Local category images
+// ✅ Local category images chedck
 import education from "../../../src/assets/education.png";
 import finance from "../../../src/assets/finance.png";
 import fitness from "../../../src/assets/fitness.png";
