@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Categories.css";
 
-// ✅ Local category images
+// ✅ Local category images chedck
 import education from "../../../src/assets/education.png";
 import finance from "../../../src/assets/finance.png";
 import fitness from "../../../src/assets/fitness.png";
