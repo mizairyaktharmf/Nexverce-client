@@ -17,6 +17,7 @@ import SearchResultsPage from "./Components/SearchPost/SearchResultsPage";
 import PrivacyPolicy from "./Components/PrivacyPolicy/PrivacyPolicy";
 import AboutUs from "./Components/AboutUs/AboutUs";
 import ContactUs from "./Components/ContactUs/ContactUs";
+import BlogsPage from "./Components/Blogs/BlogsPage";
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
         <Route path="/category/:slug" element={<CategoryPage/>} />
         <Route path="/post/:id" element={<PostPage/>} />
         <Route path="/search" element={<SearchResultsPage/>} />
+        <Route path="/blogs" element={<BlogsPage/>} />
 
         {/* Landing Page Route */}
         <Route path="/lp/:slug" element={<LandingPage/>} />

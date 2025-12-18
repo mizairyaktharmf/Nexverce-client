@@ -57,7 +57,11 @@ function Navbar() {
         </li>
 
         <li>
-          <Link to="/">About</Link>
+          <Link to="/blogs">Blogs</Link>
+        </li>
+
+        <li>
+          <Link to="/about-us">About</Link>
         </li>
 
         <li>
@@ -127,7 +131,13 @@ function Navbar() {
           </li>
 
           <li>
-            <Link to="/" onClick={() => setShowMenu(false)}>
+            <Link to="/blogs" onClick={() => setShowMenu(false)}>
+              Blogs
+            </Link>
+          </li>
+
+          <li>
+            <Link to="/about-us" onClick={() => setShowMenu(false)}>
               About
             </Link>
           </li>
