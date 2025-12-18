@@ -1,5 +1,4 @@
 import React from 'react'
-import './NexCodeNova.css'
 
 function NexCodeNova() {
   return (

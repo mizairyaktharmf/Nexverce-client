@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
-import "./SearchResultsPage.css";
 import API_BASE from "../../Config/Api"; // ✅ use centralized API config
 
 function SearchResultsPage() {

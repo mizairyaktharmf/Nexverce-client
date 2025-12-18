@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
-import "./FeaturedProducts.css";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import API_BASE from "../../Config/Api"; // ✅ centralized API path
+import { Flame, Clock, ShoppingCart, Sparkles } from "lucide-react";
+import API_BASE from "../../Config/Api";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../../components/ui/card";
+import { Button } from "../../components/ui/button";
+import { Badge } from "../../components/ui/badge";
 
 function FeaturedProducts() {
   const [products, setProducts] = useState([]);
@@ -79,8 +82,9 @@ function FeaturedProducts() {
   // ✅ Loading state
   if (loading) {
     return (
-      <div style={{ textAlign: "center", padding: "2rem" }}>
-        <h3>Loading featured products...</h3>
+      <div className="text-center py-16">
+        <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-primary border-r-transparent"></div>
+        <h3 className="mt-4 text-lg font-medium text-gray-600">Loading featured products...</h3>
       </div>
     );
   }
@@ -88,141 +92,195 @@ function FeaturedProducts() {
   // ✅ Error state
   if (error) {
     return (
-      <div style={{ textAlign: "center", color: "red", padding: "2rem" }}>
-        <h3>Error: {error}</h3>
+      <div className="text-center py-16 text-red-600">
+        <h3 className="text-lg font-medium">Error: {error}</h3>
       </div>
     );
   }
 
   // ✅ Render Sections
   return (
-    <section className="featuredProducts">
-      <div className="featuredProductsHeader">
-        <h2>Featured Products</h2>
-        <p>Explore trending picks, deals, and tools curated for you.</p>
-      </div>
+    <section className="py-16 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      {/* 🔥 Top Picks */}
-      {topPicks.length > 0 && (
-        <div className="sectionBlock">
-          <h3>🔥 Top Picks of the Week</h3>
-          <div className="slider">
-            {topPicks.map((item) => (
-              <div key={item._id} className="sliderCard">
-                <img
-                  src={item.image || "https://via.placeholder.com/250x150"}
-                  alt={item.title}
-                  className="CardImg"
-                />
-                {item.tag && <span className="tag">{item.tag}</span>}
-                <h4>{item.title}</h4>
-                <button
-                  className="buyBtn"
-                  onClick={() => navigate(`/post/${item._id}`)}
-                >
-                  Explore Now
-                </button>
-              </div>
-            ))}
-          </div>
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Featured Products</h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">Explore trending picks, deals, and tools curated for you.</p>
         </div>
-      )}
 
-      {/* 📌 Highlights */}
-      <div className="sectionBlock">
-        <h3>📌 Category Highlights</h3>
-        <div className="highlightGrid">
-          {highlights.map((cat, idx) => {
-            const product = products.find(
-              (p) => p.category?.toLowerCase() === cat.toLowerCase()
-            );
-            return (
-              <div key={idx} className="highlightCard">
-                <img
-                  className="CardImg"
-                  src={
-                    product?.image || "https://via.placeholder.com/250x150"
-                  }
-                  alt={cat}
-                />
-                <h4>{cat.charAt(0).toUpperCase() + cat.slice(1)} Pick</h4>
-                <p>
-                  {product
-                    ? product.description
-                    : `Top pick in ${cat} category`}
-                </p>
-                {product && (
-                  <button
-                    className="buyBtn"
-                    onClick={() => navigate(`/post/${product._id}`)}
-                  >
-                    Explore Now
-                  </button>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* ⏳ Deal of the Day */}
-      {deals.length > 0 && (
-        <>
-          <h3 className="dealTitle">⏳ Deal of the Day</h3>
-          <div className="dealCardsContainer">
-            {deals.map((deal) => (
-              <div key={deal._id} className="dealCard">
-                <img
-                  src={deal.image || "https://via.placeholder.com/250x150"}
-                  alt={deal.title}
-                  className="CardImg"
-                />
-                <div className="dealInfo">
-                  <h4>{deal.title}</h4>
-                  <p>{deal.description}</p>
-                  <div className="countdown">
-                    {countdowns[deal._id] || "Loading..."}
+        {/* 🔥 Top Picks */}
+        {topPicks.length > 0 && (
+          <div className="mb-16">
+            <div className="flex items-center gap-2 mb-6">
+              <Flame className="h-6 w-6 text-orange-500" />
+              <h3 className="text-2xl font-bold text-gray-900">Top Picks of the Week</h3>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {topPicks.map((item) => (
+                <Card key={item._id} className="overflow-hidden hover:shadow-xl transition-all duration-300 group">
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={item.image || "https://via.placeholder.com/250x150"}
+                      alt={item.title}
+                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                    {item.tag && (
+                      <Badge variant="premium" className="absolute top-3 right-3">
+                        {item.tag}
+                      </Badge>
+                    )}
                   </div>
-                  <button
-                    className="buyBtn"
-                    onClick={() => navigate(`/post/${deal._id}`)}
-                  >
-                    Grab Deal
-                  </button>
-                </div>
-              </div>
-            ))}
+                  <CardHeader>
+                    <CardTitle className="text-lg line-clamp-2">{item.title}</CardTitle>
+                  </CardHeader>
+                  <CardFooter>
+                    <Button
+                      variant="premium"
+                      className="w-full"
+                      onClick={() => navigate(`/post/${item._id}`)}
+                    >
+                      Explore Now
+                    </Button>
+                  </CardFooter>
+                </Card>
+              ))}
+            </div>
           </div>
-        </>
-      )}
+        )}
 
-      {/* 🛒 Mini Marketplace */}
-      {marketplace.length > 0 && (
-        <div className="sectionBlock">
-          <h3>🛒 Mini Marketplace</h3>
-          <div className="marketGrid">
-            {marketplace.map((item) => (
-              <div key={item._id} className="marketCard">
-                <img
-                  src={item.image || "https://via.placeholder.com/250x150"}
-                  alt={item.title}
-                  className="CardImg"
-                />
-                <h4>{item.title}</h4>
-                <p>{item.price ? `$${item.price}` : "Price not available"}</p>
-                <span>★★★★☆</span>
-                <br />
-                <button
-                  className="buyBtn"
-                  onClick={() => navigate(`/post/${item._id}`)}
-                >
-                  Shop Now
-                </button>
-              </div>
-            ))}
+        {/* 📌 Highlights */}
+        <div className="mb-16">
+          <div className="flex items-center gap-2 mb-6">
+            <Sparkles className="h-6 w-6 text-primary" />
+            <h3 className="text-2xl font-bold text-gray-900">Category Highlights</h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {highlights.map((cat, idx) => {
+              const product = products.find(
+                (p) => p.category?.toLowerCase() === cat.toLowerCase()
+              );
+              return (
+                <Card key={idx} className="overflow-hidden hover:shadow-xl transition-all duration-300">
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                      src={product?.image || "https://via.placeholder.com/250x150"}
+                      alt={cat}
+                    />
+                  </div>
+                  <CardHeader>
+                    <CardTitle className="text-xl">{cat.charAt(0).toUpperCase() + cat.slice(1)} Pick</CardTitle>
+                    <CardDescription className="line-clamp-2">
+                      {product ? product.description : `Top pick in ${cat} category`}
+                    </CardDescription>
+                  </CardHeader>
+                  {product && (
+                    <CardFooter>
+                      <Button
+                        variant="outline"
+                        className="w-full"
+                        onClick={() => navigate(`/post/${product._id}`)}
+                      >
+                        Explore Now
+                      </Button>
+                    </CardFooter>
+                  )}
+                </Card>
+              );
+            })}
           </div>
         </div>
-      )}
+
+        {/* ⏳ Deal of the Day */}
+        {deals.length > 0 && (
+          <div className="mb-16">
+            <div className="flex items-center gap-2 mb-6">
+              <Clock className="h-6 w-6 text-red-500" />
+              <h3 className="text-2xl font-bold text-gray-900">Deal of the Day</h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {deals.map((deal) => (
+                <Card key={deal._id} className="overflow-hidden hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-red-50 to-orange-50">
+                  <div className="md:flex">
+                    <div className="md:w-1/2 relative overflow-hidden">
+                      <img
+                        src={deal.image || "https://via.placeholder.com/250x150"}
+                        alt={deal.title}
+                        className="w-full h-64 md:h-full object-cover hover:scale-110 transition-transform duration-300"
+                      />
+                      <Badge variant="destructive" className="absolute top-3 left-3">
+                        Limited Time
+                      </Badge>
+                    </div>
+                    <div className="md:w-1/2 p-6 flex flex-col justify-between">
+                      <div>
+                        <h4 className="text-xl font-bold text-gray-900 mb-2">{deal.title}</h4>
+                        <p className="text-gray-600 text-sm mb-4 line-clamp-3">{deal.description}</p>
+                      </div>
+                      <div>
+                        <div className="bg-white rounded-lg p-3 mb-4 text-center border-2 border-red-500">
+                          <p className="text-xs text-gray-600 mb-1">Time Remaining</p>
+                          <p className="font-mono text-lg font-bold text-red-600">
+                            {countdowns[deal._id] || "Loading..."}
+                          </p>
+                        </div>
+                        <Button
+                          variant="destructive"
+                          className="w-full"
+                          onClick={() => navigate(`/post/${deal._id}`)}
+                        >
+                          Grab Deal
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* 🛒 Mini Marketplace */}
+        {marketplace.length > 0 && (
+          <div className="mb-16">
+            <div className="flex items-center gap-2 mb-6">
+              <ShoppingCart className="h-6 w-6 text-green-600" />
+              <h3 className="text-2xl font-bold text-gray-900">Mini Marketplace</h3>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {marketplace.map((item) => (
+                <Card key={item._id} className="overflow-hidden hover:shadow-xl transition-all duration-300 group">
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={item.image || "https://via.placeholder.com/250x150"}
+                      alt={item.title}
+                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                  </div>
+                  <CardHeader>
+                    <CardTitle className="text-lg line-clamp-2">{item.title}</CardTitle>
+                    <CardDescription className="text-xl font-bold text-primary">
+                      {item.price ? `$${item.price}` : "Price not available"}
+                    </CardDescription>
+                    <div className="text-yellow-500 text-sm">★★★★☆</div>
+                  </CardHeader>
+                  <CardFooter>
+                    <Button
+                      variant="outline"
+                      className="w-full"
+                      onClick={() => navigate(`/post/${item._id}`)}
+                    >
+                      Shop Now
+                    </Button>
+                  </CardFooter>
+                </Card>
+              ))}
+            </div>
+          </div>
+        )}
+
+      </div>
     </section>
   );
 }

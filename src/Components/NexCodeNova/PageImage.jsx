@@ -1,6 +1,5 @@
 import React from 'react';
 import pagemain from '../../../src/assets/nexcodenova add.png';
-import './PageImage.css';
 
 function PageImage() {
   return (

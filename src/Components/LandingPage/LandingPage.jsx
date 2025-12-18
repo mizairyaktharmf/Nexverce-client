@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import BlockRenderer from "../BlockRenderer";
-import "./LandingPage.css";
 
-const API_BASE = "https://nexverce-backend.onrender.com/api/landing-pages";
+// Use local backend in development, production in production
+const API_BASE =
+  import.meta.env.MODE === "development"
+    ? "http://localhost:5000/api/landing-pages"
+    : "https://nexverce-backend.onrender.com/api/landing-pages";
 
 export default function LandingPage() {
   const { slug } = useParams();

@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
-import './ContactUs.css';
+import { useState } from 'react';
+import { Mail, Linkedin, Instagram, Facebook, Clock, CheckCircle2, Send } from 'lucide-react';
 import Footer from '../Footer/Footer';
+import { Input } from '../../components/ui/input';
+import { Button } from '../../components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card';
 
 function ContactUs() {
   const [formData, setFormData] = useState({
@@ -40,165 +43,215 @@ function ContactUs() {
     }, 3000);
   };
 
+  const contactMethods = [
+    {
+      icon: Mail,
+      title: "Email",
+      info: "contact@nexverce.com",
+      link: "mailto:contact@nexverce.com"
+    },
+    {
+      icon: Linkedin,
+      title: "LinkedIn",
+      info: "linkedin.com/company/nexverce",
+      link: "https://www.linkedin.com/company/nexverce"
+    },
+    {
+      icon: Instagram,
+      title: "Instagram",
+      info: "@nexverce",
+      link: "https://www.instagram.com/nexverce"
+    },
+    {
+      icon: Facebook,
+      title: "Facebook",
+      info: "facebook.com/nexverce",
+      link: "https://www.facebook.com/nexverce"
+    }
+  ];
+
+  const faqs = [
+    {
+      question: "What is Nexverce?",
+      answer: "Nexverce is a digital platform that curates innovative products, services, and content across various industries to help businesses and consumers make informed decisions."
+    },
+    {
+      question: "How can I list my product?",
+      answer: "Please email us at contact@nexverce.com with details about your product or service, and our team will review your submission."
+    },
+    {
+      question: "Do you offer business partnerships?",
+      answer: "Yes! We're always open to collaborating with innovative businesses. Contact us to discuss partnership opportunities."
+    },
+    {
+      question: "How do I report an issue?",
+      answer: "If you encounter any technical issues or have concerns, please email us with details, and our support team will assist you promptly."
+    }
+  ];
+
   return (
     <>
-      <div className="contact-us-page">
-        <div className="contact-us-hero">
-          <h1 className="contact-us-title">Get in Touch</h1>
-          <p className="contact-us-tagline">We'd Love to Hear from You</p>
+      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+        {/* Hero Section */}
+        <div className="bg-gradient-to-br from-purple-50 via-white to-blue-50 py-16 border-b border-gray-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Get in Touch</h1>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">We'd Love to Hear from You</p>
+          </div>
         </div>
 
-        <div className="contact-us-container">
-          <div className="contact-us-grid">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+
             {/* Left Side - Contact Information */}
-            <div className="contact-info-section">
-              <h2>Contact Information</h2>
-              <p className="contact-intro">
-                Have questions, feedback, or partnership inquiries? Reach out to us through any of the channels below, and we'll get back to you as soon as possible.
-              </p>
+            <div>
+              <Card className="mb-8 shadow-lg">
+                <CardHeader>
+                  <CardTitle className="text-2xl">Contact Information</CardTitle>
+                  <CardDescription>
+                    Have questions, feedback, or partnership inquiries? Reach out to us through any of the channels below.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  {contactMethods.map((method, index) => {
+                    const Icon = method.icon;
+                    return (
+                      <a
+                        key={index}
+                        href={method.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-4 p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border border-gray-200 hover:shadow-md transition-all group"
+                      >
+                        <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+                          <Icon className="h-6 w-6 text-primary" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-gray-900">{method.title}</h3>
+                          <p className="text-sm text-gray-600">{method.info}</p>
+                        </div>
+                      </a>
+                    );
+                  })}
+                </CardContent>
+              </Card>
 
-              <div className="contact-details">
-                <div className="contact-item">
-                  <div className="contact-icon">📧</div>
-                  <div className="contact-content">
-                    <h3>Email</h3>
-                    <a href="mailto:contact@nexverce.com">contact@nexverce.com</a>
+              <Card className="shadow-lg">
+                <CardHeader>
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-5 w-5 text-primary" />
+                    <CardTitle>Business Hours</CardTitle>
                   </div>
-                </div>
-
-                <div className="contact-item">
-                  <div className="contact-icon">💼</div>
-                  <div className="contact-content">
-                    <h3>LinkedIn</h3>
-                    <a href="https://www.linkedin.com/company/nexverce" target="_blank" rel="noopener noreferrer">
-                      linkedin.com/company/nexverce
-                    </a>
-                  </div>
-                </div>
-
-                <div className="contact-item">
-                  <div className="contact-icon">📷</div>
-                  <div className="contact-content">
-                    <h3>Instagram</h3>
-                    <a href="https://www.instagram.com/nexverce" target="_blank" rel="noopener noreferrer">
-                      @nexverce
-                    </a>
-                  </div>
-                </div>
-
-                <div className="contact-item">
-                  <div className="contact-icon">👥</div>
-                  <div className="contact-content">
-                    <h3>Facebook</h3>
-                    <a href="https://www.facebook.com/nexverce" target="_blank" rel="noopener noreferrer">
-                      facebook.com/nexverce
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <div className="business-hours">
-                <h3>Business Hours</h3>
-                <p>Monday - Friday: 9:00 AM - 6:00 PM (EST)</p>
-                <p>Saturday - Sunday: Closed</p>
-                <p className="response-time">We typically respond within 24-48 hours</p>
-              </div>
+                </CardHeader>
+                <CardContent className="space-y-2">
+                  <p className="text-gray-700">Monday - Friday: 9:00 AM - 6:00 PM (EST)</p>
+                  <p className="text-gray-700">Saturday - Sunday: Closed</p>
+                  <p className="text-sm text-primary font-medium mt-4">We typically respond within 24-48 hours</p>
+                </CardContent>
+              </Card>
             </div>
 
             {/* Right Side - Contact Form */}
-            <div className="contact-form-section">
-              <h2>Send Us a Message</h2>
+            <Card className="shadow-xl border-2 border-primary/20">
+              <CardHeader>
+                <CardTitle className="text-2xl">Send Us a Message</CardTitle>
+                <CardDescription>Fill out the form below and we'll get back to you soon</CardDescription>
+              </CardHeader>
+              <CardContent>
+                {submitted && (
+                  <div className="flex items-center gap-2 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700 mb-6">
+                    <CheckCircle2 className="h-5 w-5" />
+                    <p>Thank you! Your message has been sent successfully. We'll get back to you soon.</p>
+                  </div>
+                )}
 
-              {submitted && (
-                <div className="success-message">
-                  ✓ Thank you! Your message has been sent successfully. We'll get back to you soon.
-                </div>
-              )}
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                      Full Name *
+                    </label>
+                    <Input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="John Doe"
+                      required
+                    />
+                  </div>
 
-              <form className="contact-form" onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <label htmlFor="name">Full Name *</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="John Doe"
-                    required
-                  />
-                </div>
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                      Email Address *
+                    </label>
+                    <Input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="john@example.com"
+                      required
+                    />
+                  </div>
 
-                <div className="form-group">
-                  <label htmlFor="email">Email Address *</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="john@example.com"
-                    required
-                  />
-                </div>
+                  <div>
+                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                      Subject *
+                    </label>
+                    <Input
+                      type="text"
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      placeholder="How can we help you?"
+                      required
+                    />
+                  </div>
 
-                <div className="form-group">
-                  <label htmlFor="subject">Subject *</label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    placeholder="How can we help you?"
-                    required
-                  />
-                </div>
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                      Message *
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      placeholder="Tell us more about your inquiry..."
+                      rows="6"
+                      required
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    />
+                  </div>
 
-                <div className="form-group">
-                  <label htmlFor="message">Message *</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Tell us more about your inquiry..."
-                    rows="6"
-                    required
-                  ></textarea>
-                </div>
-
-                <button type="submit" className="submit-button">
-                  Send Message
-                </button>
-              </form>
-            </div>
+                  <Button type="submit" variant="premium" size="lg" className="w-full">
+                    <Send className="mr-2 h-4 w-4" />
+                    Send Message
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
           </div>
 
-          <div className="faq-section">
-            <h2>Frequently Asked Questions</h2>
-            <div className="faq-grid">
-              <div className="faq-item">
-                <h3>What is Nexverce?</h3>
-                <p>Nexverce is a digital platform that curates innovative products, services, and content across various industries to help businesses and consumers make informed decisions.</p>
+          {/* FAQ Section */}
+          <Card className="shadow-lg">
+            <CardHeader className="text-center">
+              <CardTitle className="text-3xl">Frequently Asked Questions</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {faqs.map((faq, index) => (
+                  <div key={index} className="p-6 bg-gradient-to-br from-purple-50 to-blue-50 rounded-lg border border-gray-200">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">{faq.question}</h3>
+                    <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
+                  </div>
+                ))}
               </div>
-
-              <div className="faq-item">
-                <h3>How can I list my product?</h3>
-                <p>Please email us at <a href="mailto:contact@nexverce.com">contact@nexverce.com</a> with details about your product or service, and our team will review your submission.</p>
-              </div>
-
-              <div className="faq-item">
-                <h3>Do you offer business partnerships?</h3>
-                <p>Yes! We're always open to collaborating with innovative businesses. Contact us to discuss partnership opportunities.</p>
-              </div>
-
-              <div className="faq-item">
-                <h3>How do I report an issue?</h3>
-                <p>If you encounter any technical issues or have concerns, please email us with details, and our support team will assist you promptly.</p>
-              </div>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
       <Footer />
