@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ArrowRight, DollarSign } from "lucide-react";
+import { ArrowRight, DollarSign, Sparkles, Grid3x3 } from "lucide-react";
 import API_BASE from "../../Config/Api";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import { Badge } from "../ui/badge";
@@ -98,16 +98,35 @@ function CategoryPage() {
   }
 
   return (
-    <section className="min-h-screen py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="min-h-screen py-20 bg-gradient-to-br from-purple-50 via-white to-blue-50 relative overflow-hidden">
+      {/* Animated Blob Decorations */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Header */}
-        <div className="mb-12">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="h-1 w-12 bg-gradient-to-r from-[#667eea] to-[#764ba2] rounded"></div>
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900">{categoryName}</h1>
+        <div className="text-center mb-16">
+          <Badge variant="premium" className="mb-6 shadow-lg hover:shadow-xl transition-shadow">
+            <Grid3x3 className="h-4 w-4 mr-2" />
+            Category
+          </Badge>
+
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
+            {categoryName}{" "}
+            <span className="bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">
+              Collection
+            </span>
+          </h1>
+
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-4">
+            Explore {categoryPosts.length} {categoryPosts.length === 1 ? 'curated product' : 'curated products'} in this category
+          </p>
+
+          <div className="flex items-center justify-center gap-2">
+            <Sparkles className="h-5 w-5 text-primary" />
+            <span className="text-sm font-semibold text-primary">Premium Verified Offers</span>
           </div>
-          <p className="text-gray-600">Explore {categoryPosts.length} {categoryPosts.length === 1 ? 'post' : 'posts'} in this category</p>
         </div>
 
         {/* Posts Grid */}
