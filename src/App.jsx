@@ -9,7 +9,6 @@ import NexCodeNova from "./Components/NexCodeNova/NexCodeNova";
 import Categories from "./Components/Categories/Categories";
 import FeaturedProducts from "./Components/FeaturedProducts/FeaturedProducts";
 import Footer from "./Components/Footer/Footer";
-import PageImage from "./Components/NexCodeNova/PageImage";
 import CategoryPage from "./Components/Categories/CategoryPage";
 import WhyChoose from "./Components/WhyChoose/WhyChoose";
 import SearchResultsPage from "./Components/SearchPost/SearchResultsPage";
@@ -36,7 +35,7 @@ function App() {
               <WhyChoose/>
               <Categories/>
               <FeaturedProducts/>
-              <PageImage/>
+         
               <NexCodeNova/>
               <Footer/>
             </>
