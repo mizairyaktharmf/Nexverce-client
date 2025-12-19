@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { BookOpen, ArrowRight, Folder } from "lucide-react";
-import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "../../components/ui/card";
-import { Badge } from "../../components/ui/badge";
-import { Button } from "../../components/ui/button";
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
+import { Badge } from "../ui/badge";
+import { Button } from "../ui/button";
 
 // Use local backend in development, production in production
 const API_BASE =

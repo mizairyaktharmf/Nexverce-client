@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Mail, CheckCircle2, Target, Newspaper, Rocket, Lightbulb, Gift } from "lucide-react";
-import { Input } from "../../components/ui/input";
-import { Button } from "../../components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../components/ui/card";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { Link } from "react-router-dom";
 
 export default function Newsletter() {

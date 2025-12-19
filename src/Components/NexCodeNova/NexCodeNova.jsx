@@ -1,7 +1,7 @@
 import { ExternalLink, Sparkles, Code2, Rocket } from 'lucide-react'
-import { Button } from '../../components/ui/button'
-import { Card } from '../../components/ui/card'
-import { Badge } from '../../components/ui/badge'
+import { Button } from '../ui/button'
+import { Card } from '../ui/card'
+import { Badge } from '../ui/badge'
 
 function NexCodeNova() {
   return (

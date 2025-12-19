@@ -1,7 +1,7 @@
 import { Shield, Lock, Eye, Users, Globe, FileText, Mail, Phone } from 'lucide-react';
 import Footer from '../Footer/Footer';
-import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
-import { Badge } from '../../components/ui/badge';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { Badge } from '../ui/badge';
 
 function PrivacyPolicy() {
   const sections = [

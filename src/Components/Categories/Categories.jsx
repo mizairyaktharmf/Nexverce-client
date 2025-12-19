@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, Sparkles, Grid3x3 } from "lucide-react";
-import { Card, CardDescription, CardHeader, CardTitle } from "../../components/ui/card";
-import { Badge } from "../../components/ui/badge";
-import { Button } from "../../components/ui/button";
+import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
+import { Badge } from "../ui/badge";
+import { Button } from "../ui/button";
 
 // ✅ Local category images chedck
 import education from "../../../src/assets/education.png";

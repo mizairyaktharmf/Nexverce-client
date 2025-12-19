@@ -1,7 +1,7 @@
 import { CheckCircle, Scale, Tag, ArrowRight, Sparkles } from "lucide-react";
-import { Card, CardContent } from "../../components/ui/card";
-import { Button } from "../../components/ui/button";
-import { Badge } from "../../components/ui/badge";
+import { Card, CardContent } from "../ui/card";
+import { Button } from "../ui/button";
+import { Badge } from "../ui/badge";
 import { Link } from "react-router-dom";
 
 function WhyChoose() {

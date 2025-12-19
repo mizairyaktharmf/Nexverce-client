@@ -1,9 +1,9 @@
 import React from 'react';
 import { ShoppingBag, BookOpen, TrendingUp, Users, Sparkles, Shield, Lightbulb, Globe, Mail, Linkedin, Instagram, Facebook } from 'lucide-react';
 import Footer from '../Footer/Footer';
-import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
-import { Button } from '../../components/ui/button';
-import { Badge } from '../../components/ui/badge';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { Button } from '../ui/button';
+import { Badge } from '../ui/badge';
 
 function AboutUs() {
   const whatWeDoItems = [

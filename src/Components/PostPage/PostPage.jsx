@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { ArrowLeft, Calendar, Tag, DollarSign, ExternalLink, Loader2 } from "lucide-react";
 import API_BASE from "../../Config/Api";
-import { Button } from "../../components/ui/button";
-import { Badge } from "../../components/ui/badge";
-import { Card, CardContent } from "../../components/ui/card";
+import { Button } from "../ui/button";
+import { Badge } from "../ui/badge";
+import { Card, CardContent } from "../ui/card";
 import BlockRenderer from "../BlockRenderer";
 
 export default function PostPage() {

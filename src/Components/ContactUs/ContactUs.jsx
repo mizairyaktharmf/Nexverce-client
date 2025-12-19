@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Mail, Linkedin, Instagram, Facebook, Clock, CheckCircle2, Send } from 'lucide-react';
 import Footer from '../Footer/Footer';
-import { Input } from '../../components/ui/input';
-import { Button } from '../../components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card';
+import { Input } from '../ui/input';
+import { Button } from '../ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 
 function ContactUs() {
   const [formData, setFormData] = useState({

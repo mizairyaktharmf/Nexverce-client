@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { ArrowRight, DollarSign } from "lucide-react";
 import API_BASE from "../../Config/Api";
-import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "../../components/ui/card";
-import { Badge } from "../../components/ui/badge";
-import { Button } from "../../components/ui/button";
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
+import { Badge } from "../ui/badge";
+import { Button } from "../ui/button";
 
 function CategoryPage() {
   const { slug } = useParams();

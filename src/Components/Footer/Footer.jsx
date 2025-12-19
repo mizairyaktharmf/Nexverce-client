@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { Mail, Send, Heart, ExternalLink, Instagram } from 'lucide-react';
-import { Input } from '../../components/ui/input';
-import { Button } from '../../components/ui/button';
+import { Input } from '../ui/input';
+import { Button } from '../ui/button';
 
 const socialLinks = [
   { name: "Instagram", url: "https://www.instagram.com/nexverce", icon: Instagram },
