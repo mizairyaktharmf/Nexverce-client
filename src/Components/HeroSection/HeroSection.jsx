@@ -5,7 +5,7 @@ import { Badge } from '../ui/badge'
 
 function HeroSection() {
   return (
-    <section className="relative bg-gradient-to-br from-purple-50 via-white to-blue-50 py-12 md:py-20 lg:py-24 overflow-hidden">
+    <section className="relative bg-gradient-to-br from-purple-50 via-white to-blue-50 pt-28 pb-12 md:py-20 lg:py-24 overflow-hidden">
       {/* Animated Blob Decorations */}
       <div className="absolute top-20 left-10 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
