@@ -42,7 +42,7 @@ function FeaturedProducts() {
   const marketplace = products.filter(
     (p) => p.type?.toLowerCase() === "marketplace"
   );
-  const highlights = ["education", "finance", "technology"];
+  const highlights = ["education", "health", "technology"];
 
   // ✅ Countdown Timer for Deals
   useEffect(() => {
