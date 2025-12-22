@@ -141,18 +141,28 @@ export default function PostPage() {
               </div>
             )}
 
-            {/* Description */}
-            {post.description && (
+            {/* Description or Excerpt */}
+            {(post.description || post.excerpt) && (
               <div className="mb-8">
-                <p className="text-lg text-gray-700 leading-relaxed">{post.description}</p>
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  {post.description || post.excerpt}
+                </p>
               </div>
             )}
 
-            {/* Rich Content (for blogs with blocks) */}
-            {post.blocks && post.blocks.length > 0 && (
+            {/* Rich Content (for blogs/products with contentBlocks) */}
+            {post.contentBlocks && post.contentBlocks.length > 0 && (
               <div className="prose prose-lg max-w-none mb-8">
-                <BlockRenderer blocks={post.blocks} />
+                <BlockRenderer blocks={post.contentBlocks} />
               </div>
+            )}
+
+            {/* Legacy HTML content support (if no contentBlocks) */}
+            {(!post.contentBlocks || post.contentBlocks.length === 0) && post.content && (
+              <div
+                className="prose prose-lg max-w-none mb-8"
+                dangerouslySetInnerHTML={{ __html: post.content }}
+              />
             )}
 
             {/* Product Details */}
@@ -188,9 +198,13 @@ export default function PostPage() {
                       <span>{symbol}{post.price}</span>
                     </div>
 
-                    {post.affiliateLink && (
-                      <a href={post.affiliateLink} target="_blank" rel="noopener noreferrer">
-                        <Button variant="premium" size="lg" className="w-full">
+                    {(post.affiliateLink || post.referralLink) && (
+                      <a
+                        href={post.affiliateLink || post.referralLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Button variant="premium" size="lg" className="w-full shadow-lg hover:shadow-xl transition-all">
                           Buy Now
                           <ExternalLink className="ml-2 h-4 w-4" />
                         </Button>

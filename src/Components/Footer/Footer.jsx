@@ -29,6 +29,7 @@ function Footer() {
     { name: "Categories", path: "/#categories" },
     { name: "Blogs", path: "/blogs" },
     { name: "About Us", path: "/about-us" },
+    { name: "Careers", path: "/careers" },
   ];
 
   const legalLinks = [

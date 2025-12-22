@@ -5,7 +5,7 @@ import { Badge } from '../ui/badge'
 
 function HeroSection() {
   return (
-    <section className="relative bg-gradient-to-br from-purple-50 via-white to-blue-50 pt-28 pb-12 md:py-20 lg:py-24 overflow-hidden">
+    <section className="relative bg-gradient-to-r from-purple-50 via-indigo-50 to-blue-50 pt-28 pb-12 md:py-20 lg:py-24 overflow-hidden">
       {/* Animated Blob Decorations */}
       <div className="absolute top-20 left-10 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
@@ -24,14 +24,14 @@ function HeroSection() {
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-4 md:mb-6 leading-tight px-4">
             Discover. Compare.{" "}
             <span className="relative inline-block mt-2">
-              <span className="bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-purple-400 via-purple-500 to-indigo-500 bg-clip-text text-transparent">
                 Buy Smarter
               </span>
-              <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#667eea] to-[#764ba2] rounded-full opacity-60"></div>
+              <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-purple-400 via-purple-500 to-indigo-500 rounded-full opacity-60"></div>
             </span>
             {" "}with{" "}
-            <span className="bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">
-              Nexverce
+            <span className="bg-gradient-to-r from-purple-400 via-purple-500 to-indigo-500 bg-clip-text text-transparent">
+              nexverce
             </span>
           </h1>
 
@@ -68,7 +68,7 @@ function HeroSection() {
                   key={index}
                   className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full shadow-md border border-gray-200 hover:border-primary/50 transition-all hover:scale-105"
                 >
-                  <div className="w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-br from-[#667eea] to-[#764ba2] rounded-full flex items-center justify-center flex-shrink-0">
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-br from-purple-400 to-indigo-500 rounded-full flex items-center justify-center flex-shrink-0">
                     <Icon className="h-3 w-3 text-white" />
                   </div>
                   <span className="text-xs sm:text-sm font-semibold text-gray-700 whitespace-nowrap">{feature.text}</span>

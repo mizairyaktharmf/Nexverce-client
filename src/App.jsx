@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./Components/ScrollToTop";
-import About from "./Components/About/About";
 import Navbar from "./Components/Navbar/Navbar";
 import HeroSection from "./Components/HeroSection/HeroSection";
 import LandingPage from "./Components/LandingPage/LandingPage";
@@ -18,6 +17,8 @@ import ContactUs from "./Components/ContactUs/ContactUs";
 import BlogsPage from "./Components/Blogs/BlogsPage";
 import Newsletter from "./Components/Newsletter/Newsletter";
 import PostPage from "./Components/PostPage/PostPage";
+import Career from "./Components/Career/Career";
+import JobDetail from "./Components/Career/JobDetail";
 
 
 function App() {
@@ -51,14 +52,16 @@ function App() {
         {/* Landing Page Route */}
         <Route path="/lp/:slug" element={<LandingPage/>} />
 
-        {/* About Page */}
-        <Route path="/about" element={<About/>} />
-
         {/* Legal & Info Pages */}
-        <Route path="/privacy-policy" element={<PrivacyPolicy/>} />
+        <Route path="/about" element={<AboutUs/>} />
         <Route path="/about-us" element={<AboutUs/>} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy/>} />
         <Route path="/contact" element={<ContactUs/>} />
         <Route path="/newsletter" element={<Newsletter/>} />
+
+        {/* Career Pages */}
+        <Route path="/careers" element={<Career/>} />
+        <Route path="/career/:id" element={<JobDetail/>} />
       </Routes>
     </Router>
   );
