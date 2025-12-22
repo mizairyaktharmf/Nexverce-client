@@ -130,45 +130,46 @@ function CategoryPage() {
         </div>
 
         {/* Posts Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {categoryPosts.map((post) => {
             const symbol = currencySymbols[post.currency] || "";
 
             return (
               <Link key={post._id} to={`/post/${post._id}`}>
-                <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 group cursor-pointer border-2 hover:border-primary">
+                <Card className="h-full overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 group cursor-pointer border-2 border-gray-100 hover:border-primary/50 hover:scale-105">
                   {post.image && (
-                    <div className="relative h-48 overflow-hidden bg-gradient-to-br from-purple-100 to-blue-100">
+                    <div className="relative h-52 overflow-hidden bg-gradient-to-br from-purple-100 to-blue-100">
                       <img
                         src={post.image}
                         alt={post.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       {post.tag && (
-                        <Badge variant="premium" className="absolute top-3 right-3">
+                        <Badge variant="premium" className="absolute top-4 right-4 shadow-lg">
                           {post.tag}
                         </Badge>
                       )}
                     </div>
                   )}
 
-                  <CardHeader>
-                    <CardTitle className="text-xl line-clamp-2 group-hover:text-primary transition-colors">
+                  <CardHeader className="space-y-3">
+                    <CardTitle className="text-xl font-bold line-clamp-2 group-hover:bg-gradient-to-r group-hover:from-[#667eea] group-hover:to-[#764ba2] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
                       {post.title}
                     </CardTitle>
-                    <CardDescription className="line-clamp-3">
+                    <CardDescription className="line-clamp-3 text-gray-600 leading-relaxed">
                       {post.description}
                     </CardDescription>
                   </CardHeader>
 
-                  <CardFooter className="flex items-center justify-between">
+                  <CardFooter className="flex items-center justify-between pt-4">
                     {post.price && (
-                      <div className="flex items-center gap-1 text-primary font-bold text-lg">
-                        <DollarSign className="h-5 w-5" />
-                        <span>{symbol}{post.price}</span>
+                      <div className="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-[#667eea]/10 to-[#764ba2]/10 rounded-lg">
+                        <DollarSign className="h-5 w-5 text-primary" />
+                        <span className="text-primary font-bold text-lg">{symbol}{post.price}</span>
                       </div>
                     )}
-                    <Button variant="ghost" size="sm" className="ml-auto group-hover:text-primary">
+                    <Button variant="ghost" size="sm" className="ml-auto group-hover:bg-gradient-to-r group-hover:from-[#667eea] group-hover:to-[#764ba2] group-hover:text-white transition-all duration-300">
                       Read More
                       <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </Button>

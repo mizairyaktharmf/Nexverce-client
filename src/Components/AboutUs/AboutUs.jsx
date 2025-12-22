@@ -81,12 +81,25 @@ function AboutUs() {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
+        {/* Animated Blob Decorations */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-8 left-20 w-96 h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+
         {/* Hero Section */}
-        <div className="bg-gradient-to-br from-purple-50 via-white to-blue-50 py-20 border-b border-gray-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <Badge variant="premium" className="mb-4">About Nexverce</Badge>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">About Nexverce</h1>
+        <div className="bg-gradient-to-br from-purple-50 via-white to-blue-50 py-20 border-b border-gray-200 relative">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <Badge variant="premium" className="mb-6 shadow-lg hover:shadow-xl transition-shadow">
+              <Sparkles className="h-4 w-4 mr-2" />
+              About Nexverce
+            </Badge>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+              About{" "}
+              <span className="bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">
+                Nexverce
+              </span>
+            </h1>
             <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
               Empowering Businesses with Innovative Digital Solutions
             </p>
@@ -97,11 +110,11 @@ function AboutUs() {
 
           {/* Who We Are */}
           <section>
-            <Card className="shadow-lg">
-              <CardHeader>
-                <CardTitle className="text-3xl">Who We Are</CardTitle>
+            <Card className="shadow-xl border-2 border-primary/10 hover:border-primary/30 transition-all hover:shadow-2xl">
+              <CardHeader className="bg-gradient-to-r from-purple-50 to-blue-50">
+                <CardTitle className="text-3xl bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">Who We Are</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4 text-gray-700 leading-relaxed">
+              <CardContent className="space-y-4 text-gray-700 leading-relaxed pt-6">
                 <p>
                   Welcome to <strong className="text-primary">Nexverce</strong> – your trusted partner in digital innovation and e-commerce solutions. We are a forward-thinking platform dedicated to helping businesses and individuals discover, explore, and leverage cutting-edge products, services, and content across various industries.
                 </p>
@@ -114,38 +127,38 @@ function AboutUs() {
 
           {/* Our Mission */}
           <section>
-            <Card className="shadow-lg border-2 border-primary/20">
-              <CardHeader>
-                <CardTitle className="text-3xl">Our Mission</CardTitle>
+            <Card className="shadow-xl border-2 border-primary/20 hover:shadow-2xl transition-all">
+              <CardHeader className="bg-gradient-to-r from-purple-50 to-blue-50">
+                <CardTitle className="text-3xl bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">Our Mission</CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="pt-6">
                 <p className="text-gray-700 mb-6">
                   Our mission is to <strong className="text-primary">empower businesses and consumers</strong> by providing a centralized platform that offers:
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="flex gap-3 p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border border-gray-200">
-                    <div className="flex-shrink-0 w-2 h-2 mt-2 bg-primary rounded-full"></div>
+                  <div className="flex gap-3 p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border-2 border-primary/10 hover:border-primary/30 hover:shadow-md transition-all">
+                    <div className="flex-shrink-0 w-2 h-2 mt-2 bg-gradient-to-r from-[#667eea] to-[#764ba2] rounded-full"></div>
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-1">Curated Content</h3>
                       <p className="text-sm text-gray-700">High-quality articles, reviews, and insights across diverse categories</p>
                     </div>
                   </div>
-                  <div className="flex gap-3 p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border border-gray-200">
-                    <div className="flex-shrink-0 w-2 h-2 mt-2 bg-primary rounded-full"></div>
+                  <div className="flex gap-3 p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border-2 border-primary/10 hover:border-primary/30 hover:shadow-md transition-all">
+                    <div className="flex-shrink-0 w-2 h-2 mt-2 bg-gradient-to-r from-[#667eea] to-[#764ba2] rounded-full"></div>
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-1">Product Discovery</h3>
                       <p className="text-sm text-gray-700">Innovative products and services tailored to your needs</p>
                     </div>
                   </div>
-                  <div className="flex gap-3 p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border border-gray-200">
-                    <div className="flex-shrink-0 w-2 h-2 mt-2 bg-primary rounded-full"></div>
+                  <div className="flex gap-3 p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border-2 border-primary/10 hover:border-primary/30 hover:shadow-md transition-all">
+                    <div className="flex-shrink-0 w-2 h-2 mt-2 bg-gradient-to-r from-[#667eea] to-[#764ba2] rounded-full"></div>
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-1">Business Solutions</h3>
                       <p className="text-sm text-gray-700">Tools and resources to help businesses grow and thrive</p>
                     </div>
                   </div>
-                  <div className="flex gap-3 p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border border-gray-200">
-                    <div className="flex-shrink-0 w-2 h-2 mt-2 bg-primary rounded-full"></div>
+                  <div className="flex gap-3 p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border-2 border-primary/10 hover:border-primary/30 hover:shadow-md transition-all">
+                    <div className="flex-shrink-0 w-2 h-2 mt-2 bg-gradient-to-r from-[#667eea] to-[#764ba2] rounded-full"></div>
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-1">Community Engagement</h3>
                       <p className="text-sm text-gray-700">A space for learning, sharing, and connecting with like-minded individuals</p>
@@ -159,7 +172,16 @@ function AboutUs() {
           {/* What We Do */}
           <section>
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What We Do</h2>
+              <Badge variant="premium" className="mb-6 shadow-lg">
+                <Sparkles className="h-4 w-4 mr-2" />
+                Our Services
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                What We{" "}
+                <span className="bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">
+                  Do
+                </span>
+              </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
                 Nexverce is more than just a marketplace – it's an <strong className="text-primary">innovation hub</strong> where you can:
               </p>
@@ -169,10 +191,10 @@ function AboutUs() {
               {whatWeDoItems.map((item, index) => {
                 const Icon = item.icon;
                 return (
-                  <Card key={index} className="shadow-lg hover:shadow-xl transition-all group hover:scale-105">
+                  <Card key={index} className="shadow-xl hover:shadow-2xl transition-all group hover:scale-105 border-2 border-gray-100 hover:border-primary/30">
                     <CardContent className="p-6 text-center">
-                      <div className="w-16 h-16 bg-gradient-to-r from-purple-50 to-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                        <Icon className="h-8 w-8 text-primary" />
+                      <div className="w-16 h-16 bg-gradient-to-r from-[#667eea] to-[#764ba2] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shadow-lg">
+                        <Icon className="h-8 w-8 text-white" />
                       </div>
                       <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
                       <p className="text-gray-700 text-sm">{item.description}</p>
@@ -186,18 +208,29 @@ function AboutUs() {
           {/* Our Values */}
           <section>
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Values</h2>
+              <Badge variant="premium" className="mb-6 shadow-lg">
+                <Shield className="h-4 w-4 mr-2" />
+                Core Values
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Our{" "}
+                <span className="bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">
+                  Values
+                </span>
+              </h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {values.map((value, index) => {
                 const Icon = value.icon;
                 return (
-                  <Card key={index} className="shadow-lg border-2 border-primary/10 hover:border-primary/30 transition-all">
+                  <Card key={index} className="shadow-xl border-2 border-primary/10 hover:border-primary/30 transition-all hover:shadow-2xl hover:scale-105">
                     <CardContent className="p-6">
-                      <Icon className="h-10 w-10 text-primary mb-3" />
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">{value.title}</h3>
-                      <p className="text-gray-700 text-sm">{value.description}</p>
+                      <div className="w-12 h-12 bg-gradient-to-r from-[#667eea] to-[#764ba2] rounded-lg flex items-center justify-center mb-4 shadow-lg">
+                        <Icon className="h-6 w-6 text-white" />
+                      </div>
+                      <h3 className="text-xl font-bold bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent mb-2">{value.title}</h3>
+                      <p className="text-gray-700 text-sm leading-relaxed">{value.description}</p>
                     </CardContent>
                   </Card>
                 );

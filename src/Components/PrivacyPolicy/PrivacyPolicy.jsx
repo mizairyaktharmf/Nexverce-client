@@ -1,4 +1,4 @@
-import { Shield, Lock, Eye, Users, Globe, FileText, Mail, Phone } from 'lucide-react';
+import { Shield, Lock, Eye, Users, Globe, FileText, Mail, Phone, Sparkles } from 'lucide-react';
 import Footer from '../Footer/Footer';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
@@ -173,15 +173,29 @@ function PrivacyPolicy() {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
+        {/* Animated Blob Decorations */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+
         {/* Hero Section */}
-        <div className="bg-gradient-to-br from-purple-50 via-white to-blue-50 py-16 border-b border-gray-200">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <Shield className="h-10 w-10 text-primary" />
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900">Privacy Policy</h1>
-            </div>
-            <Badge variant="premium" className="mb-2">Last Updated: December 16, 2025</Badge>
+        <div className="bg-gradient-to-br from-purple-50 via-white to-blue-50 py-20 border-b border-gray-200 relative">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <Badge variant="premium" className="mb-6 shadow-lg hover:shadow-xl transition-shadow">
+              <Shield className="h-4 w-4 mr-2" />
+              Privacy & Security
+            </Badge>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
+              Privacy{" "}
+              <span className="bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">
+                Policy
+              </span>
+            </h1>
+            <Badge variant="premium" className="mb-4 shadow-md">
+              <Sparkles className="h-3 w-3 mr-2" />
+              Last Updated: December 16, 2025
+            </Badge>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto mt-4">
               Your privacy is important to us. Learn how we collect, use, and protect your information.
             </p>
@@ -195,22 +209,22 @@ function PrivacyPolicy() {
           {sections.map((section) => {
             const Icon = section.icon;
             return (
-              <Card key={section.id} className="shadow-lg">
-                <CardHeader>
+              <Card key={section.id} className="shadow-xl border-2 border-primary/10 hover:border-primary/30 transition-all hover:shadow-2xl">
+                <CardHeader className="bg-gradient-to-r from-purple-50 to-blue-50">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-gradient-to-r from-purple-50 to-blue-50 rounded-full flex items-center justify-center">
-                      <Icon className="h-5 w-5 text-primary" />
+                    <div className="w-12 h-12 bg-gradient-to-r from-[#667eea] to-[#764ba2] rounded-lg flex items-center justify-center shadow-lg">
+                      <Icon className="h-6 w-6 text-white" />
                     </div>
-                    <CardTitle className="text-2xl">{section.id}. {section.title}</CardTitle>
+                    <CardTitle className="text-2xl bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">{section.id}. {section.title}</CardTitle>
                   </div>
                 </CardHeader>
-                <CardContent className="text-gray-700 leading-relaxed">
+                <CardContent className="text-gray-700 leading-relaxed pt-6">
                   {section.content}
                   {section.subsections && (
-                    <div className="mt-4 space-y-4">
+                    <div className="mt-6 space-y-4">
                       {section.subsections.map((subsection, index) => (
-                        <div key={index} className="pl-4 border-l-2 border-primary/20">
-                          <h3 className="font-semibold text-gray-900 mb-2">{subsection.subtitle}</h3>
+                        <div key={index} className="pl-4 border-l-4 border-gradient-to-b from-[#667eea] to-[#764ba2] bg-gradient-to-r from-purple-50/50 to-blue-50/50 p-4 rounded-r-lg">
+                          <h3 className="font-bold text-gray-900 mb-3 bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">{subsection.subtitle}</h3>
                           {subsection.content}
                         </div>
                       ))}
@@ -222,13 +236,13 @@ function PrivacyPolicy() {
           })}
 
           {/* Your Privacy Rights */}
-          <Card className="shadow-lg border-2 border-primary/20">
-            <CardHeader>
-              <CardTitle className="text-2xl">7. Your Privacy Rights</CardTitle>
+          <Card className="shadow-2xl border-2 border-primary/20 hover:shadow-xl transition-all">
+            <CardHeader className="bg-gradient-to-r from-purple-50 to-blue-50">
+              <CardTitle className="text-2xl bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">7. Your Privacy Rights</CardTitle>
             </CardHeader>
-            <CardContent className="text-gray-700">
-              <p className="mb-4">Depending on your location, you may have the following rights:</p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+            <CardContent className="text-gray-700 pt-6">
+              <p className="mb-6 font-medium">Depending on your location, you may have the following rights:</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                 {[
                   { title: "Access", desc: "Request a copy of the personal information we hold about you" },
                   { title: "Correction", desc: "Request correction of inaccurate or incomplete information" },
@@ -237,13 +251,13 @@ function PrivacyPolicy() {
                   { title: "Data Portability", desc: "Request your data in a structured, machine-readable format" },
                   { title: "Restriction", desc: "Request restriction of processing under certain circumstances" }
                 ].map((right, index) => (
-                  <div key={index} className="flex gap-3 p-3 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border border-gray-200">
-                    <div className="flex-shrink-0 w-6 h-6 bg-primary rounded-full flex items-center justify-center text-white text-xs font-bold">
+                  <div key={index} className="flex gap-3 p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border-2 border-primary/10 hover:border-primary/30 hover:shadow-md transition-all">
+                    <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-r from-[#667eea] to-[#764ba2] rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg">
                       {index + 1}
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900">{right.title}</h4>
-                      <p className="text-sm text-gray-700">{right.desc}</p>
+                      <h4 className="font-bold text-gray-900 mb-1">{right.title}</h4>
+                      <p className="text-sm text-gray-700 leading-relaxed">{right.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -255,24 +269,24 @@ function PrivacyPolicy() {
           </Card>
 
           {/* Cookies */}
-          <Card className="shadow-lg">
-            <CardHeader>
-              <CardTitle className="text-2xl">8. Cookies and Tracking Technologies</CardTitle>
+          <Card className="shadow-xl border-2 border-primary/10 hover:border-primary/30 transition-all hover:shadow-2xl">
+            <CardHeader className="bg-gradient-to-r from-purple-50 to-blue-50">
+              <CardTitle className="text-2xl bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">8. Cookies and Tracking Technologies</CardTitle>
             </CardHeader>
-            <CardContent className="text-gray-700">
-              <p className="mb-4">
+            <CardContent className="text-gray-700 pt-6">
+              <p className="mb-6 font-medium">
                 We use cookies and similar tracking technologies to enhance your experience. You can control cookies through your browser settings. Types of cookies we use:
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
                   { title: "Essential Cookies", desc: "Required for website functionality" },
                   { title: "Analytics Cookies", desc: "Help us understand how you use our site" },
                   { title: "Preference Cookies", desc: "Remember your settings and preferences" },
                   { title: "Marketing Cookies", desc: "Used for targeted advertising (with your consent)" }
                 ].map((cookie, index) => (
-                  <div key={index} className="p-3 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border border-gray-200">
-                    <h4 className="font-semibold text-gray-900 mb-1">{cookie.title}</h4>
-                    <p className="text-sm text-gray-700">{cookie.desc}</p>
+                  <div key={index} className="p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border-2 border-primary/10 hover:border-primary/30 hover:shadow-md transition-all">
+                    <h4 className="font-bold text-gray-900 mb-2 bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">{cookie.title}</h4>
+                    <p className="text-sm text-gray-700 leading-relaxed">{cookie.desc}</p>
                   </div>
                 ))}
               </div>
@@ -281,44 +295,44 @@ function PrivacyPolicy() {
 
           {/* Additional Sections */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card className="shadow-lg">
-              <CardHeader>
-                <CardTitle className="text-xl">9. Children's Privacy</CardTitle>
+            <Card className="shadow-xl border-2 border-primary/10 hover:border-primary/30 transition-all hover:shadow-2xl">
+              <CardHeader className="bg-gradient-to-r from-purple-50 to-blue-50">
+                <CardTitle className="text-xl bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">9. Children's Privacy</CardTitle>
               </CardHeader>
-              <CardContent className="text-gray-700 text-sm">
+              <CardContent className="text-gray-700 text-sm pt-4 leading-relaxed">
                 <p>
                   Nexverce is not intended for children under the age of 13. We do not knowingly collect personal information from children. If you believe we have collected information from a child, please contact us immediately.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="shadow-lg">
-              <CardHeader>
-                <CardTitle className="text-xl">10. International Data Transfers</CardTitle>
+            <Card className="shadow-xl border-2 border-primary/10 hover:border-primary/30 transition-all hover:shadow-2xl">
+              <CardHeader className="bg-gradient-to-r from-purple-50 to-blue-50">
+                <CardTitle className="text-xl bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">10. International Data Transfers</CardTitle>
               </CardHeader>
-              <CardContent className="text-gray-700 text-sm">
+              <CardContent className="text-gray-700 text-sm pt-4 leading-relaxed">
                 <p>
                   Your information may be transferred to and processed in countries other than your own. We ensure appropriate safeguards are in place to protect your data in accordance with this Privacy Policy and applicable laws.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="shadow-lg">
-              <CardHeader>
-                <CardTitle className="text-xl">11. Data Retention</CardTitle>
+            <Card className="shadow-xl border-2 border-primary/10 hover:border-primary/30 transition-all hover:shadow-2xl">
+              <CardHeader className="bg-gradient-to-r from-purple-50 to-blue-50">
+                <CardTitle className="text-xl bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">11. Data Retention</CardTitle>
               </CardHeader>
-              <CardContent className="text-gray-700 text-sm">
+              <CardContent className="text-gray-700 text-sm pt-4 leading-relaxed">
                 <p>
                   We retain your personal information only for as long as necessary to fulfill the purposes outlined in this Privacy Policy, unless a longer retention period is required or permitted by law. When we no longer need your information, we will securely delete or anonymize it.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="shadow-lg">
-              <CardHeader>
-                <CardTitle className="text-xl">12. Changes to This Privacy Policy</CardTitle>
+            <Card className="shadow-xl border-2 border-primary/10 hover:border-primary/30 transition-all hover:shadow-2xl">
+              <CardHeader className="bg-gradient-to-r from-purple-50 to-blue-50">
+                <CardTitle className="text-xl bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">12. Changes to This Privacy Policy</CardTitle>
               </CardHeader>
-              <CardContent className="text-gray-700 text-sm">
+              <CardContent className="text-gray-700 text-sm pt-4 leading-relaxed">
                 <p>
                   We may update this Privacy Policy from time to time. We will notify you of any significant changes by posting the new Privacy Policy on this page and updating the "Last Updated" date. We encourage you to review this Privacy Policy periodically.
                 </p>
@@ -327,14 +341,22 @@ function PrivacyPolicy() {
           </div>
 
           {/* Contact Section */}
-          <Card className="shadow-xl bg-gradient-to-br from-purple-50 via-white to-blue-50">
+          <Card className="shadow-2xl bg-gradient-to-br from-purple-50 via-white to-blue-50 border-2 border-primary/20">
             <CardHeader className="text-center">
-              <CardTitle className="text-2xl">13. Contact Us</CardTitle>
-              <p className="text-gray-600 mt-2">
+              <Badge variant="premium" className="mb-4 shadow-lg">
+                <Sparkles className="h-4 w-4 mr-2" />
+                Get in Touch
+              </Badge>
+              <CardTitle className="text-3xl">
+                <span className="bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">
+                  Contact Us
+                </span>
+              </CardTitle>
+              <p className="text-gray-600 mt-4 text-lg">
                 If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:
               </p>
             </CardHeader>
-            <CardContent>
+            <CardContent className="pt-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
                 {[
                   { icon: Mail, label: "Email", value: "contact@nexverce.com", link: "mailto:contact@nexverce.com" },
@@ -345,14 +367,14 @@ function PrivacyPolicy() {
                     <a
                       key={index}
                       href={method.link}
-                      className="flex items-center gap-3 p-4 bg-white rounded-lg border border-gray-200 hover:shadow-md transition-all group"
+                      className="flex items-center gap-3 p-4 bg-white rounded-lg border-2 border-primary/10 hover:border-primary/30 hover:shadow-lg transition-all group hover:scale-105"
                     >
-                      <div className="w-10 h-10 bg-gradient-to-r from-purple-50 to-blue-50 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <Icon className="h-5 w-5 text-primary" />
+                      <div className="w-12 h-12 bg-gradient-to-r from-[#667eea] to-[#764ba2] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+                        <Icon className="h-6 w-6 text-white" />
                       </div>
                       <div className="text-left">
                         <p className="text-xs text-gray-600 font-medium">{method.label}</p>
-                        <p className="text-sm text-gray-900 font-semibold">{method.value}</p>
+                        <p className="text-sm text-gray-900 font-semibold group-hover:text-primary transition-colors">{method.value}</p>
                       </div>
                     </a>
                   );
@@ -362,12 +384,12 @@ function PrivacyPolicy() {
           </Card>
 
           {/* Consent */}
-          <Card className="shadow-lg border-2 border-primary/20">
-            <CardHeader>
-              <CardTitle className="text-2xl">14. Consent</CardTitle>
+          <Card className="shadow-xl border-2 border-primary/20 hover:shadow-2xl transition-all">
+            <CardHeader className="bg-gradient-to-r from-purple-50 to-blue-50">
+              <CardTitle className="text-2xl bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">14. Consent</CardTitle>
             </CardHeader>
-            <CardContent className="text-gray-700">
-              <p>
+            <CardContent className="text-gray-700 pt-6">
+              <p className="text-base leading-relaxed">
                 By using Nexverce, you consent to the collection, use, and sharing of your information as described in this Privacy Policy.
               </p>
             </CardContent>
