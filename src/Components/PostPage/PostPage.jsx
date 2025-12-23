@@ -178,135 +178,91 @@ export default function PostPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
 
-          {/* Main Content - Left Side */}
-          <div className="lg:col-span-3">
-
-            {/* Block Editor Content - Display exactly as created in admin */}
-            {post.contentBlocks && post.contentBlocks.length > 0 ? (
-              <div className="preview-content-body">
-                <BlockRenderer blocks={post.contentBlocks} />
-              </div>
-            ) : (
-              <>
-                {/* Fallback: If no contentBlocks, show traditional layout */}
-
-                {/* Featured Image */}
-                {post.image && (
-                  <div className="mb-8 rounded-2xl overflow-hidden shadow-2xl border-2 border-gray-100 hover:border-primary/30 transition-all">
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                )}
-
-                {/* Description or Excerpt */}
-                {(post.description || post.excerpt) && (
-                  <div className="mb-8 p-6 bg-gradient-to-r from-purple-50/50 to-blue-50/50 rounded-xl border border-gray-100">
-                    <p className="text-xl text-gray-800 leading-relaxed font-medium">
-                      {post.description || post.excerpt}
-                    </p>
-                  </div>
-                )}
-
-                {/* Legacy HTML content support */}
-                {post.content && (
-                  <div
-                    className="prose prose-lg max-w-none mb-8"
-                    dangerouslySetInnerHTML={{ __html: post.content }}
-                  />
-                )}
-              </>
-            )}
-
-          </div>
-
           {/* Sidebar - Right Side */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-1 order-first lg:order-last">
             <div className="sticky top-20 space-y-6">
+
+              {/* Featured Image Card */}
+              {post.image && (
+                <Card className="overflow-hidden border-2 border-gray-100 shadow-lg hover:shadow-xl transition-all">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-auto object-cover"
+                  />
+                </Card>
+              )}
 
               {/* Price & CTA Card */}
               {isProduct && (
-                <Card className="border-0 shadow-2xl overflow-hidden bg-gradient-to-br from-white via-purple-50/30 to-blue-50/30">
-                  <div className="h-1.5 bg-gradient-to-r from-[#667eea] via-[#764ba2] to-[#667eea]"></div>
+                <Card className="border-2 border-gray-100 shadow-lg overflow-hidden">
                   <CardContent className="p-0">
-                    {/* Price Section */}
-                    <div className="relative bg-gradient-to-br from-[#667eea] to-[#764ba2] p-8 text-white">
-                      <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
-                      <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full -ml-12 -mb-12"></div>
-
-                      <div className="relative z-10">
-                        <p className="text-sm font-semibold uppercase tracking-wider mb-2 text-white/80">Special Price</p>
-                        <div className="flex items-end justify-center gap-2 mb-3">
-                          {post.originalPrice && post.originalPrice > post.price && (
-                            <span className="text-2xl line-through text-white/60 font-medium">
-                              {symbol}{post.originalPrice}
-                            </span>
-                          )}
-                        </div>
-                        <div className="text-6xl font-black text-white mb-2 text-center tracking-tight">
+                    {/* Price Section with Brand Colors */}
+                    <div className="bg-gradient-to-br from-[#667eea] to-[#764ba2] p-6 text-white">
+                      <div className="text-center">
+                        <p className="text-xs font-bold uppercase tracking-widest mb-1 text-white/90">Price</p>
+                        <div className="text-5xl font-black text-white mb-1">
                           {symbol}{post.price}
                         </div>
                         {post.originalPrice && post.originalPrice > post.price && (
-                          <div className="flex justify-center">
-                            <Badge className="bg-white/20 text-white border-white/30 shadow-lg backdrop-blur-sm px-3 py-1">
-                              Save {Math.round(((post.originalPrice - post.price) / post.originalPrice) * 100)}%
+                          <>
+                            <p className="text-sm line-through text-white/70 mb-2">
+                              {symbol}{post.originalPrice}
+                            </p>
+                            <Badge className="bg-white text-primary font-bold text-xs px-3 py-1">
+                              {Math.round(((post.originalPrice - post.price) / post.originalPrice) * 100)}% OFF
                             </Badge>
-                          </div>
+                          </>
                         )}
                       </div>
                     </div>
 
                     {/* CTA Button */}
-                    <div className="p-6">
+                    <div className="p-5 bg-white">
                       {(post.affiliateLink || post.referralLink) && (
                         <a
                           href={post.affiliateLink || post.referralLink}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="block mb-4"
+                          className="block"
                         >
                           <Button
                             variant="premium"
                             size="lg"
-                            className="w-full shadow-xl hover:shadow-2xl transition-all group text-base font-bold py-6 hover:scale-105"
+                            className="w-full shadow-lg hover:shadow-xl transition-all group text-base font-bold py-5"
                           >
-                            <span>Get It Now</span>
-                            <ExternalLink className="ml-2 h-5 w-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                            <span>Enroll Now</span>
+                            <ExternalLink className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                           </Button>
                         </a>
                       )}
 
-                      {/* Trust Badges */}
-                      <div className="flex items-center justify-center gap-4 text-xs text-gray-600 mb-4">
-                        <div className="flex items-center gap-1">
-                          <span className="text-green-500">✓</span>
-                          <span>Verified</span>
+                      {/* Trust Indicators */}
+                      <div className="grid grid-cols-3 gap-2 mt-4 text-center text-xs">
+                        <div className="flex flex-col items-center">
+                          <span className="text-green-500 text-lg mb-1">✓</span>
+                          <span className="text-gray-600 font-medium">Verified</span>
                         </div>
-                        <div className="h-4 w-px bg-gray-300"></div>
-                        <div className="flex items-center gap-1">
-                          <span className="text-blue-500">🔒</span>
-                          <span>Secure</span>
+                        <div className="flex flex-col items-center">
+                          <span className="text-blue-500 text-lg mb-1">🔒</span>
+                          <span className="text-gray-600 font-medium">Secure</span>
                         </div>
-                        <div className="h-4 w-px bg-gray-300"></div>
-                        <div className="flex items-center gap-1">
-                          <span className="text-yellow-500">⚡</span>
-                          <span>Fast</span>
+                        <div className="flex flex-col items-center">
+                          <span className="text-yellow-500 text-lg mb-1">⚡</span>
+                          <span className="text-gray-600 font-medium">Fast</span>
                         </div>
                       </div>
 
-                      {/* Product Features */}
+                      {/* Product Features - Clean List */}
                       {post.features && post.features.length > 0 && (
-                        <div className="pt-4 border-t border-gray-200">
-                          <h4 className="font-bold text-gray-900 mb-4 text-sm uppercase tracking-wide flex items-center gap-2">
-                            <span className="text-primary">✨</span>
-                            What's Included
+                        <div className="pt-5 border-t border-gray-200">
+                          <h4 className="font-bold text-gray-900 mb-3 text-sm">
+                            This course includes:
                           </h4>
-                          <ul className="space-y-3">
-                            {post.features.slice(0, 5).map((feature, index) => (
-                              <li key={index} className="flex items-start gap-3 text-sm text-gray-700">
-                                <span className="flex-shrink-0 w-5 h-5 rounded-full bg-green-100 flex items-center justify-center text-green-600 font-bold text-xs mt-0.5">
+                          <ul className="space-y-2.5">
+                            {post.features.slice(0, 6).map((feature, index) => (
+                              <li key={index} className="flex items-start gap-2 text-sm text-gray-700">
+                                <span className="flex-shrink-0 w-4 h-4 rounded-sm bg-green-500 flex items-center justify-center text-white font-bold text-xs mt-0.5">
                                   ✓
                                 </span>
                                 <span className="leading-relaxed">{feature}</span>
@@ -384,6 +340,39 @@ export default function PostPage() {
               </Card>
 
             </div>
+          </div>
+
+          {/* Main Content - Left Side */}
+          <div className="lg:col-span-3">
+
+            {/* Block Editor Content - Display exactly as created in admin */}
+            {post.contentBlocks && post.contentBlocks.length > 0 ? (
+              <div className="preview-content-body bg-white rounded-xl p-8 shadow-sm border border-gray-100">
+                <BlockRenderer blocks={post.contentBlocks} />
+              </div>
+            ) : (
+              <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
+                {/* Fallback: If no contentBlocks, show traditional layout */}
+
+                {/* Description or Excerpt */}
+                {(post.description || post.excerpt) && (
+                  <div className="mb-6 p-5 bg-gradient-to-r from-purple-50/50 to-blue-50/50 rounded-lg border border-gray-200">
+                    <p className="text-lg text-gray-800 leading-relaxed">
+                      {post.description || post.excerpt}
+                    </p>
+                  </div>
+                )}
+
+                {/* Legacy HTML content support */}
+                {post.content && (
+                  <div
+                    className="prose prose-lg max-w-none"
+                    dangerouslySetInnerHTML={{ __html: post.content }}
+                  />
+                )}
+              </div>
+            )}
+
           </div>
         </div>
       </div>

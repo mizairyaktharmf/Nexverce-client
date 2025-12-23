@@ -1,25 +1,27 @@
 import { useNavigate } from "react-router-dom";
-import { ArrowRight, Sparkles, Grid3x3 } from "lucide-react";
+import {
+  ArrowRight,
+  Sparkles,
+  Grid3x3,
+  GraduationCap,
+  DollarSign,
+  Laptop,
+  Heart,
+  TrendingUp,
+  Gamepad2
+} from "lucide-react";
 import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 
-// ✅ Local category images chedck
-import education from "../../../src/assets/education.png";
-import finance from "../../../src/assets/finance.png";
-import fitness from "../../../src/assets/fitness.png";
-import gaming from "../../../src/assets/gaming.png";
-import marketing from "../../../src/assets/marketing.png";
-import technology from "../../../src/assets/technology.png";
-
-// ✅ Category data (matches exactly what's saved in MongoDB from admin panel)
+// ✅ Category data with Lucide React icons
 const categoriesData = [
   {
     title: "Education & E-Learning",
     value: "Education",
     description:
       "Find top courses, learning platforms, and tools to boost your knowledge.",
-    image: education,
+    icon: GraduationCap,
     slug: "education",
     gradient: "from-blue-500 to-cyan-500"
   },
@@ -28,7 +30,7 @@ const categoriesData = [
     value: "Finance",
     description:
       "Discover apps, tools, and platforms to manage money and invest wisely.",
-    image: finance,
+    icon: DollarSign,
     slug: "finance",
     gradient: "from-green-500 to-emerald-500"
   },
@@ -37,7 +39,7 @@ const categoriesData = [
     value: "Technology",
     description:
       "Explore the latest tech products and software for personal & professional use.",
-    image: technology,
+    icon: Laptop,
     slug: "technology",
     gradient: "from-purple-500 to-indigo-500"
   },
@@ -46,7 +48,7 @@ const categoriesData = [
     value: "Health",
     description:
       "Get access to wellness apps, fitness tools, and health resources.",
-    image: fitness,
+    icon: Heart,
     slug: "health",
     gradient: "from-red-500 to-pink-500"
   },
@@ -55,7 +57,7 @@ const categoriesData = [
     value: "Marketing",
     description:
       "Find digital marketing tools, SaaS, and productivity software to grow your business.",
-    image: marketing,
+    icon: TrendingUp,
     slug: "marketing",
     gradient: "from-orange-500 to-amber-500"
   },
@@ -64,7 +66,7 @@ const categoriesData = [
     value: "Lifestyle",
     description:
       "Discover streaming services, gaming platforms, and entertainment tools.",
-    image: gaming,
+    icon: Gamepad2,
     slug: "lifestyle",
     gradient: "from-violet-500 to-purple-500"
   },
@@ -101,51 +103,53 @@ function Categories() {
 
         {/* Categories Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {categoriesData.map((category, index) => (
-            <Card
-              key={index}
-              className="overflow-hidden hover:shadow-2xl transition-all duration-500 cursor-pointer group border-2 border-gray-100 hover:border-primary bg-white hover:-translate-y-2"
-              onClick={() => handleCategoryClick(category.slug)}
-            >
-              <div className="relative h-44 overflow-hidden">
-                {/* Gradient Overlay on Hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${category.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-300 z-10`}></div>
+          {categoriesData.map((category, index) => {
+            const IconComponent = category.icon;
+            return (
+              <Card
+                key={index}
+                className="overflow-hidden hover:shadow-2xl transition-all duration-500 cursor-pointer group border-2 border-gray-100 hover:border-primary bg-white hover:-translate-y-2"
+                onClick={() => handleCategoryClick(category.slug)}
+              >
+                {/* Icon Section with Gradient Background */}
+                <div className={`relative h-44 overflow-hidden bg-gradient-to-br ${category.gradient} flex items-center justify-center`}>
+                  {/* Animated gradient background */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-50"></div>
 
-                <img
-                  className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
-                  src={category.image}
-                  alt={category.title}
-                  loading="lazy"
-                />
+                  {/* Icon */}
+                  <div className="relative z-10 transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                    <IconComponent className="h-24 w-24 text-white drop-shadow-2xl" strokeWidth={1.5} />
+                  </div>
 
-                {/* Premium Badge */}
-                <Badge variant="premium" className="absolute top-4 right-4 shadow-lg">
-                  {category.value}
-                </Badge>
+                  {/* Category Badge */}
+                  <Badge className="absolute top-4 right-4 shadow-lg bg-white text-gray-900 font-semibold border-0">
+                    {category.value}
+                  </Badge>
 
-                {/* Hover Overlay with Icon */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
-                  <Button variant="secondary" size="sm" className="shadow-lg">
-                    View All
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
+                  {/* Hover Overlay with Button */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
+                    <Button variant="secondary" size="sm" className="shadow-lg bg-white/95 backdrop-blur-sm hover:bg-white">
+                      View All
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </div>
                 </div>
-              </div>
 
-              <CardHeader className="p-6">
-                <CardTitle className="text-xl font-bold group-hover:text-primary transition-colors flex items-center justify-between mb-2">
-                  {category.title}
-                  <ArrowRight className="h-5 w-5 text-primary group-hover:translate-x-2 transition-transform" />
-                </CardTitle>
-                <CardDescription className="text-sm leading-relaxed text-gray-600">
-                  {category.description}
-                </CardDescription>
+                <CardHeader className="p-6">
+                  <CardTitle className="text-xl font-bold group-hover:text-primary transition-colors flex items-center justify-between mb-2">
+                    {category.title}
+                    <ArrowRight className="h-5 w-5 text-primary group-hover:translate-x-2 transition-transform" />
+                  </CardTitle>
+                  <CardDescription className="text-sm leading-relaxed text-gray-600">
+                    {category.description}
+                  </CardDescription>
 
-                {/* Decorative Bottom Border */}
-                <div className="mt-4 h-1 w-0 group-hover:w-full bg-gradient-to-r from-[#667eea] to-[#764ba2] rounded-full transition-all duration-500"></div>
-              </CardHeader>
-            </Card>
-          ))}
+                  {/* Decorative Bottom Border */}
+                  <div className="mt-4 h-1 w-0 group-hover:w-full bg-gradient-to-r from-[#667eea] to-[#764ba2] rounded-full transition-all duration-500"></div>
+                </CardHeader>
+              </Card>
+            );
+          })}
         </div>
 
         {/* Bottom CTA */}

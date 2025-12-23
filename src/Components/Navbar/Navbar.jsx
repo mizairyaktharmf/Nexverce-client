@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import {
   Search,
@@ -10,46 +10,26 @@ import {
   Laptop,
   Heart,
   TrendingUp,
-  Sparkles,
-  Briefcase,
-  Building2,
   Film
 } from "lucide-react";
 import homeLogo from "../../assets/nexvercelogo.png";
 import { cn } from "../../lib/utils";
-import API_BASE from "../../Config/Api";
-
-// Icon mapping for categories
-const getCategoryIcon = (categoryName) => {
-  const iconMap = {
-    'education': GraduationCap,
-    'finance': DollarSign,
-    'technology': Laptop,
-    'health': Heart,
-    'marketing': TrendingUp,
-    'lifestyle': Sparkles,
-    'career': Briefcase,
-    'business': Building2,
-    'entertainment': Film,
-  };
-
-  return iconMap[categoryName.toLowerCase()] || Briefcase;
-};
 
 export default function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
-  const [categories, setCategories] = useState([
+
+  // Static categories matching homepage Categories.jsx
+  const categories = [
     { name: "Education", slug: "education", icon: GraduationCap },
     { name: "Finance", slug: "finance", icon: DollarSign },
     { name: "Technology", slug: "technology", icon: Laptop },
     { name: "Health", slug: "health", icon: Heart },
     { name: "Marketing", slug: "marketing", icon: TrendingUp },
-    { name: "Lifestyle", slug: "lifestyle", icon: Sparkles },
-    { name: "Career", slug: "career", icon: Briefcase },
-  ]);
+    { name: "Entertainment", slug: "lifestyle", icon: Film },
+  ];
 
   const navigate = useNavigate();
 
@@ -61,49 +41,6 @@ export default function Navbar() {
       setShowMenu(false);
     }
   };
-
-  // Fetch unique categories from posts
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await fetch(API_BASE);
-        if (response.ok) {
-          const posts = await response.json();
-
-          // Extract unique categories (case-insensitive)
-          const categoryMap = new Map();
-          posts
-            .filter(post => post.category && post.status === 'published')
-            .forEach(post => {
-              const catLower = post.category.trim().toLowerCase();
-              if (!categoryMap.has(catLower)) {
-                // Capitalize first letter
-                const catName = post.category.trim();
-                const displayName = catName.charAt(0).toUpperCase() + catName.slice(1).toLowerCase();
-                categoryMap.set(catLower, displayName);
-              }
-            });
-
-          // Convert to array and sort
-          const uniqueCategories = Array.from(categoryMap.values()).sort();
-
-          const categoriesData = uniqueCategories.map(cat => ({
-            name: cat,
-            slug: cat.toLowerCase(),
-            icon: getCategoryIcon(cat)
-          }));
-
-          if (categoriesData.length > 0) {
-            setCategories(categoriesData);
-          }
-        }
-      } catch (error) {
-        console.error('Error fetching categories:', error);
-      }
-    };
-
-    fetchCategories();
-  }, []);
 
   return (
     <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
@@ -142,17 +79,20 @@ export default function Navbar() {
                   <div className="px-4 py-2 border-b border-gray-100 mb-2">
                     <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wide">Browse Categories</h3>
                   </div>
-                  {categories.map((cat) => (
-                    <Link
-                      key={cat.slug}
-                      to={`/category/${cat.slug}`}
-                      onClick={() => setIsDropdownOpen(false)}
-                      className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 hover:text-primary transition-all group"
-                    >
-                      <span className="text-xl group-hover:scale-110 transition-transform">{cat.icon}</span>
-                      <span className="font-medium">{cat.name}</span>
-                    </Link>
-                  ))}
+                  {categories.map((cat) => {
+                    const IconComponent = cat.icon;
+                    return (
+                      <Link
+                        key={cat.slug}
+                        to={`/category/${cat.slug}`}
+                        onClick={() => setIsDropdownOpen(false)}
+                        className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 hover:text-primary transition-all group"
+                      >
+                        <IconComponent className="h-5 w-5 group-hover:scale-110 transition-transform" />
+                        <span className="font-medium">{cat.name}</span>
+                      </Link>
+                    );
+                  })}
                 </div>
               )}
             </div>
@@ -235,20 +175,23 @@ export default function Navbar() {
 
               {isMobileDropdownOpen && (
                 <div className="pl-2 mt-2 space-y-1 bg-gradient-to-r from-purple-50/50 to-blue-50/50 rounded-lg p-3">
-                  {categories.map((cat) => (
-                    <Link
-                      key={cat.slug}
-                      to={`/category/${cat.slug}`}
-                      onClick={() => {
-                        setShowMenu(false);
-                        setIsMobileDropdownOpen(false);
-                      }}
-                      className="flex items-center gap-3 py-2 px-3 text-sm text-gray-700 hover:text-primary hover:bg-white rounded-lg transition-all"
-                    >
-                      <span className="text-lg">{cat.icon}</span>
-                      <span className="font-medium">{cat.name}</span>
-                    </Link>
-                  ))}
+                  {categories.map((cat) => {
+                    const IconComponent = cat.icon;
+                    return (
+                      <Link
+                        key={cat.slug}
+                        to={`/category/${cat.slug}`}
+                        onClick={() => {
+                          setShowMenu(false);
+                          setIsMobileDropdownOpen(false);
+                        }}
+                        className="flex items-center gap-3 py-2 px-3 text-sm text-gray-700 hover:text-primary hover:bg-white rounded-lg transition-all"
+                      >
+                        <IconComponent className="h-5 w-5" />
+                        <span className="font-medium">{cat.name}</span>
+                      </Link>
+                    );
+                  })}
                 </div>
               )}
             </div>
