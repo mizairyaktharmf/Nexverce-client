@@ -16,6 +16,7 @@ import AboutUs from "./Components/AboutUs/AboutUs";
 import ContactUs from "./Components/ContactUs/ContactUs";
 import BlogsPage from "./Components/Blogs/BlogsPage";
 import Newsletter from "./Components/Newsletter/Newsletter";
+import NewsletterThankYou from "./Components/Newsletter/NewsletterThankYou";
 import PostPage from "./Components/PostPage/PostPage";
 import Career from "./Components/Career/Career";
 import JobDetail from "./Components/Career/JobDetail";
@@ -58,6 +59,7 @@ function App() {
         <Route path="/privacy-policy" element={<PrivacyPolicy/>} />
         <Route path="/contact" element={<ContactUs/>} />
         <Route path="/newsletter" element={<Newsletter/>} />
+        <Route path="/newsletter/thank-you" element={<NewsletterThankYou/>} />
 
         {/* Career Pages */}
         <Route path="/careers" element={<Career/>} />

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom';
-import { Mail, Send, Heart, ExternalLink, Instagram } from 'lucide-react';
+import { Mail, Send, ExternalLink, Instagram, CheckCircle2, AlertCircle } from 'lucide-react';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 
@@ -10,17 +10,51 @@ const socialLinks = [
 
 function Footer() {
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubscribe = (e) => {
+  const handleSubscribe = async (e) => {
     e.preventDefault();
-    if(email) {
-      console.log("Subscribed Email:", email);
+    if (!email) return;
+
+    setLoading(true);
+    setError("");
+
+    try {
+      const API_BASE =
+        import.meta.env.MODE === "development"
+          ? "http://localhost:5000/api/newsletter"
+          : "https://nexverce-backend.onrender.com/api/newsletter";
+
+      const res = await fetch(`${API_BASE}/subscribe`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, source: "footer" }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Failed to subscribe");
+      }
+
       setSubscribed(true);
+      setEmail("");
+
+      // Reset after 5 seconds
       setTimeout(() => {
-        setEmail("");
         setSubscribed(false);
-      }, 3000);
+      }, 5000);
+    } catch (err) {
+      setError(err.message || "Something went wrong. Please try again.");
+      setTimeout(() => {
+        setError("");
+      }, 5000);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -115,37 +149,66 @@ function Footer() {
           {/* Newsletter */}
           <div>
             <h4 className="text-lg font-semibold mb-4 flex items-center gap-2">
-              <Mail className="h-5 w-5 text-[#667eea]" />
+              <Mail className="h-5 w-5 text-purple-400" />
               Newsletter
             </h4>
             <p className="text-gray-300 text-sm mb-4">
-              Stay updated with the latest deals.
+              Get exclusive deals and updates straight to your inbox.
             </p>
 
             {subscribed ? (
-              <div className="flex items-center gap-2 p-4 bg-green-500/20 border border-green-500/50 rounded-lg">
-                <Heart className="h-5 w-5 text-green-400 animate-pulse" />
-                <span className="text-green-400 font-medium text-sm">Thank you for subscribing!</span>
+              <div className="flex items-center gap-3 p-4 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-400/50 rounded-lg animate-fadeIn">
+                <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                  <CheckCircle2 className="h-5 w-5 text-white" />
+                </div>
+                <div>
+                  <p className="text-green-400 font-semibold text-sm">Successfully Subscribed!</p>
+                  <p className="text-green-300 text-xs">Check your inbox for confirmation.</p>
+                </div>
               </div>
             ) : (
-              <form onSubmit={handleSubscribe} className="flex flex-col gap-3">
-                <Input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email"
-                  required
-                  className="bg-gray-800 border-gray-700 focus:border-[#667eea] text-white placeholder:text-gray-400"
-                />
-                <Button
-                  type="submit"
-                  variant="premium"
-                  className="w-full group"
-                >
-                  Subscribe
-                  <Send className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </form>
+              <>
+                <form onSubmit={handleSubscribe} className="flex flex-col gap-3">
+                  <div className="relative">
+                    <Input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="your.email@example.com"
+                      required
+                      disabled={loading}
+                      className="bg-gray-800 border-gray-700 focus:border-purple-400 text-white placeholder:text-gray-400 pr-10"
+                    />
+                    <Mail className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
+                  </div>
+
+                  <Button
+                    type="submit"
+                    variant="premium"
+                    disabled={loading}
+                    className="w-full group bg-gradient-to-r from-purple-400 via-purple-500 to-indigo-500 hover:from-purple-500 hover:via-purple-600 hover:to-indigo-600"
+                  >
+                    {loading ? (
+                      <>
+                        <div className="animate-spin mr-2 h-4 w-4 border-2 border-white border-t-transparent rounded-full"></div>
+                        Subscribing...
+                      </>
+                    ) : (
+                      <>
+                        Subscribe Now
+                        <Send className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      </>
+                    )}
+                  </Button>
+                </form>
+
+                {error && (
+                  <div className="flex items-center gap-2 p-3 mt-3 bg-red-500/20 border border-red-400/50 rounded-lg animate-fadeIn">
+                    <AlertCircle className="h-4 w-4 text-red-400 flex-shrink-0" />
+                    <p className="text-red-400 text-xs">{error}</p>
+                  </div>
+                )}
+              </>
             )}
           </div>
 

@@ -4,9 +4,10 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { Badge } from "../ui/badge";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Newsletter() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -39,8 +40,8 @@ export default function Newsletter() {
         throw new Error(data.message || "Failed to subscribe");
       }
 
-      setMessage("Successfully subscribed to our newsletter!");
-      setEmail("");
+      // Redirect to thank you page on success
+      navigate("/newsletter/thank-you");
     } catch (err) {
       setError(err.message || "Something went wrong. Please try again.");
     } finally {
