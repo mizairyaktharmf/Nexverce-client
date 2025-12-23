@@ -85,10 +85,6 @@ export default function Navbar() {
               About
             </Link>
 
-            <Link to="/careers" className="text-gray-700 hover:text-primary font-medium transition-colors">
-              Careers
-            </Link>
-
             <Link to="/contact" className="text-gray-700 hover:text-primary font-medium transition-colors">
               Contact
             </Link>
@@ -190,14 +186,6 @@ export default function Navbar() {
               className="block py-2 text-gray-700 hover:text-primary font-medium transition-colors"
             >
               About
-            </Link>
-
-            <Link
-              to="/careers"
-              onClick={() => setShowMenu(false)}
-              className="block py-2 text-gray-700 hover:text-primary font-medium transition-colors"
-            >
-              Careers
             </Link>
 
             <Link

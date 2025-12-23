@@ -1,11 +1,31 @@
 // src/Components/Newsletter/NewsletterThankYou.jsx
+import { useEffect, useState } from "react";
 import { CheckCircle2, Mail, Home, ArrowRight, Sparkles, Gift, Bell, Star } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import { Card, CardContent } from "../ui/card";
 import { Badge } from "../ui/badge";
 
 export default function NewsletterThankYou() {
+  const navigate = useNavigate();
+  const [countdown, setCountdown] = useState(5);
+
+  // Auto redirect after 5 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          navigate("/");
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [navigate]);
+
   const benefits = [
     {
       icon: Gift,
@@ -56,6 +76,13 @@ export default function NewsletterThankYou() {
           <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
             You're now part of the nexverce community. Get ready to receive exclusive content, deals, and updates straight to your inbox.
           </p>
+
+          {/* Auto-redirect countdown */}
+          <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 bg-purple-100 rounded-full border border-purple-200">
+            <span className="text-sm text-purple-700 font-medium">
+              Redirecting to home in {countdown} seconds...
+            </span>
+          </div>
         </div>
 
         {/* Check Email Card */}
@@ -117,7 +144,7 @@ export default function NewsletterThankYou() {
               className="w-full sm:w-auto shadow-xl hover:shadow-2xl group"
             >
               <Home className="mr-2 h-5 w-5" />
-              Back to Home
+              Go to Home Now
             </Button>
           </Link>
 
@@ -132,6 +159,10 @@ export default function NewsletterThankYou() {
             </Button>
           </Link>
         </div>
+
+        <p className="text-center mt-4 text-sm text-gray-500">
+          Or wait {countdown} seconds to be redirected automatically
+        </p>
 
         {/* Social Proof */}
         <div className="mt-16 text-center">

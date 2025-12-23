@@ -31,7 +31,7 @@ export default function Newsletter() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, source: "website" }),
       });
 
       const data = await res.json();

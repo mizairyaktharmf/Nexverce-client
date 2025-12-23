@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { Mail, Send, ExternalLink, Instagram, CheckCircle2, AlertCircle } from 'lucide-react';
+import { FaLinkedin, FaFacebook } from 'react-icons/fa';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 
 const socialLinks = [
   { name: "Instagram", url: "https://www.instagram.com/nexverce", icon: Instagram },
+  { name: "LinkedIn", url: "https://www.linkedin.com/company/nexverce", icon: FaLinkedin },
+  { name: "Facebook", url: "https://www.facebook.com/nexverce", icon: FaFacebook },
 ];
 
 function Footer() {
@@ -63,12 +66,12 @@ function Footer() {
     { name: "Categories", path: "/#categories" },
     { name: "Blogs", path: "/blogs" },
     { name: "About Us", path: "/about-us" },
-    { name: "Careers", path: "/careers" },
   ];
 
   const legalLinks = [
     { name: "Privacy Policy", path: "/privacy-policy" },
     { name: "Contact", path: "/contact" },
+    { name: "Careers", path: "/careers" },
   ];
 
   return (
@@ -215,23 +218,38 @@ function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-700 pt-8 text-center">
-          <p className="text-gray-400 text-sm mb-2">
+        <div className="border-t border-gray-700 pt-8 text-center space-y-3">
+          <p className="text-gray-400 text-sm">
             © {new Date().getFullYear()}{" "}
             <span className="font-semibold bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">
               Nexverce
             </span>
             . All Rights Reserved.
           </p>
-          <a
-            href="https://www.nexcodenova.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-400 hover:text-white text-xs inline-flex items-center gap-1 transition-colors group"
-          >
-            Powered by NexCode Nova
-            <ExternalLink className="h-3 w-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </a>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 text-xs">
+            <a
+              href="https://www.nexcodenova.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white inline-flex items-center gap-1 transition-colors group"
+            >
+              Developed by{" "}
+              <span className="font-semibold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                NexCode Nova
+              </span>
+              <ExternalLink className="h-3 w-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
+
+            <span className="hidden sm:inline text-gray-600">•</span>
+
+            <p className="text-gray-400">
+              Part of{" "}
+              <span className="font-semibold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                Fairam Group Family
+              </span>
+            </p>
+          </div>
         </div>
 
       </div>
