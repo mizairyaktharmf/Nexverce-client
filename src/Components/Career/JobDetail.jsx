@@ -9,6 +9,41 @@ import BlockRenderer from '../BlockRenderer';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
 
+// Helper function to format salary with currency
+const formatSalary = (careerDetails) => {
+  if (!careerDetails || !careerDetails.salaryAmount) {
+    return 'Competitive';
+  }
+
+  const currencySymbols = {
+    USD: '$',
+    AED: 'AED ',
+    LKR: 'LKR ',
+    EUR: '€',
+    GBP: '£',
+    INR: '₹',
+    AUD: 'A$',
+    CAD: 'C$'
+  };
+
+  const symbol = currencySymbols[careerDetails.salaryCurrency] || careerDetails.salaryCurrency + ' ';
+  const amount = parseInt(careerDetails.salaryAmount).toLocaleString();
+
+  const typeLabel = {
+    yearly: '/year',
+    monthly: '/month',
+    hourly: '/hour',
+    range: '',
+    competitive: ''
+  };
+
+  if (careerDetails.salaryType === 'competitive') {
+    return 'Competitive';
+  }
+
+  return `${symbol}${amount}${typeLabel[careerDetails.salaryType] || ''}`;
+};
+
 export default function JobDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -64,18 +99,30 @@ export default function JobDetail() {
   }, [id]);
 
   // Transform landing page data to job format
-  const transformJobData = (data) => ({
-    id: data._id || data.id,
-    title: data.title,
-    department: data.category || 'General',
-    location: data.metaDescription || 'Remote',
-    type: data.templateUsed || 'Full-time',
-    salary: data.metaTitle || 'Competitive',
-    description: data.metaDescription || '',
-    contentBlocks: data.contentBlocks || [],
-    slug: data.slug,
-    gradient: 'from-purple-500 to-pink-500'
-  });
+  const transformJobData = (data) => {
+    // Extract description from contentBlocks if metaDescription is empty
+    let description = data.metaDescription || '';
+    if (!description && data.contentBlocks && data.contentBlocks.length > 0) {
+      const firstBlock = data.contentBlocks[0];
+      if (firstBlock.type === 'paragraph' && firstBlock.data?.text) {
+        description = firstBlock.data.text;
+      }
+    }
+
+    return {
+      id: data._id || data.id,
+      title: data.title,
+      department: data.category || 'General',
+      location: data.careerDetails?.jobLocation || 'Remote',
+      type: data.careerDetails?.jobType || 'Full-time',
+      salary: formatSalary(data.careerDetails),
+      description: description || 'Exciting opportunity to join our team!',
+      contentBlocks: data.contentBlocks || [],
+      slug: data.slug,
+      gradient: 'from-purple-500 to-pink-500',
+      careerDetails: data.careerDetails
+    };
+  };
 
   // Default/fallback job listings
   const getDefaultJobs = () => [

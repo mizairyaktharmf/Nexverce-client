@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ArrowRight, DollarSign, Sparkles, Grid3x3 } from "lucide-react";
+import { ArrowRight, Sparkles, Grid3x3 } from "lucide-react";
 import API_BASE from "../../Config/Api";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import { Badge } from "../ui/badge";
@@ -20,6 +20,9 @@ function CategoryPage() {
     health: "Health",
     marketing: "Marketing",
     lifestyle: "Lifestyle",
+    career: "Career",
+    business: "Business",
+    entertainment: "Entertainment",
   };
 
   const categoryName = slugToCategoryMap[slug] || slug;
@@ -165,7 +168,6 @@ function CategoryPage() {
                   <CardFooter className="flex items-center justify-between pt-4">
                     {post.price && (
                       <div className="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-[#667eea]/10 to-[#764ba2]/10 rounded-lg">
-                        <DollarSign className="h-5 w-5 text-primary" />
                         <span className="text-primary font-bold text-lg">{symbol}{post.price}</span>
                       </div>
                     )}

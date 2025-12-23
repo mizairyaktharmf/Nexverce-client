@@ -108,3 +108,91 @@
 .animation-delay-2000 {
   animation-delay: 2s;
 }
+
+/* Preview Content Body - Matches Admin Preview Styling */
+.preview-content-body {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: #334155;
+}
+
+.preview-content-body p {
+  margin: 1.5rem 0;
+  line-height: 1.8;
+}
+
+.preview-content-body h1,
+.preview-content-body h2,
+.preview-content-body h3,
+.preview-content-body h4,
+.preview-content-body h5,
+.preview-content-body h6 {
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1.3;
+}
+
+.preview-content-body a {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.preview-content-body a:hover {
+  border-bottom-color: #667eea;
+}
+
+.preview-content-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 2rem 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.preview-content-body ul,
+.preview-content-body ol {
+  margin: 1.5rem 0;
+  padding-left: 2rem;
+}
+
+.preview-content-body li {
+  margin: 0.75rem 0;
+  line-height: 1.7;
+}
+
+.preview-content-body blockquote {
+  border-left: 4px solid #667eea;
+  padding: 1rem 1.5rem;
+  margin: 2rem 0;
+  background: #f8fafc;
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  color: #475569;
+}
+
+.preview-content-body code {
+  background: #f1f5f9;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+  color: #e11d48;
+}
+
+.preview-content-body pre {
+  background: #1e293b;
+  color: #f1f5f9;
+  padding: 1.5rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 2rem 0;
+}
+
+.preview-content-body pre code {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+}

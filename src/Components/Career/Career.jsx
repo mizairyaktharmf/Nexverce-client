@@ -29,17 +29,30 @@ export default function Career() {
         const data = await response.json();
 
         // Transform landing page data to job format
-        const transformedJobs = data.map((lp) => ({
-          id: lp._id,
-          title: lp.title,
-          department: lp.category || 'General',
-          location: lp.metaDescription || 'Remote',
-          type: lp.templateUsed || 'Full-time',
-          salary: lp.metaTitle || 'Competitive',
-          description: lp.metaDescription || '',
-          slug: lp.slug,
-          gradient: getRandomGradient()
-        }));
+        const transformedJobs = data.map((lp) => {
+          // Extract description from contentBlocks if metaDescription is empty
+          let description = lp.metaDescription || '';
+          if (!description && lp.contentBlocks && lp.contentBlocks.length > 0) {
+            const firstBlock = lp.contentBlocks[0];
+            if (firstBlock.type === 'paragraph' && firstBlock.data?.text) {
+              description = firstBlock.data.text.substring(0, 150) + '...';
+            }
+          }
+
+          return {
+            id: lp._id,
+            title: lp.title,
+            department: lp.category || 'General',
+            location: lp.careerDetails?.jobLocation || 'Remote',
+            type: lp.careerDetails?.jobType || 'Full-time',
+            salary: formatSalary(lp.careerDetails),
+            description: description || 'Join our team and make an impact!',
+            slug: lp.slug,
+            gradient: getRandomGradient(),
+            careerDetails: lp.careerDetails,
+            contentBlocks: lp.contentBlocks || []
+          };
+        });
 
         setJobs(transformedJobs);
         setError(null);
@@ -66,6 +79,41 @@ export default function Career() {
       'from-indigo-500 to-purple-500'
     ];
     return gradients[Math.floor(Math.random() * gradients.length)];
+  };
+
+  // Helper function to format salary with currency
+  const formatSalary = (careerDetails) => {
+    if (!careerDetails || !careerDetails.salaryAmount) {
+      return 'Competitive';
+    }
+
+    const currencySymbols = {
+      USD: '$',
+      AED: 'AED ',
+      LKR: 'LKR ',
+      EUR: '€',
+      GBP: '£',
+      INR: '₹',
+      AUD: 'A$',
+      CAD: 'C$'
+    };
+
+    const symbol = currencySymbols[careerDetails.salaryCurrency] || careerDetails.salaryCurrency + ' ';
+    const amount = parseInt(careerDetails.salaryAmount).toLocaleString();
+
+    const typeLabel = {
+      yearly: '/year',
+      monthly: '/month',
+      hourly: '/hour',
+      range: '',
+      competitive: ''
+    };
+
+    if (careerDetails.salaryType === 'competitive') {
+      return 'Competitive';
+    }
+
+    return `${symbol}${amount}${typeLabel[careerDetails.salaryType] || ''}`;
   };
 
   // Default/fallback job listings
