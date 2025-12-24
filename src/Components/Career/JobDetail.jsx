@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import BlockRenderer from '../BlockRenderer';
+import { trackCareerApplication, trackPostView } from '../../utils/analytics';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
 
@@ -83,6 +84,9 @@ export default function JobDetail() {
           }
 
           setJob(transformJobData(data));
+
+          // Track job view
+          trackPostView(data._id || data.id, data.title, 'Career');
         }
 
         setError(null);
@@ -93,6 +97,7 @@ export default function JobDetail() {
         const defaultJob = getDefaultJobs().find(j => j.id.toString() === id);
         if (defaultJob) {
           setJob(defaultJob);
+          trackPostView(defaultJob.id, defaultJob.title, 'Career');
         }
       } finally {
         setLoading(false);
@@ -444,7 +449,7 @@ export default function JobDetail() {
                     <p className="text-gray-600">
                       Send your resume and portfolio to join our team!
                     </p>
-                    <a href="mailto:contact@nexverce.com">
+                    <a href="mailto:contact@nexverce.com" onClick={() => trackCareerApplication(job.title)}>
                       <Button variant="premium" size="lg" className="w-full shadow-lg hover:shadow-xl">
                         <Send className="mr-2 h-5 w-5" />
                         Apply Now

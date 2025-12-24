@@ -1,7 +1,8 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import ScrollToTop from "./Components/ScrollToTop";
 import Navbar from "./Components/Navbar/Navbar";
+import { initGA, trackPageView } from "./utils/analytics";
 import HeroSection from "./Components/HeroSection/HeroSection";
 import LandingPage from "./Components/LandingPage/LandingPage";
 import NexCodeNova from "./Components/NexCodeNova/NexCodeNova";
@@ -21,10 +22,26 @@ import PostPage from "./Components/PostPage/PostPage";
 import Career from "./Components/Career/Career";
 import JobDetail from "./Components/Career/JobDetail";
 
+// Component to track page views
+function PageTracker() {
+  const location = useLocation();
+
+  useEffect(() => {
+    trackPageView(location.pathname + location.search);
+  }, [location]);
+
+  return null;
+}
 
 function App() {
+  useEffect(() => {
+    // Initialize Google Analytics on app mount
+    initGA();
+  }, []);
+
   return (
     <Router>
+      <PageTracker />
       <Navbar/>
       <ScrollToTop/>
       <Routes>
