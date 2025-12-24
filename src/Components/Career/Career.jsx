@@ -26,7 +26,11 @@ export default function Career() {
           throw new Error('Failed to fetch career posts');
         }
 
-        const data = await response.json();
+        const responseData = await response.json();
+        // The API returns an array directly for /careers/all endpoint
+        const data = Array.isArray(responseData) ? responseData : [];
+
+        console.log('Fetched career data:', data); // Debug log
 
         // Transform landing page data to job format
         const transformedJobs = data.map((lp) => {
@@ -241,7 +245,7 @@ export default function Career() {
             {filteredJobs.map((job) => (
               <Card
                 key={job.id}
-                className="shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-gray-100 hover:border-primary/50 hover:scale-105 group"
+                className="shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-gray-100 hover:border-primary/50 hover:scale-105 group flex flex-col h-full"
               >
                 {/* Gradient Header */}
                 <div className={`h-2 bg-gradient-to-r ${job.gradient}`}></div>
@@ -263,7 +267,7 @@ export default function Career() {
                   </CardDescription>
                 </CardHeader>
 
-                <CardContent className="space-y-3">
+                <CardContent className="space-y-3 flex-grow">
                   <div className="flex items-center gap-2 text-sm text-gray-600">
                     <MapPin className="h-4 w-4 text-primary" />
                     <span>{job.location}</span>
@@ -278,7 +282,7 @@ export default function Career() {
                   </div>
                 </CardContent>
 
-                <CardFooter className="pt-4">
+                <CardFooter className="pt-4 mt-auto">
                   <Link to={`/career/${job.slug || job.id}`} className="w-full">
                     <Button
                       variant="premium"

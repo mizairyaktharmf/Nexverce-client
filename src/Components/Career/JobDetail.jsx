@@ -60,21 +60,25 @@ export default function JobDetail() {
 
         if (!response.ok) {
           // Try fetching by ID if slug fails
-          const responseById = await fetch(`${API_BASE_URL}/posts/${id}`);
+          const responseById = await fetch(`${API_BASE_URL}/landing-pages/${id}`);
           if (!responseById.ok) {
             throw new Error('Job not found');
           }
-          const data = await responseById.json();
+          const responseData = await responseById.json();
+          const data = responseData.data || responseData; // Handle wrapped response
 
-          if (data.category !== 'Career') {
+          if (data.category && data.category.toLowerCase() !== 'career') {
             throw new Error('Not a career post');
           }
 
           setJob(transformJobData(data));
         } else {
-          const data = await response.json();
+          const responseData = await response.json();
+          const data = responseData.data || responseData; // Handle wrapped response
 
-          if (data.category !== 'Career') {
+          console.log('Fetched job detail:', data); // Debug log
+
+          if (data.category && data.category.toLowerCase() !== 'career') {
             throw new Error('Not a career post');
           }
 
