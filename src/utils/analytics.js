@@ -38,9 +38,9 @@ export const trackFormSubmit = (formName) => {
 };
 
 // Track product/post views
-export const trackPostView = (postId, postTitle, category) => {
+export const trackPostView = (postId, postTitle, postCategory) => {
   ReactGA.event({
-    category: 'Post',
+    category: postCategory || 'Post',
     action: 'View',
     label: postTitle,
     value: postId,

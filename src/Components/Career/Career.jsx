@@ -12,14 +12,11 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000
 export default function Career() {
   const [searchQuery, setSearchQuery] = useState('');
   const [jobs, setJobs] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   // Fetch career posts from API
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        setLoading(true);
         const response = await fetch(`${API_BASE_URL}/landing-pages/careers/all`);
 
         if (!response.ok) {
@@ -59,14 +56,10 @@ export default function Career() {
         });
 
         setJobs(transformedJobs);
-        setError(null);
       } catch (err) {
         console.error('Error fetching jobs:', err);
-        setError(err.message);
         // Fallback to default jobs if API fails
         setJobs(getDefaultJobs());
-      } finally {
-        setLoading(false);
       }
     };
 
