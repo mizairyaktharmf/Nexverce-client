@@ -9,7 +9,7 @@ import BlockRenderer from '../BlockRenderer';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
 
-// Helper function to format salary with currency
+// Helper function to format salary with currency limited
 const formatSalary = (careerDetails) => {
   if (!careerDetails || !careerDetails.salaryAmount) {
     return 'Competitive';
@@ -51,7 +51,7 @@ export default function JobDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch job details from API
+  // Fetch job details from api
   useEffect(() => {
     const fetchJobDetails = async () => {
       try {
