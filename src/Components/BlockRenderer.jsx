@@ -276,46 +276,194 @@ function SingleBlock({ block }) {
         </div>
       );
 
-    // PRICING BOX BLOCK
+    // PRICING BOX BLOCK - Matching Admin Preview Exactly
     case "pricing":
-      return (
-        <div className="my-6 p-8 bg-gradient-to-br from-purple-50 to-blue-50 border-2 border-primary rounded-xl shadow-lg">
-          {block.data?.badge && (
-            <span className="inline-block bg-gradient-to-r from-[#667eea] to-[#764ba2] text-white text-xs font-bold px-3 py-1 rounded-full mb-4">
-              {block.data.badge}
-            </span>
-          )}
-          <h3 className="text-2xl font-bold text-gray-900 mb-2">
-            {block.data?.productName || "Product"}
-          </h3>
-          <p className="text-gray-600 mb-6">{block.data?.description || ""}</p>
+      // Basic Properties
+      const currency = block.data?.currency || "$";
+      const price = block.data?.price || "99";
+      const originalPrice = block.data?.originalPrice || "";
+      const period = block.data?.period || "/month";
+      const productName = block.data?.productName || "Premium Plan";
+      const description = block.data?.description || "Perfect for growing businesses";
+      const features = block.data?.features || [];
+      const buttonText = block.data?.buttonText || "Get Started";
+      const badge = block.data?.badge || "";
+      const affiliateLink = block.data?.affiliateLink || block.data?.buttonUrl || "#";
 
+      // Advanced Properties
+      const primaryColor = block.data?.primaryColor || "#4a90e2";
+      const secondaryColor = block.data?.secondaryColor || "#764ba2";
+      const buttonStyle = block.data?.buttonStyle || "gradient";
+
+      // Conditional Features
+      const showDiscount = block.data?.showDiscount || false;
+      const discountPercentage = block.data?.discountPercentage || "30";
+      const showTimer = block.data?.showTimer || false;
+      const timerText = block.data?.timerText || "Limited Time Offer";
+      const showTrustBadge = block.data?.showTrustBadge || false;
+      const trustBadgeText = block.data?.trustBadgeText || "Money Back Guarantee";
+      const showRating = block.data?.showRating || false;
+      const rating = block.data?.rating || "4.8";
+      const reviewCount = block.data?.reviewCount || "1,247";
+      const showPopularity = block.data?.showPopularity || false;
+      const popularityText = block.data?.popularityText || "500+ customers this month";
+      const showBonus = block.data?.showBonus || false;
+      const bonusText = block.data?.bonusText || "Free Bonus: Premium Support";
+      const showSecondaryButton = block.data?.showSecondaryButton || false;
+      const secondaryButtonText = block.data?.secondaryButtonText || "Learn More";
+      const secondaryButtonUrl = block.data?.secondaryButtonUrl || "";
+
+      // Get button gradient style
+      const getButtonGradient = () => {
+        if (buttonStyle === "gradient") {
+          return `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`;
+        }
+        return primaryColor;
+      };
+
+      return (
+        <div className="relative max-w-md mx-auto my-12 px-8 py-10 bg-white rounded-2xl border-2 border-gray-200 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 text-center">
+          {/* Badge */}
+          {badge && (
+            <div
+              className="absolute -top-3 left-1/2 -translate-x-1/2 px-5 py-1.5 text-white text-xs font-bold rounded-full shadow-lg flex items-center gap-1 uppercase tracking-wide"
+              style={{background: `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`}}
+            >
+              <span>✨</span>
+              {badge}
+            </div>
+          )}
+
+          {/* Discount Badge */}
+          {showDiscount && originalPrice && (
+            <div className="absolute -top-3 -right-3 px-4 py-2 bg-red-500 text-white text-sm font-bold rounded-full shadow-lg flex items-center gap-1">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+              </svg>
+              {discountPercentage}% OFF
+            </div>
+          )}
+
+          {/* Header */}
           <div className="mb-6">
-            {block.data?.originalPrice && (
-              <span className="text-lg line-through text-gray-400 mr-3">
-                ${block.data.originalPrice}
-              </span>
-            )}
-            <span className="text-5xl font-extrabold bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">
-              ${block.data?.price || "0"}
-            </span>
+            <h3 className="text-3xl font-bold text-gray-900 mb-2 tracking-tight">{productName}</h3>
+            <p className="text-sm text-gray-600 leading-relaxed">{description}</p>
           </div>
 
-          {block.data?.features && block.data.features.length > 0 && (
-            <ul className="space-y-3 mb-6">
-              {block.data.features.map((feature, i) => (
-                <li key={i} className="flex items-start gap-2 text-gray-700">
-                  <span className="text-green-500 font-bold">✓</span>
-                  <span>{feature}</span>
-                </li>
-              ))}
+          {/* Rating */}
+          {showRating && (
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <div className="flex gap-0.5">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-4 h-4" fill={i < Math.floor(parseFloat(rating)) ? "#fbbf24" : "none"} stroke="#fbbf24" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                  </svg>
+                ))}
+              </div>
+              <span className="text-sm text-gray-600">{rating} ({reviewCount} reviews)</span>
+            </div>
+          )}
+
+          {/* Price */}
+          <div className="py-5 border-t-2 border-b-2 border-gray-100 mb-6">
+            {originalPrice && (
+              <div className="text-lg text-gray-400 line-through mb-2 font-medium">
+                {currency}{originalPrice}
+              </div>
+            )}
+            <div className="flex items-baseline justify-center gap-1">
+              <span className="text-4xl font-bold text-gray-900">{currency}</span>
+              <span
+                className="text-6xl font-extrabold bg-clip-text text-transparent"
+                style={{backgroundImage: `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`}}
+              >
+                {price}
+              </span>
+              <span className="text-lg text-gray-600 font-medium">{period}</span>
+            </div>
+
+            {/* Timer */}
+            {showTimer && (
+              <div className="flex items-center justify-center gap-1 mt-3 text-sm text-amber-600 font-medium">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                {timerText}
+              </div>
+            )}
+          </div>
+
+          {/* Popularity Badge */}
+          {showPopularity && (
+            <div className="flex items-center justify-center gap-2 mb-4 px-4 py-2 bg-blue-50 rounded-lg">
+              <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+              <span className="text-sm text-blue-700 font-medium">{popularityText}</span>
+            </div>
+          )}
+
+          {/* Features */}
+          {features && features.length > 0 && (
+            <ul className="text-left mb-6 space-y-0">
+              {features.filter(f => f && (typeof f === 'string' ? f.trim() : true)).map((feature, i) => {
+                const featureText = typeof feature === 'string' ? feature : (feature?.text || feature?.content || '');
+                return (
+                  <li key={i} className="py-3 border-b border-gray-100 last:border-b-0 flex items-center gap-3 text-gray-700 hover:text-[#667eea] hover:pl-2 transition-all">
+                    <span className="text-green-500 font-bold flex-shrink-0">✓</span>
+                    <span className="text-[15px]">{featureText}</span>
+                  </li>
+                );
+              })}
             </ul>
           )}
 
-          {block.data?.buttonText && (
-            <button className="w-full bg-gradient-to-r from-[#667eea] to-[#764ba2] text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all">
-              {block.data.buttonText}
-            </button>
+          {/* Bonus Section */}
+          {showBonus && (
+            <div className="flex items-center justify-center gap-2 mb-6 px-4 py-3 bg-purple-50 rounded-lg border-2 border-purple-200">
+              <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+              </svg>
+              <span className="text-sm text-purple-700 font-semibold">{bonusText}</span>
+            </div>
+          )}
+
+          {/* Button Container */}
+          <div className="space-y-3">
+            <a
+              href={affiliateLink}
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              className="block w-full px-8 py-4 text-white font-bold text-base rounded-xl shadow-xl hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2"
+              style={{background: getButtonGradient()}}
+            >
+              <span className="uppercase tracking-wide">{buttonText}</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+
+            {/* Secondary Button */}
+            {showSecondaryButton && (
+              <a
+                href={secondaryButtonUrl || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full px-6 py-3 bg-gray-100 text-gray-700 font-semibold text-sm rounded-lg hover:bg-gray-200 transition-all duration-200"
+              >
+                {secondaryButtonText}
+              </a>
+            )}
+          </div>
+
+          {/* Trust Badge */}
+          {showTrustBadge && (
+            <div className="flex items-center justify-center gap-2 mt-4 text-sm text-green-600 font-medium">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+              <span>{trustBadgeText}</span>
+            </div>
           )}
         </div>
       );

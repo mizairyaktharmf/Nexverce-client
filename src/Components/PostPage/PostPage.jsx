@@ -6,6 +6,8 @@ import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import { Card, CardContent } from "../ui/card";
 import BlockRenderer from "../BlockRenderer";
+import { trackPostView, trackAffiliateClickBackend } from "../../utils/trackingAnalytics";
+import { trackPostView as trackPostViewGA, trackAffiliateClick } from "../../utils/analytics";
 
 export default function PostPage() {
   const { id } = useParams();
@@ -36,6 +38,19 @@ export default function PostPage() {
 
         const data = await response.json();
         setPost(data);
+
+        // Track post view in both analytics systems
+        if (data._id || data.id) {
+          const postId = data._id || data.id;
+          const postTitle = data.title || "Untitled";
+          const postCategory = data.category || "Uncategorized";
+
+          // Track in backend analytics
+          trackPostView(postId);
+
+          // Track in Google Analytics
+          trackPostViewGA(postId, postTitle, postCategory);
+        }
       } catch (err) {
         setError(err.message);
       } finally {
@@ -47,6 +62,20 @@ export default function PostPage() {
       fetchPost();
     }
   }, [id]);
+
+  // Handle affiliate link click
+  const handleAffiliateClick = (affiliateUrl) => {
+    if (post && (post._id || post.id)) {
+      const postId = post._id || post.id;
+      const postTitle = post.title || "Untitled";
+
+      // Track in backend analytics
+      trackAffiliateClickBackend(postId, affiliateUrl);
+
+      // Track in Google Analytics
+      trackAffiliateClick(affiliateUrl, postTitle);
+    }
+  };
 
   // Loading state
   if (loading) {
@@ -225,6 +254,7 @@ export default function PostPage() {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="block"
+                          onClick={() => handleAffiliateClick(post.affiliateLink || post.referralLink)}
                         >
                           <Button
                             variant="premium"
@@ -289,6 +319,7 @@ export default function PostPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="block"
+                      onClick={() => handleAffiliateClick(post.affiliateLink || post.referralLink)}
                     >
                       <Button
                         variant="outline"
