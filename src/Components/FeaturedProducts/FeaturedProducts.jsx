@@ -149,46 +149,68 @@ function FeaturedProducts() {
           </div>
         )}
 
-        {/* 📌 Highlights */}
+        {/* 📌 Category Highlights - Top 6 Most Viewed Posts */}
         <div className="mb-16">
-          <div className="flex items-center gap-2 mb-6">
-            <Sparkles className="h-6 w-6 text-primary" />
-            <h3 className="text-2xl font-bold text-gray-900">Category Highlights</h3>
+          <div className="flex items-center gap-3 mb-8">
+            <div className="bg-gradient-to-r from-primary to-purple-600 p-2 rounded-lg">
+              <Sparkles className="h-6 w-6 text-white" />
+            </div>
+            <div>
+              <h3 className="text-3xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+                Category Highlights
+              </h3>
+              <p className="text-sm text-gray-500 mt-1">Discover our most popular picks across categories</p>
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {highlights.map((cat, idx) => {
-              const product = products.find(
-                (p) => p.category?.toLowerCase() === cat.toLowerCase()
-              );
-              return (
-                <Card key={idx} className="overflow-hidden hover:shadow-xl transition-all duration-300">
-                  <div className="relative h-48 overflow-hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {products
+              .sort((a, b) => (b.views || 0) - (a.views || 0)) // Sort by most viewed
+              .slice(0, 6) // Only take top 6
+              .map((product) => (
+                <Card
+                  key={product._id}
+                  className="overflow-hidden hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 group cursor-pointer border-2 border-gray-100 hover:border-primary/30 bg-white"
+                  onClick={() => navigate(`/post/${product._id}`)}
+                >
+                  <div className="relative h-44 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
                     <img
-                      className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-                      src={product?.image || "https://via.placeholder.com/250x150"}
-                      alt={cat}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      src={product.image || "https://via.placeholder.com/300x200"}
+                      alt={product.title}
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    {product.tag && (
+                      <Badge
+                        variant="secondary"
+                        className="absolute top-3 right-3 text-xs font-semibold bg-primary text-white border-0 shadow-lg"
+                      >
+                        {product.tag}
+                      </Badge>
+                    )}
                   </div>
-                  <CardHeader>
-                    <CardTitle className="text-xl">{cat.charAt(0).toUpperCase() + cat.slice(1)} Pick</CardTitle>
-                    <CardDescription className="line-clamp-2">
-                      {product ? product.description : `Top pick in ${cat} category`}
+                  <CardHeader className="p-5 space-y-2 bg-gradient-to-b from-white to-gray-50">
+                    <CardTitle className="text-lg font-bold line-clamp-1 text-gray-900 group-hover:text-primary transition-colors duration-300">
+                      {product.category?.charAt(0).toUpperCase() + product.category?.slice(1) || "General"} Pick
+                    </CardTitle>
+                    <CardDescription className="text-sm line-clamp-2 text-gray-600 leading-relaxed">
+                      {product.description || product.title}
                     </CardDescription>
                   </CardHeader>
-                  {product && (
-                    <CardFooter>
-                      <Button
-                        variant="outline"
-                        className="w-full"
-                        onClick={() => navigate(`/post/${product._id}`)}
-                      >
-                        Explore Now
-                      </Button>
-                    </CardFooter>
-                  )}
+                  <CardFooter className="p-5 pt-0 bg-gradient-to-b from-gray-50 to-white">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-full h-10 text-sm font-semibold text-primary bg-white border-2 border-primary/20 hover:border-primary hover:!bg-gradient-to-r hover:!from-primary hover:!to-purple-600 hover:!text-white transition-all duration-300 shadow-sm hover:shadow-lg group/btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate(`/post/${product._id}`);
+                      }}
+                    >
+                      <span className="group-hover/btn:scale-105 transition-transform duration-300">Explore Now</span>
+                    </Button>
+                  </CardFooter>
                 </Card>
-              );
-            })}
+              ))}
           </div>
         </div>
 
