@@ -1,4 +1,6 @@
 // Single Block Renderer Component
+import { useState, useEffect } from 'react';
+
 function SingleBlock({ block }) {
   if (!block) return null;
 
@@ -195,17 +197,265 @@ function SingleBlock({ block }) {
         </div>
       );
 
-    // FAQ BLOCK
+    // FAQ BLOCK - Matching Admin Preview Exactly
     case "faq":
-      return (
-        <div className="bg-gradient-to-r from-purple-50 to-blue-50 border-2 border-primary/20 rounded-lg p-6 my-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
-            <span className="text-primary">❓</span>
-            {block.data?.question}
-          </h3>
-          <p className="text-gray-700 leading-relaxed">{block.data?.answer}</p>
-        </div>
-      );
+      const FAQBlock = () => {
+        const [openIndex, setOpenIndex] = useState(null);
+        const [searchTerm, setSearchTerm] = useState("");
+        const [selectedCategory, setSelectedCategory] = useState("all");
+
+        const faqs = block.data?.faqs || [];
+        const title = block.data?.title || "Frequently Asked Questions";
+        const subtitle = block.data?.subtitle || "";
+
+        // Advanced styling options
+        const layoutStyle = block.data?.layoutStyle || "accordion";
+        const colorScheme = block.data?.colorScheme || "blue";
+        const iconStyle = block.data?.iconStyle || "plus-minus";
+        const borderStyle = block.data?.borderStyle || "solid";
+        const questionSize = block.data?.questionSize || "medium";
+        const spacing = block.data?.spacing || "normal";
+
+        // Advanced features
+        const enableSearch = block.data?.enableSearch || false;
+        const enableCategories = block.data?.enableCategories || false;
+        const showNumbers = block.data?.showNumbers || false;
+        const expandMultiple = block.data?.expandMultiple || false;
+        const expandFirstByDefault = block.data?.expandFirstByDefault || false;
+        const highlightOnHover = block.data?.highlightOnHover !== false;
+
+        // Custom colors
+        const customPrimaryColor = block.data?.customPrimaryColor || "#4a90e2";
+        const customTextColor = block.data?.customTextColor || "#1a1a1a";
+        const customBackgroundColor = block.data?.customBackgroundColor || "#ffffff";
+        const customAccentColor = block.data?.customAccentColor || "#f0f8ff";
+
+        const colorSchemes = {
+          blue: { primary: "#4a90e2", text: "#1a1a1a", bg: "#ffffff", accent: "#f0f8ff" },
+          green: { primary: "#10b981", text: "#1a1a1a", bg: "#ffffff", accent: "#f0fdf4" },
+          purple: { primary: "#9333ea", text: "#1a1a1a", bg: "#ffffff", accent: "#faf5ff" },
+          orange: { primary: "#f59e0b", text: "#1a1a1a", bg: "#ffffff", accent: "#fffbeb" },
+          dark: { primary: "#1f2937", text: "#ffffff", bg: "#111827", accent: "#374151" },
+          custom: {
+            primary: customPrimaryColor,
+            text: customTextColor,
+            bg: customBackgroundColor,
+            accent: customAccentColor
+          },
+        };
+
+        const colors = colorSchemes[colorScheme];
+
+        const toggleFAQ = (index) => {
+          if (expandMultiple) {
+            const currentOpen = openIndex || [];
+            if (currentOpen.includes(index)) {
+              setOpenIndex(currentOpen.filter(i => i !== index));
+            } else {
+              setOpenIndex([...currentOpen, index]);
+            }
+          } else {
+            setOpenIndex(openIndex === index ? null : index);
+          }
+        };
+
+        const isFAQOpen = (index) => {
+          if (expandMultiple) {
+            return (openIndex || []).includes(index);
+          }
+          return openIndex === index;
+        };
+
+        const getCategories = () => {
+          const cats = new Set(faqs.map(f => f.category).filter(Boolean));
+          return ["all", ...Array.from(cats)];
+        };
+
+        const filteredFAQs = faqs.filter(faq => {
+          const matchesSearch = !searchTerm ||
+            faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            faq.answer.toLowerCase().includes(searchTerm.toLowerCase());
+          const matchesCategory = selectedCategory === "all" || faq.category === selectedCategory;
+          return matchesSearch && matchesCategory && faq.question.trim();
+        });
+
+        const getIconSymbol = (index, isOpen) => {
+          switch (iconStyle) {
+            case "plus-minus": return isOpen ? "−" : "+";
+            case "chevron": return isOpen ? "⌃" : "⌄";
+            case "arrow": return isOpen ? "↑" : "→";
+            case "number": return `${index + 1}`;
+            case "emoji": return faqs[index]?.icon || "❓";
+            default: return isOpen ? "−" : "+";
+          }
+        };
+
+        // Initialize first FAQ as open if enabled
+        useEffect(() => {
+          if (expandFirstByDefault && openIndex === null && faqs.length > 0) {
+            setOpenIndex(0);
+          }
+        }, [expandFirstByDefault, openIndex, faqs.length]);
+
+        const spacingClasses = {
+          compact: "my-8",
+          normal: "my-12",
+          relaxed: "my-16"
+        };
+
+        const questionSizeClasses = {
+          small: "text-base",
+          medium: "text-lg",
+          large: "text-xl"
+        };
+
+        const borderClasses = {
+          solid: "border-2",
+          dashed: "border-2 border-dashed",
+          none: "border-0",
+          shadow: "border-0 shadow-md"
+        };
+
+        return (
+          <div
+            className={`w-full max-w-4xl mx-auto px-4 ${spacingClasses[spacing]}`}
+            style={{
+              color: colors.text,
+              backgroundColor: colors.bg
+            }}
+          >
+            {/* Header */}
+            <div className="text-center mb-8">
+              {title && (
+                <h2
+                  className="text-3xl font-bold mb-3"
+                  style={{ color: colors.primary }}
+                >
+                  {title}
+                </h2>
+              )}
+              {subtitle && (
+                <p className="text-lg text-gray-600">{subtitle}</p>
+              )}
+            </div>
+
+            {/* Search Bar */}
+            {enableSearch && (
+              <div className="mb-6">
+                <input
+                  type="text"
+                  placeholder="🔍 Search questions..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full px-4 py-3 border-2 rounded-lg focus:outline-none transition-all"
+                  style={{
+                    borderColor: colors.primary,
+                    backgroundColor: colors.accent
+                  }}
+                />
+              </div>
+            )}
+
+            {/* Category Filter */}
+            {enableCategories && getCategories().length > 1 && (
+              <div className="flex gap-2 mb-6 flex-wrap justify-center">
+                {getCategories().map(cat => (
+                  <button
+                    key={cat}
+                    onClick={() => setSelectedCategory(cat)}
+                    className="px-4 py-2 rounded-lg font-semibold transition-all"
+                    style={{
+                      backgroundColor: selectedCategory === cat ? colors.primary : colors.accent,
+                      color: selectedCategory === cat ? "#ffffff" : colors.text
+                    }}
+                  >
+                    {cat === "all" ? "All" : cat}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* FAQ List */}
+            <div className="space-y-3">
+              {filteredFAQs.map((faq, index) => {
+                const isOpen = isFAQOpen(index);
+                return (
+                  <div
+                    key={index}
+                    className={`rounded-lg overflow-hidden transition-all ${borderClasses[borderStyle]} ${highlightOnHover ? 'hover:shadow-lg' : ''}`}
+                    style={{
+                      borderColor: colors.primary,
+                      backgroundColor: isOpen ? colors.accent : colors.bg
+                    }}
+                  >
+                    <button
+                      onClick={() => toggleFAQ(index)}
+                      className={`w-full flex items-center justify-between text-left font-semibold transition-all duration-300 ${questionSizeClasses[questionSize]}`}
+                      style={{
+                        padding: questionSize === 'small' ? '14px 16px' : questionSize === 'large' ? '22px 24px' : '18px 20px',
+                        backgroundColor: isOpen ? colors.primary : 'transparent',
+                        color: isOpen ? 'white' : colors.text,
+                        border: 'none',
+                        cursor: 'pointer'
+                      }}
+                      onMouseEnter={(e) => {
+                        if (!isOpen) e.currentTarget.style.backgroundColor = colors.accent;
+                      }}
+                      onMouseLeave={(e) => {
+                        if (!isOpen) e.currentTarget.style.backgroundColor = 'transparent';
+                      }}
+                    >
+                      <div className="flex items-center gap-3 flex-1">
+                        {showNumbers && (
+                          <span className="font-bold text-sm" style={{ color: isOpen ? 'white' : colors.primary }}>
+                            {index + 1}.
+                          </span>
+                        )}
+                        {iconStyle === "emoji" && (
+                          <span className="text-2xl">{faq.icon}</span>
+                        )}
+                        <span>{faq.question}</span>
+                      </div>
+                      <span
+                        className="text-2xl font-bold ml-4 flex-shrink-0 transition-transform duration-300 inline-block"
+                        style={{
+                          color: isOpen ? 'white' : colors.primary,
+                          transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)'
+                        }}
+                      >
+                        {getIconSymbol(index, isOpen)}
+                      </span>
+                    </button>
+
+                    {isOpen && (
+                      <div
+                        className="px-6 py-5 text-base border-t-2"
+                        style={{
+                          backgroundColor: colors.accent,
+                          color: colors.text,
+                          borderColor: '#e0e0e0',
+                          lineHeight: '1.7'
+                        }}
+                      >
+                        {faq.answer}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* No Results */}
+            {filteredFAQs.length === 0 && (
+              <div className="text-center py-12 text-gray-500">
+                No FAQs found matching your criteria
+              </div>
+            )}
+          </div>
+        );
+      };
+
+      return <FAQBlock />;
 
     // WARNING/ALERT BLOCK
     case "warning":
@@ -434,11 +684,14 @@ function SingleBlock({ block }) {
               href={affiliateLink}
               target="_blank"
               rel="noopener noreferrer nofollow"
-              className="block w-full px-8 py-4 text-white font-bold text-base rounded-xl shadow-xl hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2"
-              style={{background: getButtonGradient()}}
+              className="block w-full px-8 py-4 font-bold text-base rounded-xl shadow-xl hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2"
+              style={{
+                background: getButtonGradient(),
+                color: '#ffffff'
+              }}
             >
-              <span className="uppercase tracking-wide">{buttonText}</span>
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span className="uppercase tracking-wide" style={{color: '#ffffff'}}>{buttonText}</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{color: '#ffffff'}}>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
             </a>
