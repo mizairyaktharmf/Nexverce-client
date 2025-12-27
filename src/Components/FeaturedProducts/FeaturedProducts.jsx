@@ -1,28 +1,43 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Flame, Clock, ShoppingCart, Sparkles } from "lucide-react";
-import API_BASE from "../../Config/Api";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
+import { Flame, ShoppingCart, Sparkles } from "lucide-react";
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
+import DealOfTheDay from "./DealOfTheDay";
+import TelegramHit from "./TelegramHit";
 
 function FeaturedProducts() {
   const [products, setProducts] = useState([]);
-  const [countdowns, setCountdowns] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  // ✅ Fetch published products from backend
+  // ✅ Fetch published products AND blogs from backend
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(API_BASE);
-        if (!response.ok) throw new Error("Failed to fetch products");
+        const baseUrl = import.meta.env.MODE === "development"
+          ? "http://localhost:5000/api"
+          : "https://nexverce-backend.onrender.com/api";
 
-        const data = await response.json();
-        // ✅ Only include published posts
-        const published = data.filter((p) => p.status === "published");
+        // Fetch both posts and blogs in parallel
+        const [postsResponse, blogsResponse] = await Promise.all([
+          fetch(`${baseUrl}/posts`),
+          fetch(`${baseUrl}/blogs`)
+        ]);
+
+        if (!postsResponse.ok || !blogsResponse.ok) {
+          throw new Error("Failed to fetch content");
+        }
+
+        const postsData = await postsResponse.json();
+        const blogsData = await blogsResponse.json();
+
+        // Combine posts and blogs, filter only published
+        const allContent = [...postsData, ...blogsData];
+        const published = allContent.filter((p) => p.status === "published");
+
         setProducts(published);
       } catch (err) {
         setError(err.message);
@@ -34,50 +49,23 @@ function FeaturedProducts() {
     fetchProducts();
   }, []);
 
-  // ✅ Filters
+  // ✅ Filters - Support both posts (tag string) and blogs (tags array)
   const topPicks = products.filter(
-    (p) => p.type?.toLowerCase() === "toppick" || p.tag?.toLowerCase().includes("top")
+    (p) => p.type?.toLowerCase() === "toppick" ||
+           p.tag?.toLowerCase().includes("top") ||
+           p.tags?.[0]?.toLowerCase().includes("top")
   );
-  const deals = products.filter((p) => p.type?.toLowerCase() === "deal");
+  const deals = products.filter((p) =>
+    p.tag?.toLowerCase() === "deal" ||
+    p.tags?.[0]?.toLowerCase() === "deal"
+  );
+  const telegramPosts = products.filter((p) =>
+    p.tag?.toLowerCase() === "telegram" ||
+    p.tags?.[0]?.toLowerCase() === "telegram"
+  );
   const marketplace = products.filter(
     (p) => p.type?.toLowerCase() === "marketplace"
   );
-  const highlights = ["education", "health", "technology"];
-
-  // ✅ Countdown Timer for Deals
-  useEffect(() => {
-    const timer = setInterval(() => {
-      const newCountdowns = {};
-      deals.forEach((deal) => {
-        if (!deal.endTime) return;
-        const endTime = new Date(deal.endTime).getTime();
-        const now = new Date().getTime();
-        const distance = endTime - now;
-
-        if (distance > 0) {
-          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-          const hours = Math.floor(
-            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-          );
-          const minutes = Math.floor(
-            (distance % (1000 * 60 * 60)) / (1000 * 60)
-          );
-          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-          newCountdowns[deal._id] = `${days}d ${hours
-            .toString()
-            .padStart(2, "0")}h:${minutes
-            .toString()
-            .padStart(2, "0")}m:${seconds.toString().padStart(2, "0")}s`;
-        } else {
-          newCountdowns[deal._id] = "Expired";
-        }
-      });
-      setCountdowns(newCountdowns);
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [deals]);
 
   // ✅ Loading state
   if (loading) {
@@ -125,9 +113,9 @@ function FeaturedProducts() {
                       alt={item.title}
                       className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
                     />
-                    {item.tag && (
+                    {(item.tag || item.tags?.[0]) && (
                       <Badge variant="premium" className="absolute top-3 right-3">
-                        {item.tag}
+                        {item.tag || item.tags?.[0]}
                       </Badge>
                     )}
                   </div>
@@ -164,8 +152,8 @@ function FeaturedProducts() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {(() => {
-              // Define 6 categories
-              const categories = ["health", "technology", "finance", "education", "lifestyle", "business"];
+              // Define 6 categories (matching admin dashboard categories)
+              const categories = ["education", "marketing", "finance", "technology", "health", "lifestyle"];
               const categoryCards = [];
 
               categories.forEach((category) => {
@@ -194,12 +182,12 @@ function FeaturedProducts() {
                             alt={product.title}
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                          {product.tag && (
+                          {(product.tag || product.tags?.[0]) && (
                             <Badge
                               variant="secondary"
                               className="absolute top-2 right-2 text-xs font-semibold bg-primary text-white border-0 shadow-lg"
                             >
-                              {product.tag}
+                              {product.tag || product.tags?.[0]}
                             </Badge>
                           )}
                         </div>
@@ -265,54 +253,11 @@ function FeaturedProducts() {
           </div>
         </div>
 
-        {/* ⏳ Deal of the Day */}
-        {deals.length > 0 && (
-          <div className="mb-16">
-            <div className="flex items-center gap-2 mb-6">
-              <Clock className="h-6 w-6 text-red-500" />
-              <h3 className="text-2xl font-bold text-gray-900">Deal of the Day</h3>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {deals.map((deal) => (
-                <Card key={deal._id} className="overflow-hidden hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-red-50 to-orange-50">
-                  <div className="md:flex">
-                    <div className="md:w-1/2 relative overflow-hidden">
-                      <img
-                        src={deal.image || "https://via.placeholder.com/250x150"}
-                        alt={deal.title}
-                        className="w-full h-64 md:h-full object-cover hover:scale-110 transition-transform duration-300"
-                      />
-                      <Badge variant="destructive" className="absolute top-3 left-3">
-                        Limited Time
-                      </Badge>
-                    </div>
-                    <div className="md:w-1/2 p-6 flex flex-col justify-between">
-                      <div>
-                        <h4 className="text-xl font-bold text-gray-900 mb-2">{deal.title}</h4>
-                        <p className="text-gray-600 text-sm mb-4 line-clamp-3">{deal.description}</p>
-                      </div>
-                      <div>
-                        <div className="bg-white rounded-lg p-3 mb-4 text-center border-2 border-red-500">
-                          <p className="text-xs text-gray-600 mb-1">Time Remaining</p>
-                          <p className="font-mono text-lg font-bold text-red-600">
-                            {countdowns[deal._id] || "Loading..."}
-                          </p>
-                        </div>
-                        <Button
-                          variant="destructive"
-                          className="w-full"
-                          onClick={() => navigate(`/post/${deal._id}`)}
-                        >
-                          Grab Deal
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </Card>
-              ))}
-            </div>
-          </div>
-        )}
+        {/* ⏳ Deal of the Day - New Clean Component */}
+        <DealOfTheDay deals={deals} />
+
+        {/* 📱 Telegram Hit - Exclusive Community Content */}
+        <TelegramHit telegramPosts={telegramPosts} />
 
         {/* 🛒 Mini Marketplace */}
         {marketplace.length > 0 && (

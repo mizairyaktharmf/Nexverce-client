@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { ArrowRight, Sparkles, Grid3x3 } from "lucide-react";
-import API_BASE from "../../Config/Api";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
@@ -27,25 +26,48 @@ function CategoryPage() {
 
   const categoryName = slugToCategoryMap[slug] || slug;
 
-  // Currency symbol support (same as PostPage)
+  // Currency symbol support (expanded for all currencies)
   const currencySymbols = {
     USD: "$",
     EUR: "€",
-    AED: "د.إ",
+    AED: "AED ",
     LKR: "Rs ",
     JPY: "¥",
     INR: "₹",
+    GBP: "£",
+    CAD: "C$",
+    AUD: "A$",
+    CNY: "¥",
+    KRW: "₩",
   };
 
   useEffect(() => {
     const fetchCategoryPosts = async () => {
       try {
         setLoading(true);
-        const response = await fetch(API_BASE);
-        if (!response.ok) throw new Error("Failed to fetch posts");
-        const data = await response.json();
 
-        const filtered = data.filter(
+        const baseUrl = import.meta.env.MODE === "development"
+          ? "http://localhost:5000/api"
+          : "https://nexverce-backend.onrender.com/api";
+
+        // Fetch both posts and blogs in parallel
+        const [postsResponse, blogsResponse] = await Promise.all([
+          fetch(`${baseUrl}/posts`),
+          fetch(`${baseUrl}/blogs`)
+        ]);
+
+        if (!postsResponse.ok || !blogsResponse.ok) {
+          throw new Error("Failed to fetch content");
+        }
+
+        const postsData = await postsResponse.json();
+        const blogsData = await blogsResponse.json();
+
+        // Combine posts and blogs
+        const allContent = [...postsData, ...blogsData];
+
+        // Filter by category and published status
+        const filtered = allContent.filter(
           (post) =>
             post.status === "published" &&
             post.category &&
@@ -139,24 +161,24 @@ function CategoryPage() {
 
             return (
               <Link key={post._id} to={`/post/${post._id}`}>
-                <Card className="h-full overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 group cursor-pointer border-2 border-gray-100 hover:border-primary/50 hover:scale-105">
-                  {post.image && (
-                    <div className="relative h-52 overflow-hidden bg-gradient-to-br from-purple-100 to-blue-100">
-                      <img
-                        src={post.image}
-                        alt={post.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      {post.tag && (
-                        <Badge variant="premium" className="absolute top-4 right-4 shadow-lg">
-                          {post.tag}
-                        </Badge>
-                      )}
-                    </div>
-                  )}
+                <Card className="h-full overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 group cursor-pointer border-2 border-gray-100 hover:border-primary/50 hover:scale-105 flex flex-col">
+                  {/* Image - Fixed Height */}
+                  <div className="relative h-52 overflow-hidden bg-gradient-to-br from-purple-100 to-blue-100 flex-shrink-0">
+                    <img
+                      src={post.image || "https://via.placeholder.com/400x300"}
+                      alt={post.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    {(post.tag || post.tags?.[0]) && (
+                      <Badge variant="premium" className="absolute top-4 right-4 shadow-lg">
+                        {post.tag || post.tags?.[0]}
+                      </Badge>
+                    )}
+                  </div>
 
-                  <CardHeader className="space-y-3">
+                  {/* Content - Flexible Height */}
+                  <CardHeader className="space-y-3 flex-grow">
                     <CardTitle className="text-xl font-bold line-clamp-2 group-hover:bg-gradient-to-r group-hover:from-[#667eea] group-hover:to-[#764ba2] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
                       {post.title}
                     </CardTitle>
@@ -165,11 +187,14 @@ function CategoryPage() {
                     </CardDescription>
                   </CardHeader>
 
-                  <CardFooter className="flex items-center justify-between pt-4">
-                    {post.price && (
+                  {/* Footer - Fixed at Bottom */}
+                  <CardFooter className="flex items-center justify-between pt-4 mt-auto">
+                    {post.price ? (
                       <div className="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-[#667eea]/10 to-[#764ba2]/10 rounded-lg">
-                        <span className="text-primary font-bold text-lg">{symbol}{post.price}</span>
+                        <span className="text-primary font-bold text-lg whitespace-nowrap">{symbol}{post.price}</span>
                       </div>
+                    ) : (
+                      <div></div>
                     )}
                     <Button variant="ghost" size="sm" className="ml-auto group-hover:bg-gradient-to-r group-hover:from-[#667eea] group-hover:to-[#764ba2] group-hover:text-white transition-all duration-300">
                       Read More
