@@ -1,70 +1,110 @@
-import { ExternalLink, Sparkles, Code2, Rocket } from 'lucide-react'
+import { ExternalLink, Sparkles, Code2, Rocket, Zap, Award, Users } from 'lucide-react'
 import { Button } from '../ui/button'
-import { Card } from '../ui/card'
+import { Card, CardContent } from '../ui/card'
 import { Badge } from '../ui/badge'
 
 function NexCodeNova() {
   return (
-    <section id="nexcodenova" className="py-20 bg-gradient-to-br from-purple-50 via-white to-blue-50 relative overflow-hidden">
-      {/* Decorative Background Elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+    <section id="nexcodenova" className="py-16 bg-gradient-to-b from-gray-50 to-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="text-center mb-10">
+          <Badge className="mb-4 bg-gradient-to-r from-primary to-purple-600 text-white border-0 px-4 py-1.5">
+            <Sparkles className="h-3.5 w-3.5 mr-1.5" />
+            Premium Development Partner
+          </Badge>
+          <h2 className="text-3xl md:text-4xl font-bold mb-3">
+            <span className="bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+              Build Dream Projects with NexCode Nova
+            </span>
+          </h2>
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            Transform your ideas into reality with cutting-edge development solutions
+          </p>
+        </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <Card className="bg-gradient-to-br from-[#667eea] to-[#764ba2] border-0 shadow-2xl overflow-hidden">
-          <div className="relative p-12 md:p-16">
-            {/* Decorative Elements */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+        {/* Main Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          {/* Left Side - Features */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {[
+              {
+                label: "Premium Quality",
+                icon: Award,
+                description: "Top-notch code standards",
+                gradient: "from-blue-500 to-cyan-500"
+              },
+              {
+                label: "Fast Delivery",
+                icon: Rocket,
+                description: "Lightning-fast turnaround",
+                gradient: "from-purple-500 to-pink-500"
+              },
+              {
+                label: "Expert Developers",
+                icon: Users,
+                description: "Seasoned professionals",
+                gradient: "from-primary to-purple-600"
+              },
+              {
+                label: "Cutting-Edge Tech",
+                icon: Zap,
+                description: "Latest technologies",
+                gradient: "from-orange-500 to-red-500"
+              },
+            ].map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <Card
+                  key={index}
+                  className="group hover:shadow-xl transition-all duration-300 border-2 border-gray-100 hover:border-primary/30 hover:scale-105"
+                >
+                  <CardContent className="p-5">
+                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300`}>
+                      <Icon className="h-6 w-6 text-white" />
+                    </div>
+                    <h3 className="font-bold text-gray-900 mb-1">{item.label}</h3>
+                    <p className="text-sm text-gray-500">{item.description}</p>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
 
-            <div className="relative z-10 text-center">
-              <Badge variant="secondary" className="mb-6 bg-white/20 text-white border-white/30 hover:bg-white/30">
-                <Sparkles className="h-3 w-3 mr-1" />
-                Premium Development
-              </Badge>
+          {/* Right Side - CTA Card */}
+          <Card className="relative overflow-hidden border-2 border-primary/20 shadow-xl hover:shadow-2xl transition-all duration-300">
+            {/* Gradient Background */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-purple-500/5 to-pink-500/5"></div>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-primary/20 to-purple-600/20 rounded-full blur-3xl opacity-50"></div>
 
-              <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-                Build Dream Projects with <br />
-                <span className="inline-flex items-center gap-3 mt-2">
-                  <Code2 className="h-10 w-10 md:h-12 md:w-12" />
-                  NexCode Nova
-                  <Rocket className="h-10 w-10 md:h-12 md:w-12" />
-                </span>
-              </h2>
+            <CardContent className="relative z-10 p-8 md:p-10 text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-purple-600 mb-6 shadow-lg">
+                <Code2 className="h-8 w-8 text-white" />
+              </div>
 
-              <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto">
-                Transform your ideas into reality with cutting-edge development solutions
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                Ready to Build Something Amazing?
+              </h3>
+
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                Partner with NexCode Nova for professional web development, mobile apps, and custom software solutions.
               </p>
 
               <Button
-                variant="secondary"
                 size="lg"
-                className="bg-white text-[#667eea] hover:bg-gray-100 shadow-xl hover:shadow-2xl group font-bold text-lg px-8 py-6 h-auto"
+                className="bg-gradient-to-r from-primary to-purple-600 hover:from-purple-600 hover:to-primary text-white shadow-lg hover:shadow-xl group font-semibold px-8 h-12 transition-all duration-300"
                 onClick={() => window.open("https://www.nexcodenova.com", "_blank")}
               >
                 Explore NexCode Nova
-                <ExternalLink className="ml-2 h-5 w-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                <ExternalLink className="ml-2 h-5 w-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
               </Button>
 
-              {/* Stats or Features */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-4xl mx-auto">
-                {[
-                  { label: "Premium Quality", icon: Sparkles },
-                  { label: "Fast Delivery", icon: Rocket },
-                  { label: "Expert Developers", icon: Code2 },
-                ].map((item, index) => {
-                  const Icon = item.icon;
-                  return (
-                    <div key={index} className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                      <Icon className="h-6 w-6 text-white mx-auto mb-2" />
-                      <p className="text-white font-semibold">{item.label}</p>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </Card>
+              <p className="text-xs text-gray-500 mt-4">
+                Trusted by businesses worldwide
+              </p>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </section>
   )
