@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { BookOpen, ArrowRight, Folder, Sparkles, Calendar, Clock } from "lucide-react";
+import { BookOpen, ArrowRight, Sparkles } from "lucide-react";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
@@ -142,52 +142,61 @@ export default function BlogsPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredBlogs.map((blog) => (
               <Link to={`/post/${blog._id}`} key={blog._id}>
-                <Card className="h-full overflow-hidden hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 group cursor-pointer border-2 border-gray-100 hover:border-primary/50 bg-white">
-                  {/* IMAGE */}
+                <Card className="h-full overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 group cursor-pointer border-2 border-gray-100 hover:border-primary/50 hover:scale-105 flex flex-col bg-white">
+                  {/* IMAGE - Fixed Height */}
                   {blog.image ? (
-                    <div className="relative h-56 overflow-hidden bg-gradient-to-br from-primary/5 to-purple-600/5">
+                    <div className="relative h-52 overflow-hidden bg-gradient-to-br from-purple-100 to-blue-100 flex-shrink-0">
                       <img
                         src={blog.image}
                         alt={blog.title}
                         loading="lazy"
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                      {/* Tag Badge - Only show tag, not category */}
                       {(blog.tag || blog.tags?.[0]) && (
-                        <Badge className="absolute top-3 right-3 bg-primary text-white border-0 shadow-lg">
+                        <Badge variant="premium" className="absolute top-4 right-4 shadow-lg">
                           {blog.tag || blog.tags?.[0]}
                         </Badge>
                       )}
                     </div>
                   ) : (
-                    <div className="h-56 bg-gradient-to-br from-primary/10 to-purple-600/10 flex items-center justify-center">
+                    <div className="relative h-52 bg-gradient-to-br from-purple-100 to-blue-100 flex items-center justify-center flex-shrink-0">
                       <BookOpen className="h-16 w-16 text-primary/40" />
+
+                      {/* Tag Badge on empty state - Only show tag, not category */}
+                      {(blog.tag || blog.tags?.[0]) && (
+                        <Badge variant="premium" className="absolute top-4 right-4 shadow-lg">
+                          {blog.tag || blog.tags?.[0]}
+                        </Badge>
+                      )}
                     </div>
                   )}
 
-                  {/* CONTENT */}
-                  <CardHeader className="pb-4">
+                  {/* CONTENT - Flexible Height */}
+                  <CardHeader className="space-y-3 flex-grow">
                     {blog.category && (
-                      <div className="flex items-center gap-1.5 text-sm text-primary mb-2">
-                        <Folder className="h-4 w-4" />
+                      <div className="flex items-center gap-1.5 text-sm text-gray-500 mb-2">
                         <span className="font-medium">{blog.category}</span>
                       </div>
                     )}
-                    <CardTitle className="text-xl font-bold line-clamp-2 group-hover:text-primary transition-colors duration-300 leading-tight">
+                    <CardTitle className="text-xl font-bold line-clamp-2 group-hover:bg-gradient-to-r group-hover:from-[#667eea] group-hover:to-[#764ba2] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
                       {blog.title}
                     </CardTitle>
-                    {blog.description && (
-                      <CardDescription className="line-clamp-3 text-gray-600 leading-relaxed mt-2">
-                        {blog.description}
+                    {(blog.excerpt || blog.description) && (
+                      <CardDescription className="line-clamp-3 text-gray-600 leading-relaxed">
+                        {blog.excerpt || blog.description}
                       </CardDescription>
                     )}
                   </CardHeader>
 
-                  <CardFooter className="pt-0">
+                  {/* FOOTER - Fixed at Bottom */}
+                  <CardFooter className="pt-4 mt-auto">
                     <Button
-                      variant="ghost"
+                      variant="outline"
                       size="sm"
-                      className="w-full group-hover:bg-primary/5 group-hover:text-primary transition-all duration-300 font-semibold"
+                      className="w-full group-hover:bg-gradient-to-r group-hover:from-[#667eea] group-hover:to-[#764ba2] group-hover:text-white transition-all duration-300 font-semibold border-2"
                     >
                       Read Full Article
                       <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />

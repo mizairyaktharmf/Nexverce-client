@@ -144,61 +144,64 @@ function CategoryPage() {
             </span>
           </h1>
 
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-4">
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-6">
             Explore {categoryPosts.length} {categoryPosts.length === 1 ? 'curated product' : 'curated products'} in this category
           </p>
 
-          <div className="flex items-center justify-center gap-2">
-            <Sparkles className="h-5 w-5 text-primary" />
-            <span className="text-sm font-semibold text-primary">Premium Verified Offers</span>
+          <div className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-gradient-to-r from-primary/10 via-purple-500/10 to-primary/10 rounded-full border border-primary/20 shadow-sm">
+            <Sparkles className="h-5 w-5 text-primary animate-pulse" />
+            <span className="text-sm font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">Premium Verified Offers</span>
+            <Sparkles className="h-5 w-5 text-purple-600 animate-pulse" />
           </div>
         </div>
 
         {/* Posts Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {categoryPosts.map((post) => {
             const symbol = currencySymbols[post.currency] || "";
 
             return (
               <Link key={post._id} to={`/post/${post._id}`}>
-                <Card className="h-full overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 group cursor-pointer border-2 border-gray-100 hover:border-primary/50 hover:scale-105 flex flex-col">
-                  {/* Image - Fixed Height */}
-                  <div className="relative h-52 overflow-hidden bg-gradient-to-br from-purple-100 to-blue-100 flex-shrink-0">
+                <Card className="h-full overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group cursor-pointer border border-gray-200 hover:border-primary/50 hover:scale-[1.03] flex flex-col bg-white rounded-xl">
+                  {/* Image - Smaller Fixed Height */}
+                  <div className="relative h-44 overflow-hidden bg-gradient-to-br from-purple-100 to-blue-100 flex-shrink-0">
                     <img
                       src={post.image || "https://via.placeholder.com/400x300"}
                       alt={post.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                    {/* Tag Badge */}
                     {(post.tag || post.tags?.[0]) && (
-                      <Badge variant="premium" className="absolute top-4 right-4 shadow-lg">
+                      <Badge variant="premium" className="absolute top-3 right-3 text-xs shadow-lg">
                         {post.tag || post.tags?.[0]}
                       </Badge>
                     )}
                   </div>
 
-                  {/* Content - Flexible Height */}
-                  <CardHeader className="space-y-3 flex-grow">
-                    <CardTitle className="text-xl font-bold line-clamp-2 group-hover:bg-gradient-to-r group-hover:from-[#667eea] group-hover:to-[#764ba2] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+                  {/* Content - Compact */}
+                  <CardHeader className="space-y-2 flex-grow p-4">
+                    <CardTitle className="text-base font-bold line-clamp-2 leading-tight group-hover:text-primary transition-colors duration-300">
                       {post.title}
                     </CardTitle>
-                    <CardDescription className="line-clamp-3 text-gray-600 leading-relaxed">
+                    <CardDescription className="line-clamp-2 text-sm text-gray-600 leading-snug">
                       {post.description}
                     </CardDescription>
                   </CardHeader>
 
-                  {/* Footer - Fixed at Bottom */}
-                  <CardFooter className="flex items-center justify-between pt-4 mt-auto">
+                  {/* Footer - Compact */}
+                  <CardFooter className="flex items-center justify-between p-4 pt-0 mt-auto">
                     {post.price ? (
-                      <div className="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-[#667eea]/10 to-[#764ba2]/10 rounded-lg">
-                        <span className="text-primary font-bold text-lg whitespace-nowrap">{symbol}{post.price}</span>
+                      <div className="flex items-center gap-1.5 px-2.5 py-1 bg-gradient-to-r from-primary/10 to-purple-600/10 rounded-lg">
+                        <span className="text-primary font-bold text-base whitespace-nowrap">{symbol}{post.price}</span>
                       </div>
                     ) : (
                       <div></div>
                     )}
-                    <Button variant="ghost" size="sm" className="ml-auto group-hover:bg-gradient-to-r group-hover:from-[#667eea] group-hover:to-[#764ba2] group-hover:text-white transition-all duration-300">
-                      Read More
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    <Button variant="ghost" size="sm" className="ml-auto h-8 px-3 text-xs font-semibold group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                      View
+                      <ArrowRight className="ml-1.5 h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
                     </Button>
                   </CardFooter>
                 </Card>
