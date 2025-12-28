@@ -21,6 +21,8 @@ export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
 
+  const navigate = useNavigate();
+
   // Static categories matching homepage Categories.jsx
   const categories = [
     { name: "Education", slug: "education", icon: GraduationCap },
@@ -31,7 +33,12 @@ export default function Navbar() {
     { name: "Entertainment", slug: "lifestyle", icon: Film },
   ];
 
-  const navigate = useNavigate();
+  // Get category URL - landing page for health/finance, category page for others
+  const getCategoryUrl = (slug) => {
+    if (slug === "health") return "/health";
+    if (slug === "finance") return "/finance";
+    return `/category/${slug}`;
+  };
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -84,7 +91,7 @@ export default function Navbar() {
                     return (
                       <Link
                         key={cat.slug}
-                        to={`/category/${cat.slug}`}
+                        to={getCategoryUrl(cat.slug)}
                         onClick={() => setIsDropdownOpen(false)}
                         className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 hover:text-primary transition-all group"
                       >
@@ -180,7 +187,7 @@ export default function Navbar() {
                     return (
                       <Link
                         key={cat.slug}
-                        to={`/category/${cat.slug}`}
+                        to={getCategoryUrl(cat.slug)}
                         onClick={() => {
                           setShowMenu(false);
                           setIsMobileDropdownOpen(false);

@@ -117,41 +117,41 @@ export default function HealthLandingPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section - Green Theme */}
-      <section className="relative py-20 lg:py-28 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 overflow-hidden">
-        {/* Animated Background Blobs */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-green-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-emerald-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-teal-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+      {/* Hero Section - Dark Green Theme */}
+      <section className="relative py-20 lg:py-28 bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-800 overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500 rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-blob"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-green-500 rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-teal-400 rounded-full mix-blend-overlay filter blur-3xl opacity-10 animate-blob animation-delay-4000"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
             {/* Icon */}
             <div className="flex justify-center mb-8">
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-600 rounded-full blur-2xl opacity-50 animate-pulse"></div>
-                <div className="relative bg-gradient-to-r from-green-500 to-emerald-600 p-6 rounded-full shadow-2xl">
-                  <Heart className="h-16 w-16 text-white" strokeWidth={1.5} />
+                <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full blur-2xl opacity-60 animate-pulse"></div>
+                <div className="relative bg-gradient-to-r from-emerald-500 via-green-500 to-emerald-600 p-6 rounded-full shadow-2xl">
+                  <Heart className="h-16 w-16 text-white" strokeWidth={2} />
                 </div>
               </div>
             </div>
 
             {/* Badge */}
-            <Badge className="mb-6 bg-gradient-to-r from-green-500 to-emerald-600 text-white border-0 px-6 py-2 text-base shadow-lg">
+            <Badge className="mb-6 bg-gradient-to-r from-emerald-500 to-green-600 text-white border-0 px-6 py-2 text-base shadow-lg">
               <Shield className="h-4 w-4 mr-2" />
               Verified Health & Fitness Products
             </Badge>
 
             {/* Heading */}
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-gray-900 mb-6 leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
               Your Trusted Source for{" "}
-              <span className="bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-emerald-400 via-green-400 to-teal-400 bg-clip-text text-transparent">
                 Health & Wellness
               </span>
             </h1>
 
             {/* Subheading */}
-            <p className="text-lg md:text-xl lg:text-2xl text-gray-700 max-w-4xl mx-auto mb-10 leading-relaxed">
+            <p className="text-lg md:text-xl lg:text-2xl text-emerald-100 max-w-4xl mx-auto mb-10 leading-relaxed">
               Discover scientifically-backed fitness apps, wellness tools, and health products —
               carefully researched, tested, and recommended by our expert team at Nexverce.
             </p>
@@ -160,7 +160,7 @@ export default function HealthLandingPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold text-lg px-8 py-6 shadow-xl hover:shadow-2xl transition-all duration-300 group"
+                className="bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-bold text-lg px-8 py-6 shadow-xl hover:shadow-2xl transition-all duration-300 group"
                 onClick={() => document.getElementById('health-products').scrollIntoView({ behavior: 'smooth' })}
               >
                 Explore Health Products
@@ -169,7 +169,7 @@ export default function HealthLandingPage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-2 border-green-600 text-green-700 hover:bg-green-50 font-bold text-lg px-8 py-6"
+                className="border-2 border-emerald-400 text-emerald-400 hover:bg-emerald-400 hover:text-white font-bold text-lg px-8 py-6 bg-transparent"
                 onClick={() => document.getElementById('our-process').scrollIntoView({ behavior: 'smooth' })}
               >
                 How We Research
@@ -182,12 +182,12 @@ export default function HealthLandingPage() {
               {stats.map((stat, index) => {
                 const StatIcon = stat.icon;
                 return (
-                  <div key={index} className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-green-100">
-                    <StatIcon className={`h-8 w-8 mx-auto mb-3 ${stat.color}`} />
-                    <div className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-1">
+                  <div key={index} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20">
+                    <StatIcon className={`h-8 w-8 mx-auto mb-3 text-emerald-400`} />
+                    <div className="text-3xl font-bold bg-gradient-to-r from-emerald-400 to-green-400 bg-clip-text text-transparent mb-1">
                       {stat.value}
                     </div>
-                    <div className="text-sm text-gray-600 font-medium">{stat.label}</div>
+                    <div className="text-sm text-emerald-100 font-medium">{stat.label}</div>
                   </div>
                 );
               })}
@@ -305,23 +305,23 @@ export default function HealthLandingPage() {
       {/* Future with AI Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-br from-green-500 via-emerald-600 to-teal-600 rounded-3xl p-12 md:p-16 shadow-2xl relative overflow-hidden">
+          <div className="bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-800 rounded-3xl p-12 md:p-16 shadow-2xl relative overflow-hidden">
             {/* Decorative Elements */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white rounded-full opacity-10 blur-3xl"></div>
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-white rounded-full opacity-10 blur-3xl"></div>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-400 rounded-full opacity-10 blur-3xl"></div>
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-green-400 rounded-full opacity-10 blur-3xl"></div>
 
             <div className="relative z-10 text-center text-white">
               <div className="flex justify-center mb-6">
-                <div className="bg-white/20 backdrop-blur-sm p-4 rounded-full">
+                <div className="bg-gradient-to-r from-emerald-500 to-green-500 p-4 rounded-full">
                   <Bot className="h-12 w-12 text-white" />
                 </div>
               </div>
 
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-                The Future of Nexverce with AI
+                AI-Powered Health Assistant
               </h2>
 
-              <p className="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-green-50 leading-relaxed">
+              <p className="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-emerald-100 leading-relaxed">
                 We're building an AI-powered health assistant that will revolutionize how you discover wellness products.
                 Get personalized recommendations, instant answers, and expert guidance — all powered by artificial intelligence.
               </p>
@@ -335,15 +335,15 @@ export default function HealthLandingPage() {
                   const FeatureIcon = feature.icon;
                   return (
                     <div key={index} className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                      <FeatureIcon className="h-8 w-8 text-white mx-auto mb-3" />
+                      <FeatureIcon className="h-8 w-8 text-emerald-400 mx-auto mb-3" />
                       <h3 className="font-bold text-lg mb-2">{feature.title}</h3>
-                      <p className="text-sm text-green-50">{feature.desc}</p>
+                      <p className="text-sm text-emerald-100">{feature.desc}</p>
                     </div>
                   );
                 })}
               </div>
 
-              <Badge className="bg-white text-green-700 font-bold px-6 py-2 text-sm">
+              <Badge className="bg-gradient-to-r from-emerald-500 to-green-500 text-white font-bold px-6 py-2 text-sm border-0">
                 <Zap className="h-4 w-4 mr-2" />
                 Coming Soon
               </Badge>
@@ -453,24 +453,27 @@ export default function HealthLandingPage() {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-emerald-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-3xl p-12 shadow-2xl">
-            <Sparkles className="h-12 w-12 text-white mx-auto mb-6" />
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Start Your Health Journey Today
-            </h2>
-            <p className="text-lg text-green-50 mb-8">
-              Join thousands of users who trust Nexverce for their health and wellness product recommendations
-            </p>
-            <Button
-              size="lg"
-              className="bg-white text-green-700 hover:bg-green-50 font-bold px-8 py-6 shadow-xl"
-              onClick={() => document.getElementById('health-products').scrollIntoView({ behavior: 'smooth' })}
-            >
-              Explore Health Products
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+          <div className="bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-800 rounded-3xl p-12 shadow-2xl relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-green-500/10"></div>
+            <div className="relative z-10">
+              <Heart className="h-12 w-12 text-emerald-400 mx-auto mb-6" strokeWidth={2} />
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Start Your Health Journey Today
+              </h2>
+              <p className="text-lg text-emerald-100 mb-8">
+                Join thousands of users who trust Nexverce for their health and wellness product recommendations
+              </p>
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white font-bold px-8 py-6 shadow-xl"
+                onClick={() => document.getElementById('health-products').scrollIntoView({ behavior: 'smooth' })}
+              >
+                Explore Health Products
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </div>
           </div>
         </div>
       </section>

@@ -79,6 +79,8 @@ function Categories() {
     // Special landing pages for specific categories
     if (slug === "health") {
       navigate(`/health`);
+    } else if (slug === "finance") {
+      navigate(`/finance`);
     } else {
       navigate(`/category/${slug}`);
     }
