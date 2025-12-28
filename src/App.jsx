@@ -22,6 +22,7 @@ import NewsletterPopup from "./Components/Newsletter/NewsletterPopup";
 import PostPage from "./Components/PostPage/PostPage";
 import Career from "./Components/Career/Career";
 import JobDetail from "./Components/Career/JobDetail";
+import HealthLandingPage from "./Components/CategoryLandingPages/HealthLandingPage";
 
 // Component to track page views
 function PageTracker() {
@@ -64,7 +65,10 @@ function App() {
         />
 
         <Route path="/category/:slug" element={<CategoryPage/>} />
-        
+
+        {/* Category Landing Pages */}
+        <Route path="/health" element={<><HealthLandingPage/><Footer/></>} />
+
         <Route path="/search" element={<SearchResultsPage/>} />
         <Route path="/blogs" element={<BlogsPage/>} />
         <Route path="/post/:id" element={<PostPage/>} />

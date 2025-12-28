@@ -76,7 +76,12 @@ function Categories() {
   const navigate = useNavigate();
 
   const handleCategoryClick = (slug) => {
-    navigate(`/category/${slug}`);
+    // Special landing pages for specific categories
+    if (slug === "health") {
+      navigate(`/health`);
+    } else {
+      navigate(`/category/${slug}`);
+    }
   };
 
   return (
