@@ -4,15 +4,15 @@ import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 
 function TelegramHit({ telegramPosts }) {
-  // Always show 8 card slots
-  const TOTAL_SLOTS = 8;
+  // Always show 6 card slots
+  const TOTAL_SLOTS = 6;
 
-  // Get the 8 latest telegram posts, sorted by creation date
+  // Get the 6 latest telegram posts, sorted by creation date
   const latestTelegramPosts = telegramPosts
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     .slice(0, TOTAL_SLOTS);
 
-  // Create array of 8 slots
+  // Create array of 6 slots
   const telegramSlots = Array.from({ length: TOTAL_SLOTS }, (_, index) => {
     return latestTelegramPosts[index] || null;
   });
@@ -42,7 +42,7 @@ function TelegramHit({ telegramPosts }) {
       </div>
 
       {/* Grid of Telegram Posts */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {telegramSlots.map((post, index) => {
           if (post) {
             // Show actual telegram post

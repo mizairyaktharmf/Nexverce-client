@@ -5,8 +5,8 @@ import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 
 export default function Reviews({ blogs }) {
-  // Show only first 6 blogs
-  const reviewBlogs = blogs.slice(0, 6);
+  // Show only first 8 blogs
+  const reviewBlogs = blogs.slice(0, 8);
 
   return (
     <section className="py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
@@ -45,7 +45,7 @@ export default function Reviews({ blogs }) {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {reviewBlogs.map((blog) => (
               <Link to={`/post/${blog._id}`} key={blog._id}>
                 <Card className="h-full overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group cursor-pointer border-2 border-gray-100 hover:border-primary/50 hover:scale-105 flex flex-col bg-white">
