@@ -6,6 +6,9 @@ import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import DealOfTheDay from "./DealOfTheDay";
 import TelegramHit from "./TelegramHit";
+import OurServices from "../OurServices/OurServices";
+import WhoWeAre from "../WhoWeAre/WhoWeAre";
+import Reviews from "../Reviews/Reviews";
 
 function FeaturedProducts() {
   const [products, setProducts] = useState([]);
@@ -66,6 +69,9 @@ function FeaturedProducts() {
   const marketplace = products.filter(
     (p) => p.type?.toLowerCase() === "marketplace"
   );
+
+  // Filter only blogs (type === "blog") for Reviews section
+  const blogs = products.filter((p) => p.type === "blog");
 
   // ✅ Loading state
   if (loading) {
@@ -253,11 +259,28 @@ function FeaturedProducts() {
           </div>
         </div>
 
-        {/* ⏳ Deal of the Day - New Clean Component */}
-        <DealOfTheDay deals={deals} />
+      </div>
 
+      {/* 🎯 Our Services - How We Curate Products */}
+      <OurServices />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* 📱 Telegram Hit - Exclusive Community Content */}
         <TelegramHit telegramPosts={telegramPosts} />
+      </div>
+
+      {/* 👥 Who We Are - Meet the Team */}
+      <WhoWeAre />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* ⏳ Deal of the Day - New Clean Component */}
+        <DealOfTheDay deals={deals} />
+      </div>
+
+      {/* ⭐ Reviews - Expert Blog Reviews */}
+      <Reviews blogs={blogs} />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* 🛒 Mini Marketplace */}
         {marketplace.length > 0 && (

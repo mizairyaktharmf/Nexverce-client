@@ -111,93 +111,79 @@ export default function PostPage() {
   return (
     <article className="min-h-screen bg-gradient-to-b from-white to-gray-50">
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-purple-50 via-white to-blue-50 border-b-2 border-gray-100 overflow-hidden">
+      <div className="relative bg-gradient-to-br from-purple-50 via-white to-blue-50 border-b border-gray-200 overflow-hidden">
         {/* Decorative Background Elements */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-purple-200/30 to-blue-200/30 rounded-full blur-3xl -mr-48 -mt-48"></div>
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-blue-200/30 to-purple-200/30 rounded-full blur-3xl -ml-40 -mb-40"></div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16">
 
-          {/* Back Button and Meta - Single Line */}
-          <div className="flex items-center justify-between mb-8">
+          {/* Back Button */}
+          <div className="mb-6">
             <Button
               variant="ghost"
               size="sm"
               onClick={() => navigate(-1)}
-              className="hover:bg-white/60 backdrop-blur-sm"
+              className="hover:bg-white/60 backdrop-blur-sm text-gray-600 hover:text-gray-900"
             >
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back
             </Button>
-
-            {/* Meta Information on same line */}
-            <div className="flex items-center gap-3 text-sm">
-              {post.category && (
-                <Link
-                  to={`/category/${post.category.toLowerCase()}`}
-                  className="flex items-center gap-1.5 px-3 py-1.5 bg-white/80 backdrop-blur-sm rounded-full border border-gray-200 hover:border-primary hover:bg-white transition-all group"
-                >
-                  <Tag className="h-3.5 w-3.5 text-primary" />
-                  <span className="font-medium text-gray-700 group-hover:text-primary">{post.category}</span>
-                </Link>
-              )}
-              {post.createdAt && (
-                <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white/80 backdrop-blur-sm rounded-full border border-gray-200">
-                  <Calendar className="h-3.5 w-3.5 text-gray-500" />
-                  <span className="text-gray-600 font-medium">{new Date(post.createdAt).toLocaleDateString()}</span>
-                </div>
-              )}
-              {post.tag && (
-                <Badge variant="premium" className="shadow-md">{post.tag}</Badge>
-              )}
-            </div>
           </div>
 
-          {/* Title and Description - Using Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-            {/* Left: Title & Description */}
-            <div className="lg:col-span-2">
-              <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black text-gray-900 leading-[1.15] mb-4">
-                <span className="bg-gradient-to-r from-gray-900 via-purple-900 to-gray-900 bg-clip-text text-transparent">
-                  {post.title}
-                </span>
-              </h1>
+          {/* Category and Tag Badges */}
+          <div className="flex flex-wrap items-center gap-2 mb-6">
+            {post.category && (
+              <Link
+                to={`/category/${post.category.toLowerCase()}`}
+                className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-md border border-gray-300 hover:border-primary hover:bg-white transition-all group text-sm font-medium"
+              >
+                <Tag className="h-3.5 w-3.5 text-primary" />
+                <span className="text-gray-700 group-hover:text-primary">{post.category}</span>
+              </Link>
+            )}
+            {post.tag && (
+              <Badge variant="premium" className="shadow-sm text-sm px-3 py-1">{post.tag}</Badge>
+            )}
+          </div>
 
-              {/* Description/Excerpt */}
-              {(post.description || post.excerpt) && (
-                <p className="text-base md:text-lg text-gray-600 leading-relaxed font-medium">
-                  {post.description || post.excerpt}
-                </p>
+          {/* Title - Enhanced Typography */}
+          <div className="max-w-full pr-0">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight mb-6 bg-gradient-to-r from-gray-900 via-[#667eea] to-gray-900 bg-clip-text text-transparent" style={{ fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif' }}>
+              {post.title}
+            </h1>
+
+            {/* Meta Information Row */}
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-gray-600 mb-8 pb-8 border-b border-gray-200">
+              {post.createdAt && (
+                <div className="flex items-center gap-2">
+                  <Calendar className="h-4 w-4 text-gray-400" />
+                  <time dateTime={new Date(post.createdAt).toISOString()} className="font-medium">
+                    {new Date(post.createdAt).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}
+                  </time>
+                </div>
+              )}
+              {isProduct && post.price && (
+                <div className="flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-primary/10 to-purple-600/10 rounded-md border border-primary/20">
+                  <span className="text-2xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+                    {symbol}{post.price}
+                  </span>
+                </div>
               )}
             </div>
 
-            {/* Right: Quick Info Card */}
-            <div className="lg:col-span-1">
-              <div className="bg-white/80 backdrop-blur-sm rounded-xl border-2 border-gray-200 p-5 shadow-lg">
-                <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wide mb-3">Quick Info</h3>
-                <div className="space-y-3 text-sm">
-                  {post.category && (
-                    <div className="flex items-center gap-2 text-gray-700">
-                      <Tag className="h-4 w-4 text-primary" />
-                      <span className="font-medium">{post.category}</span>
-                    </div>
-                  )}
-                  {post.createdAt && (
-                    <div className="flex items-center gap-2 text-gray-700">
-                      <Calendar className="h-4 w-4 text-primary" />
-                      <span>{new Date(post.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                    </div>
-                  )}
-                  {isProduct && post.price && (
-                    <div className="pt-3 border-t border-gray-200">
-                      <div className="text-3xl font-black bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">
-                        {symbol}{post.price}
-                      </div>
-                    </div>
-                  )}
-                </div>
+            {/* Description/Excerpt - Enhanced */}
+            {(post.description || post.excerpt) && (
+              <div className="prose prose-lg max-w-none">
+                <p className="text-lg md:text-xl text-gray-700 leading-relaxed font-normal">
+                  {post.description || post.excerpt}
+                </p>
               </div>
-            </div>
+            )}
           </div>
 
         </div>
