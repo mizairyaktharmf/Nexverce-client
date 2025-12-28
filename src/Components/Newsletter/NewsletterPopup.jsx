@@ -9,30 +9,50 @@ export default function NewsletterPopup() {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    // Check if user has already seen the popup
-    const hasSeenPopup = localStorage.getItem("newsletter_popup_seen");
-
-    if (!hasSeenPopup) {
-      // Show popup after 3 seconds
-      const timer = setTimeout(() => {
-        setIsOpen(true);
-      }, 3000);
-
-      return () => clearTimeout(timer);
+    // Check if user has subscribed (permanent - never show again)
+    const hasSubscribed = localStorage.getItem("newsletter_subscribed");
+    if (hasSubscribed === "true") {
+      return; // Never show popup to subscribers
     }
+
+    // Check if user has dismissed the popup before
+    const dismissedAt = localStorage.getItem("newsletter_dismissed_at");
+
+    if (dismissedAt) {
+      // Check if 7 days have passed since dismissal
+      const dismissedTime = parseInt(dismissedAt);
+      const sevenDaysInMs = 7 * 24 * 60 * 60 * 1000; // 7 days
+      const now = Date.now();
+
+      if (now - dismissedTime < sevenDaysInMs) {
+        // Less than 7 days passed, don't show popup
+        return;
+      }
+      // More than 7 days passed, clear the dismissal and show popup
+      localStorage.removeItem("newsletter_dismissed_at");
+    }
+
+    // Show popup after 3 seconds for new users or users after 7 days
+    const timer = setTimeout(() => {
+      setIsOpen(true);
+    }, 3000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const handleClose = () => {
     setIsOpen(false);
-    // Mark popup as seen for this browser session
-    localStorage.setItem("newsletter_popup_seen", "true");
+    // Store dismissal timestamp (will show again after 7 days)
+    localStorage.setItem("newsletter_dismissed_at", Date.now().toString());
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError("");
 
     try {
       const apiUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
@@ -44,20 +64,27 @@ export default function NewsletterPopup() {
         body: JSON.stringify({ email, source: "website" }),
       });
 
-      if (response.ok) {
-        setIsSuccess(true);
-        setEmail("");
+      const data = await response.json();
 
-        // Mark popup as seen
-        localStorage.setItem("newsletter_popup_seen", "true");
-
-        // Close popup after 2 seconds
-        setTimeout(() => {
-          setIsOpen(false);
-        }, 2000);
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to subscribe");
       }
-    } catch (error) {
-      console.error("Newsletter subscription error:", error);
+
+      setIsSuccess(true);
+      setEmail("");
+
+      // Mark user as subscribed (permanent - never show popup again)
+      localStorage.setItem("newsletter_subscribed", "true");
+      // Remove any previous dismissal timestamp
+      localStorage.removeItem("newsletter_dismissed_at");
+
+      // Close popup after 2 seconds
+      setTimeout(() => {
+        setIsOpen(false);
+      }, 2000);
+    } catch (err) {
+      console.error("Newsletter subscription error:", err);
+      setError(err.message || "Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -124,6 +151,13 @@ export default function NewsletterPopup() {
                     className="pl-10 h-12 border-2 border-gray-200 focus:border-primary"
                   />
                 </div>
+
+                {/* Error Message */}
+                {error && (
+                  <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">
+                    {error}
+                  </div>
+                )}
 
                 <Button
                   type="submit"
