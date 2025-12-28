@@ -18,6 +18,7 @@ import ContactUs from "./Components/ContactUs/ContactUs";
 import BlogsPage from "./Components/Blogs/BlogsPage";
 import Newsletter from "./Components/Newsletter/Newsletter";
 import NewsletterThankYou from "./Components/Newsletter/NewsletterThankYou";
+import NewsletterPopup from "./Components/Newsletter/NewsletterPopup";
 import PostPage from "./Components/PostPage/PostPage";
 import Career from "./Components/Career/Career";
 import JobDetail from "./Components/Career/JobDetail";
@@ -42,6 +43,7 @@ function App() {
   return (
     <Router>
       <PageTracker />
+      <NewsletterPopup />
       <Navbar/>
       <ScrollToTop/>
       <Routes>

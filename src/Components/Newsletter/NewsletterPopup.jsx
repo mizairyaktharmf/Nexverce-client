@@ -35,12 +35,13 @@ export default function NewsletterPopup() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/newsletter/subscribe", {
+      const apiUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
+      const response = await fetch(`${apiUrl}/newsletter/subscribe`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, source: "website" }),
       });
 
       if (response.ok) {
