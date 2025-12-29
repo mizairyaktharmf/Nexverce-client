@@ -16,6 +16,7 @@ import PrivacyPolicy from "./Components/PrivacyPolicy/PrivacyPolicy";
 import AboutUs from "./Components/AboutUs/AboutUs";
 import ContactUs from "./Components/ContactUs/ContactUs";
 import BlogsPage from "./Components/Blogs/BlogsPage";
+import BlogLandingPage from "./Components/Blogs/BlogLandingPage";
 import Newsletter from "./Components/Newsletter/Newsletter";
 import NewsletterThankYou from "./Components/Newsletter/NewsletterThankYou";
 import NewsletterPopup from "./Components/Newsletter/NewsletterPopup";
@@ -80,6 +81,7 @@ function App() {
         <Route path="/lifestyle" element={<><LifestyleLandingPage/><Footer/></>} />
 
         <Route path="/search" element={<SearchResultsPage/>} />
+        <Route path="/blog" element={<><BlogLandingPage/><Footer/></>} />
         <Route path="/blogs" element={<BlogsPage/>} />
         <Route path="/post/:id" element={<PostPage/>} />
 
