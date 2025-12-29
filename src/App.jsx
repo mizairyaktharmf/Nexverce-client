@@ -37,6 +37,9 @@ import ProductFinder from "./Components/Tools/ProductFinder";
 import PriceCalculator from "./Components/Tools/PriceCalculator";
 import Dashboard from "./Components/UserDashboard/Dashboard";
 import HomeToolsSection from "./Components/HomeTools/HomeToolsSection";
+import CommunityForum from "./Components/Community/CommunityForum";
+import SocialProof from "./Components/SocialProof/SocialProof";
+import CommunitySection from "./Components/Home/CommunitySection";
 
 // Component to track page views
 function PageTracker() {
@@ -72,6 +75,7 @@ function App() {
               <Categories/>
               <FeaturedProducts/>
               <HomeToolsSection/>
+              <CommunitySection/>
               <NexCodeNova/>
               <Footer/>
             </>
@@ -101,6 +105,8 @@ function App() {
         <Route path="/product-finder" element={<><ProductFinder/><Footer/></>} />
         <Route path="/calculator" element={<><PriceCalculator/><Footer/></>} />
         <Route path="/dashboard" element={<><Dashboard/><Footer/></>} />
+        <Route path="/community" element={<><CommunityForum/><Footer/></>} />
+        <Route path="/reviews" element={<><SocialProof/><Footer/></>} />
 
         {/* Landing Page Route */}
         <Route path="/lp/:slug" element={<LandingPage/>} />

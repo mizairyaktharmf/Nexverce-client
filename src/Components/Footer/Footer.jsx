@@ -158,6 +158,16 @@ function Footer() {
                   👤 Dashboard
                 </Link>
               </li>
+              <li>
+                <Link to="/community" className="text-gray-300 hover:text-white hover:translate-x-1 inline-block transition-all duration-200">
+                  💬 Community
+                </Link>
+              </li>
+              <li>
+                <Link to="/reviews" className="text-gray-300 hover:text-white hover:translate-x-1 inline-block transition-all duration-200">
+                  ⭐ Reviews
+                </Link>
+              </li>
             </ul>
           </div>
 
