@@ -78,7 +78,7 @@ function Footer() {
     <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
 
           {/* Brand Section */}
           <div className="lg:col-span-1">
@@ -121,6 +121,43 @@ function Footer() {
                   </Link>
                 </li>
               ))}
+            </ul>
+          </div>
+
+          {/* Tools & Features */}
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Tools & Features</h4>
+            <ul className="space-y-3">
+              <li>
+                <Link to="/deals" className="text-gray-300 hover:text-white hover:translate-x-1 inline-block transition-all duration-200">
+                  🔥 Hot Deals
+                </Link>
+              </li>
+              <li>
+                <Link to="/buying-guides" className="text-gray-300 hover:text-white hover:translate-x-1 inline-block transition-all duration-200">
+                  📚 Buying Guides
+                </Link>
+              </li>
+              <li>
+                <Link to="/compare" className="text-gray-300 hover:text-white hover:translate-x-1 inline-block transition-all duration-200">
+                  ⚖️ Compare Products
+                </Link>
+              </li>
+              <li>
+                <Link to="/product-finder" className="text-gray-300 hover:text-white hover:translate-x-1 inline-block transition-all duration-200">
+                  🎯 Product Finder
+                </Link>
+              </li>
+              <li>
+                <Link to="/calculator" className="text-gray-300 hover:text-white hover:translate-x-1 inline-block transition-all duration-200">
+                  🧮 Calculator
+                </Link>
+              </li>
+              <li>
+                <Link to="/dashboard" className="text-gray-300 hover:text-white hover:translate-x-1 inline-block transition-all duration-200">
+                  👤 Dashboard
+                </Link>
+              </li>
             </ul>
           </div>
 

@@ -29,6 +29,14 @@ import TechnologyLandingPage from "./Components/CategoryLandingPages/TechnologyL
 import MarketingLandingPage from "./Components/CategoryLandingPages/MarketingLandingPage";
 import EducationLandingPage from "./Components/CategoryLandingPages/EducationLandingPage";
 import LifestyleLandingPage from "./Components/CategoryLandingPages/LifestyleLandingPage";
+import DealsPage from "./Components/Deals/DealsPage";
+import BuyingGuidesPage from "./Components/BuyingGuides/BuyingGuidesPage";
+import BuyingGuideDetail from "./Components/BuyingGuides/BuyingGuideDetail";
+import ComparisonTool from "./Components/Comparison/ComparisonTool";
+import ProductFinder from "./Components/Tools/ProductFinder";
+import PriceCalculator from "./Components/Tools/PriceCalculator";
+import Dashboard from "./Components/UserDashboard/Dashboard";
+import HomeToolsSection from "./Components/HomeTools/HomeToolsSection";
 
 // Component to track page views
 function PageTracker() {
@@ -63,7 +71,7 @@ function App() {
               <WhyChoose/>
               <Categories/>
               <FeaturedProducts/>
-         
+              <HomeToolsSection/>
               <NexCodeNova/>
               <Footer/>
             </>
@@ -84,6 +92,15 @@ function App() {
         <Route path="/blog" element={<><BlogLandingPage/><Footer/></>} />
         <Route path="/blogs" element={<BlogsPage/>} />
         <Route path="/post/:id" element={<PostPage/>} />
+
+        {/* Tools & Features */}
+        <Route path="/deals" element={<><DealsPage/><Footer/></>} />
+        <Route path="/buying-guides" element={<><BuyingGuidesPage/><Footer/></>} />
+        <Route path="/buying-guide/:id" element={<><BuyingGuideDetail/><Footer/></>} />
+        <Route path="/compare" element={<><ComparisonTool/><Footer/></>} />
+        <Route path="/product-finder" element={<><ProductFinder/><Footer/></>} />
+        <Route path="/calculator" element={<><PriceCalculator/><Footer/></>} />
+        <Route path="/dashboard" element={<><Dashboard/><Footer/></>} />
 
         {/* Landing Page Route */}
         <Route path="/lp/:slug" element={<LandingPage/>} />
