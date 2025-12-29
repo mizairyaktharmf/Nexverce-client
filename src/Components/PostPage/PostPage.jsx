@@ -149,7 +149,7 @@ export default function PostPage() {
 
           {/* Title - Enhanced Typography */}
           <div className="max-w-full pr-0">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight mb-6 bg-gradient-to-r from-gray-900 via-[#667eea] to-gray-900 bg-clip-text text-transparent" style={{ fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif' }}>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.15] tracking-tight mb-6 bg-gradient-to-r from-gray-900 via-[#667eea] to-gray-900 bg-clip-text text-transparent" style={{ fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif' }}>
               {post.title}
             </h1>
 
@@ -168,8 +168,8 @@ export default function PostPage() {
                 </div>
               )}
               {isProduct && post.price && (
-                <div className="flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-primary/10 to-purple-600/10 rounded-md border border-primary/20">
-                  <span className="text-2xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+                <div className="flex items-center gap-2 px-3 sm:px-4 py-1.5 bg-gradient-to-r from-primary/10 to-purple-600/10 rounded-md border border-primary/20">
+                  <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
                     {symbol}{post.price}
                   </span>
                 </div>
@@ -178,8 +178,8 @@ export default function PostPage() {
 
             {/* Description/Excerpt - Enhanced */}
             {(post.description || post.excerpt) && (
-              <div className="prose prose-lg max-w-none">
-                <p className="text-lg md:text-xl text-gray-700 leading-relaxed font-normal">
+              <div className="prose prose-base md:prose-lg max-w-none">
+                <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed font-normal">
                   {post.description || post.excerpt}
                 </p>
               </div>
@@ -195,7 +195,7 @@ export default function PostPage() {
 
           {/* Sidebar - Right Side */}
           <div className="lg:col-span-1 order-first lg:order-last">
-            <div className="sticky top-20 space-y-6">
+            <div className="lg:sticky lg:top-20 space-y-6">
 
               {/* Featured Image Card */}
               {post.image && (
@@ -213,10 +213,10 @@ export default function PostPage() {
                 <Card className="border-2 border-gray-100 shadow-lg overflow-hidden">
                   <CardContent className="p-0">
                     {/* Price Section with Brand Colors */}
-                    <div className="bg-gradient-to-br from-[#667eea] to-[#764ba2] p-6 text-white">
+                    <div className="bg-gradient-to-br from-[#667eea] to-[#764ba2] p-4 sm:p-6 text-white">
                       <div className="text-center">
                         <p className="text-xs font-bold uppercase tracking-widest mb-1 text-white/90">Price</p>
-                        <div className="text-5xl font-black text-white mb-1">
+                        <div className="text-4xl sm:text-5xl font-black text-white mb-1">
                           {symbol}{post.price}
                         </div>
                         {post.originalPrice && post.originalPrice > post.price && (
@@ -233,7 +233,7 @@ export default function PostPage() {
                     </div>
 
                     {/* CTA Button */}
-                    <div className="p-5 bg-white">
+                    <div className="p-4 sm:p-5 bg-white">
                       {(post.affiliateLink || post.referralLink) && (
                         <a
                           href={post.affiliateLink || post.referralLink}
@@ -364,11 +364,11 @@ export default function PostPage() {
 
             {/* Block Editor Content - Display exactly as created in admin */}
             {post.contentBlocks && post.contentBlocks.length > 0 ? (
-              <div className="preview-content-body bg-white rounded-xl p-8 shadow-sm border border-gray-100">
+              <div className="preview-content-body bg-white rounded-xl p-4 sm:p-6 md:p-8 shadow-sm border border-gray-100">
                 <BlockRenderer blocks={post.contentBlocks} />
               </div>
             ) : (
-              <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
+              <div className="bg-white rounded-xl p-4 sm:p-6 md:p-8 shadow-sm border border-gray-100">
                 {/* Fallback: If no contentBlocks, show traditional layout */}
 
                 {/* Description or Excerpt */}

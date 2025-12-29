@@ -33,11 +33,9 @@ export default function Navbar() {
     { name: "Entertainment", slug: "lifestyle", icon: Film },
   ];
 
-  // Get category URL - landing page for health/finance, category page for others
+  // Get category URL - all categories now have dedicated landing pages
   const getCategoryUrl = (slug) => {
-    if (slug === "health") return "/health";
-    if (slug === "finance") return "/finance";
-    return `/category/${slug}`;
+    return `/${slug}`;
   };
 
   const handleSearch = (e) => {

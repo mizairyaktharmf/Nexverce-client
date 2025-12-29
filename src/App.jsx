@@ -24,6 +24,10 @@ import Career from "./Components/Career/Career";
 import JobDetail from "./Components/Career/JobDetail";
 import HealthLandingPage from "./Components/CategoryLandingPages/HealthLandingPage";
 import FinanceLandingPage from "./Components/CategoryLandingPages/FinanceLandingPage";
+import TechnologyLandingPage from "./Components/CategoryLandingPages/TechnologyLandingPage";
+import MarketingLandingPage from "./Components/CategoryLandingPages/MarketingLandingPage";
+import EducationLandingPage from "./Components/CategoryLandingPages/EducationLandingPage";
+import LifestyleLandingPage from "./Components/CategoryLandingPages/LifestyleLandingPage";
 
 // Component to track page views
 function PageTracker() {
@@ -70,6 +74,10 @@ function App() {
         {/* Category Landing Pages */}
         <Route path="/health" element={<><HealthLandingPage/><Footer/></>} />
         <Route path="/finance" element={<><FinanceLandingPage/><Footer/></>} />
+        <Route path="/technology" element={<><TechnologyLandingPage/><Footer/></>} />
+        <Route path="/marketing" element={<><MarketingLandingPage/><Footer/></>} />
+        <Route path="/education" element={<><EducationLandingPage/><Footer/></>} />
+        <Route path="/lifestyle" element={<><LifestyleLandingPage/><Footer/></>} />
 
         <Route path="/search" element={<SearchResultsPage/>} />
         <Route path="/blogs" element={<BlogsPage/>} />

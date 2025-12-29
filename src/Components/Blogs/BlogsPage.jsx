@@ -88,12 +88,12 @@ export default function BlogsPage() {
             <BookOpen className="h-3.5 w-3.5 mr-1.5" />
             Blog Center
           </Badge>
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
             <span className="bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
               Nexverce Blogs
             </span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed px-4">
             Discover insights, guides, and stories from our experts
           </p>
         </div>
@@ -175,31 +175,31 @@ export default function BlogsPage() {
                   )}
 
                   {/* CONTENT - Flexible Height */}
-                  <CardHeader className="space-y-3 flex-grow">
+                  <CardHeader className="space-y-3 flex-grow p-4 sm:p-6">
                     {blog.category && (
-                      <div className="flex items-center gap-1.5 text-sm text-gray-500 mb-2">
+                      <div className="flex items-center gap-1.5 text-xs sm:text-sm text-gray-500 mb-2">
                         <span className="font-medium">{blog.category}</span>
                       </div>
                     )}
-                    <CardTitle className="text-xl font-bold line-clamp-2 group-hover:bg-gradient-to-r group-hover:from-[#667eea] group-hover:to-[#764ba2] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+                    <CardTitle className="text-lg sm:text-xl font-bold line-clamp-2 group-hover:bg-gradient-to-r group-hover:from-[#667eea] group-hover:to-[#764ba2] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
                       {blog.title}
                     </CardTitle>
                     {(blog.excerpt || blog.description) && (
-                      <CardDescription className="line-clamp-3 text-gray-600 leading-relaxed">
+                      <CardDescription className="line-clamp-3 text-sm sm:text-base text-gray-600 leading-relaxed">
                         {blog.excerpt || blog.description}
                       </CardDescription>
                     )}
                   </CardHeader>
 
                   {/* FOOTER - Fixed at Bottom */}
-                  <CardFooter className="pt-4 mt-auto">
+                  <CardFooter className="pt-4 mt-auto p-4 sm:p-6">
                     <Button
                       variant="outline"
                       size="sm"
-                      className="w-full group-hover:bg-gradient-to-r group-hover:from-[#667eea] group-hover:to-[#764ba2] group-hover:text-white transition-all duration-300 font-semibold border-2"
+                      className="w-full group-hover:bg-gradient-to-r group-hover:from-[#667eea] group-hover:to-[#764ba2] group-hover:text-white transition-all duration-300 font-semibold border-2 text-xs sm:text-sm"
                     >
                       Read Full Article
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight className="ml-1 sm:ml-2 h-3.5 w-3.5 sm:h-4 sm:w-4 group-hover:translate-x-1 transition-transform" />
                     </Button>
                   </CardFooter>
                 </Card>

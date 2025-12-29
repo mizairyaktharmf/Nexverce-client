@@ -133,15 +133,19 @@
 }
 
 .preview-content-body a {
-  color: #667eea;
-  text-decoration: none;
+  color: #4a90e2;
+  text-decoration: underline;
   font-weight: 500;
-  border-bottom: 2px solid transparent;
-  transition: border-color 0.2s ease;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+  transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 .preview-content-body a:hover {
-  border-bottom-color: #667eea;
+  color: #667eea;
+  text-decoration-thickness: 2px;
+  text-shadow: 0 0 1px rgba(102, 126, 234, 0.3);
 }
 
 .preview-content-body img {
