@@ -96,29 +96,30 @@ export default function CommentSection({ postId }) {
   };
 
   return (
-    <div className="w-full space-y-6">
+    <div className="w-full space-y-4">
       {/* Comment Form */}
-      <Card className="border-2 border-primary/20 shadow-lg">
-        <CardHeader className="bg-gradient-to-r from-purple-50 to-blue-50">
-          <CardTitle className="flex items-center gap-2 text-xl bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-            <MessageSquare className="h-6 w-6 text-primary" />
-            Leave a Comment
+      <Card className="border-2 border-purple-100 shadow-md hover:shadow-lg transition-all bg-gradient-to-br from-white to-purple-50/30">
+        <CardHeader className="pb-3">
+          <CardTitle className="flex items-center gap-2 text-lg">
+            <div className="p-2 bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg">
+              <MessageSquare className="h-5 w-5 text-white" />
+            </div>
+            <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent font-bold">
+              Leave a Comment
+            </span>
           </CardTitle>
         </CardHeader>
-        <CardContent className="pt-6">
+        <CardContent className="space-y-3">
           {success && (
-            <div className="flex items-center gap-2 p-4 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 rounded-lg text-green-700 mb-6 shadow-md">
-              <CheckCircle2 className="h-5 w-5" />
-              <p className="font-medium">Thank you! Your comment has been submitted and is awaiting approval.</p>
+            <div className="flex items-center gap-2 p-3 bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-lg text-green-700 text-sm animate-in fade-in">
+              <CheckCircle2 className="h-4 w-4 flex-shrink-0" />
+              <p className="font-medium">Comment submitted successfully!</p>
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <form onSubmit={handleSubmit} className="space-y-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                  Name *
-                </label>
                 <Input
                   type="text"
                   id="name"
@@ -127,14 +128,11 @@ export default function CommentSection({ postId }) {
                   onChange={handleChange}
                   placeholder="Your name"
                   required
-                  className="border-2 border-gray-200 focus:border-primary"
+                  className="h-10 text-sm border-gray-200 focus:border-purple-500 focus:ring-purple-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                  Email *
-                </label>
                 <Input
                   type="email"
                   id="email"
@@ -143,40 +141,37 @@ export default function CommentSection({ postId }) {
                   onChange={handleChange}
                   placeholder="your@email.com"
                   required
-                  className="border-2 border-gray-200 focus:border-primary"
+                  className="h-10 text-sm border-gray-200 focus:border-purple-500 focus:ring-purple-500"
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="comment" className="block text-sm font-medium text-gray-700 mb-2">
-                Comment *
-              </label>
               <textarea
                 id="comment"
                 name="comment"
                 value={formData.comment}
                 onChange={handleChange}
                 placeholder="Share your thoughts..."
-                rows="4"
+                rows="3"
                 required
-                className="w-full px-3 py-2 border-2 border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                className="w-full px-3 py-2 text-sm border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
               />
             </div>
 
             <Button
               type="submit"
               disabled={submitting}
-              className="w-full bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-white font-semibold shadow-lg hover:shadow-xl transition-all"
+              className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold shadow-md hover:shadow-lg transition-all h-10 text-sm"
             >
               {submitting ? (
                 <div className="flex items-center gap-2">
-                  <Loader2 className="h-5 w-5 animate-spin" />
+                  <Loader2 className="h-4 w-4 animate-spin" />
                   <span>Submitting...</span>
                 </div>
               ) : (
                 <>
-                  <Send className="mr-2 h-5 w-5" />
+                  <Send className="mr-2 h-4 w-4" />
                   Submit Comment
                 </>
               )}
@@ -186,45 +181,45 @@ export default function CommentSection({ postId }) {
       </Card>
 
       {/* Comments Display */}
-      <Card className="border-2 border-gray-200 shadow-lg">
-        <CardHeader className="bg-gradient-to-r from-gray-50 to-slate-50">
-          <CardTitle className="flex items-center gap-2 text-xl">
-            <MessageSquare className="h-6 w-6 text-primary" />
-            Comments ({comments.length})
+      <Card className="border-2 border-gray-100 shadow-md">
+        <CardHeader className="pb-3 bg-gradient-to-r from-gray-50 to-slate-50">
+          <CardTitle className="flex items-center gap-2 text-lg">
+            <MessageSquare className="h-5 w-5 text-purple-600" />
+            <span className="font-bold text-gray-900">Comments ({comments.length})</span>
           </CardTitle>
         </CardHeader>
-        <CardContent className="pt-6">
+        <CardContent className="pt-4">
           {loading ? (
             <div className="flex items-center justify-center py-8">
-              <Loader2 className="h-8 w-8 animate-spin text-primary" />
-              <span className="ml-2 text-gray-600">Loading comments...</span>
+              <Loader2 className="h-6 w-6 animate-spin text-purple-600" />
+              <span className="ml-2 text-gray-600 text-sm">Loading comments...</span>
             </div>
           ) : comments.length === 0 ? (
-            <div className="text-center py-12 text-gray-500">
-              <MessageSquare className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-              <p className="text-lg font-medium">No comments yet</p>
-              <p className="text-sm">Be the first to share your thoughts!</p>
+            <div className="text-center py-8 text-gray-500">
+              <MessageSquare className="h-10 w-10 mx-auto mb-3 text-gray-300" />
+              <p className="font-medium text-sm">No comments yet</p>
+              <p className="text-xs mt-1">Be the first to share your thoughts!</p>
             </div>
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-3">
               {comments.map((comment) => (
                 <div
                   key={comment._id}
-                  className="p-4 bg-gradient-to-r from-gray-50 to-slate-50 rounded-lg border-2 border-gray-100 hover:border-primary/30 transition-all"
+                  className="p-3 bg-gradient-to-r from-gray-50 to-slate-50 rounded-lg border border-gray-100 hover:border-purple-200 hover:shadow-sm transition-all"
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-primary to-purple-600 flex items-center justify-center flex-shrink-0">
-                      <User className="h-5 w-5 text-white" />
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 flex items-center justify-center flex-shrink-0">
+                      <User className="h-4 w-4 text-white" />
                     </div>
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <h4 className="font-semibold text-gray-900">{comment.name}</h4>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-2 mb-1 flex-wrap">
+                        <h4 className="font-semibold text-gray-900 text-sm">{comment.name}</h4>
                         <div className="flex items-center gap-1 text-xs text-gray-500">
                           <Calendar className="h-3 w-3" />
                           {formatDate(comment.createdAt)}
                         </div>
                       </div>
-                      <p className="text-gray-700 leading-relaxed">{comment.comment}</p>
+                      <p className="text-gray-700 text-sm leading-relaxed break-words">{comment.comment}</p>
                     </div>
                   </div>
                 </div>
