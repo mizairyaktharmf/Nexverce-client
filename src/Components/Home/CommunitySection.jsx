@@ -21,7 +21,7 @@ export default function CommunitySection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
           {/* Community Forum Card */}
-          <Card className="border-2 border-purple-200 hover:shadow-2xl transition-all group cursor-pointer" onClick={() => navigate("/community")}>
+          <Card className="border-2 border-purple-200 hover:shadow-2xl transition-all group cursor-pointer" onClick={() => window.open("https://t.me/nexverce", "_blank")}>
             <CardContent className="p-8">
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-4">
@@ -64,7 +64,7 @@ export default function CommunitySection() {
           </Card>
 
           {/* Reviews & Trust Card */}
-          <Card className="border-2 border-orange-200 hover:shadow-2xl transition-all group cursor-pointer" onClick={() => navigate("/reviews")}>
+          <Card className="border-2 border-orange-200 hover:shadow-2xl transition-all group cursor-pointer" onClick={() => navigate("/coming-soon/reviews")}>
             <CardContent className="p-8">
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-4">

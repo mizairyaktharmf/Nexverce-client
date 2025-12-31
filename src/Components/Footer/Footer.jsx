@@ -129,21 +129,21 @@ function Footer() {
             <h4 className="text-lg font-semibold mb-4">Tools & Features</h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/deals" className="text-gray-300 hover:text-white hover:translate-x-1 inline-flex items-center gap-2 transition-all duration-200">
+                <Link to="/coming-soon/deals" className="text-gray-300 hover:text-white hover:translate-x-1 inline-flex items-center gap-2 transition-all duration-200">
                   <Flame className="h-4 w-4" /> Hot Deals
-                  <span className="ml-1 text-xs bg-purple-600 px-2 py-0.5 rounded-full">Soon</span>
+                  <span className="ml-1 text-xs bg-orange-600 px-2 py-0.5 rounded-full animate-pulse">Soon</span>
                 </Link>
               </li>
               <li>
-                <Link to="/buying-guides" className="text-gray-300 hover:text-white hover:translate-x-1 inline-flex items-center gap-2 transition-all duration-200">
+                <Link to="/coming-soon/buying-guides" className="text-gray-300 hover:text-white hover:translate-x-1 inline-flex items-center gap-2 transition-all duration-200">
                   <BookOpen className="h-4 w-4" /> Buying Guides
-                  <span className="ml-1 text-xs bg-purple-600 px-2 py-0.5 rounded-full">Soon</span>
+                  <span className="ml-1 text-xs bg-orange-600 px-2 py-0.5 rounded-full animate-pulse">Soon</span>
                 </Link>
               </li>
               <li>
-                <Link to="/compare" className="text-gray-300 hover:text-white hover:translate-x-1 inline-flex items-center gap-2 transition-all duration-200">
+                <Link to="/coming-soon/compare" className="text-gray-300 hover:text-white hover:translate-x-1 inline-flex items-center gap-2 transition-all duration-200">
                   <Scale className="h-4 w-4" /> Compare Products
-                  <span className="ml-1 text-xs bg-purple-600 px-2 py-0.5 rounded-full">Soon</span>
+                  <span className="ml-1 text-xs bg-orange-600 px-2 py-0.5 rounded-full animate-pulse">Soon</span>
                 </Link>
               </li>
               <li>
@@ -152,21 +152,21 @@ function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/calculator" className="text-gray-300 hover:text-white hover:translate-x-1 inline-flex items-center gap-2 transition-all duration-200">
+                <Link to="/coming-soon/calculator" className="text-gray-300 hover:text-white hover:translate-x-1 inline-flex items-center gap-2 transition-all duration-200">
                   <Calculator className="h-4 w-4" /> Calculator
-                  <span className="ml-1 text-xs bg-purple-600 px-2 py-0.5 rounded-full">Soon</span>
+                  <span className="ml-1 text-xs bg-orange-600 px-2 py-0.5 rounded-full animate-pulse">Soon</span>
                 </Link>
               </li>
               <li>
                 <Link to="/community" className="text-gray-300 hover:text-white hover:translate-x-1 inline-flex items-center gap-2 transition-all duration-200">
                   <MessageSquare className="h-4 w-4" /> Community
-                  <span className="ml-1 text-xs bg-purple-600 px-2 py-0.5 rounded-full">Soon</span>
+                  <span className="ml-1 text-xs bg-blue-600 px-2 py-0.5 rounded-full animate-pulse">Building</span>
                 </Link>
               </li>
               <li>
-                <Link to="/reviews" className="text-gray-300 hover:text-white hover:translate-x-1 inline-flex items-center gap-2 transition-all duration-200">
+                <Link to="/coming-soon/reviews" className="text-gray-300 hover:text-white hover:translate-x-1 inline-flex items-center gap-2 transition-all duration-200">
                   <Star className="h-4 w-4" /> Reviews
-                  <span className="ml-1 text-xs bg-purple-600 px-2 py-0.5 rounded-full">Soon</span>
+                  <span className="ml-1 text-xs bg-orange-600 px-2 py-0.5 rounded-full animate-pulse">Soon</span>
                 </Link>
               </li>
             </ul>

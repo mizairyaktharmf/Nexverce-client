@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Mail, Linkedin, Instagram, Facebook, Clock, CheckCircle2, Send, Sparkles, MessageCircle } from 'lucide-react';
+import { Mail, Linkedin, Instagram, Clock, CheckCircle2, Send, Sparkles, MessageCircle, Phone } from 'lucide-react';
+import { FaTelegram } from 'react-icons/fa';
 import Footer from '../Footer/Footer';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
@@ -52,6 +53,12 @@ function ContactUs() {
       link: "mailto:contact@nexverce.com"
     },
     {
+      icon: Phone,
+      title: "Phone",
+      info: "+971 562393573",
+      link: "tel:+971562393573"
+    },
+    {
       icon: Linkedin,
       title: "LinkedIn",
       info: "linkedin.com/company/nexverce",
@@ -64,10 +71,10 @@ function ContactUs() {
       link: "https://www.instagram.com/nexverce"
     },
     {
-      icon: Facebook,
-      title: "Facebook",
-      info: "facebook.com/nexverce",
-      link: "https://www.facebook.com/nexverce"
+      icon: FaTelegram,
+      title: "Telegram",
+      info: "t.me/nexverce",
+      link: "https://t.me/nexverce"
     }
   ];
 

@@ -73,7 +73,7 @@ export default function EducationLandingPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section - Dark Blue/Cyan Theme */}
-      <section className="relative py-20 lg:py-28 bg-gradient-to-br from-slate-900 via-blue-900 to-cyan-900 overflow-hidden">
+      <section className="relative min-h-screen flex items-center py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-cyan-900 overflow-hidden">
         {/* Animated Background Elements */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-blob"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500 rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
@@ -82,23 +82,23 @@ export default function EducationLandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
             {/* Icon */}
-            <div className="flex justify-center mb-8">
+            <div className="flex justify-center mb-6">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-cyan-500 rounded-full blur-2xl opacity-60 animate-pulse"></div>
-                <div className="relative bg-gradient-to-r from-blue-500 via-cyan-500 to-sky-600 p-6 rounded-full shadow-2xl">
-                  <GraduationCap className="h-16 w-16 text-white" strokeWidth={2} />
+                <div className="relative bg-gradient-to-r from-blue-500 via-cyan-500 to-sky-600 p-5 rounded-full shadow-2xl">
+                  <GraduationCap className="h-12 w-12 text-white" strokeWidth={2} />
                 </div>
               </div>
             </div>
 
             {/* Badge */}
-            <Badge className="mb-6 bg-gradient-to-r from-blue-500 to-cyan-600 text-white border-0 px-6 py-2 text-base shadow-lg">
+            <Badge className="mb-4 bg-gradient-to-r from-blue-500 to-cyan-600 text-white border-0 px-6 py-2 text-base shadow-lg">
               <Target className="h-4 w-4 mr-2" />
               Learning Solutions
             </Badge>
 
             {/* Heading */}
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 leading-tight">
               Master Skills for{" "}
               <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-sky-400 bg-clip-text text-transparent">
                 YOUR Goals
@@ -106,13 +106,13 @@ export default function EducationLandingPage() {
             </h1>
 
             {/* Subheading */}
-            <p className="text-lg md:text-xl lg:text-2xl text-blue-100 max-w-4xl mx-auto mb-10 leading-relaxed">
+            <p className="text-base md:text-lg lg:text-xl text-blue-100 max-w-4xl mx-auto mb-6 leading-relaxed">
               Don't know where to start learning? Wasting money on courses you never finish? Want skills that actually get you hired?
               We guide you from YOUR learning goals to courses that fit YOUR style — with results, not just certificates.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-bold text-lg px-8 py-6 shadow-xl hover:shadow-2xl transition-all duration-300 group"
@@ -133,16 +133,16 @@ export default function EducationLandingPage() {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
               {stats.map((stat, index) => {
                 const StatIcon = stat.icon;
                 return (
-                  <div key={index} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20">
-                    <StatIcon className={`h-8 w-8 mx-auto mb-3 text-blue-400`} />
-                    <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-1">
+                  <div key={index} className="bg-white/10 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-white/20">
+                    <StatIcon className={`h-6 w-6 mx-auto mb-2 text-blue-400`} />
+                    <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-1">
                       {stat.value}
                     </div>
-                    <div className="text-sm text-blue-100 font-medium">{stat.label}</div>
+                    <div className="text-xs text-blue-100 font-medium">{stat.label}</div>
                   </div>
                 );
               })}

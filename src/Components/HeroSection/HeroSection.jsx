@@ -1,4 +1,4 @@
-import { ArrowRight, Sparkles, Search, Shield, Zap } from 'lucide-react'
+import { ArrowRight, Sparkles, Search, Shield, Zap, Users, Star, BookOpen, TrendingUp } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { Button } from '../ui/button'
 import { Badge } from '../ui/badge'
@@ -30,7 +30,7 @@ function HeroSection() {
             </div>
           </div>
 
-          {/* Main Heading with Enhanced Gradient */}
+          {/* Main Heading */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-4 md:mb-6 leading-tight px-4">
             Find the Right{" "}
             <span className="relative inline-block mt-2">
@@ -66,7 +66,7 @@ function HeroSection() {
           </div>
 
           {/* Feature Pills */}
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 max-w-2xl mx-auto px-4">
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 max-w-2xl mx-auto px-4 mb-8 md:mb-12">
             {[
               { icon: Search, text: "Problem-First Guidance" },
               { icon: Shield, text: "Honest Recommendations" },
@@ -82,6 +82,34 @@ function HeroSection() {
                     <Icon className="h-3 w-3 text-white" />
                   </div>
                   <span className="text-xs sm:text-sm font-semibold text-gray-700 whitespace-nowrap">{feature.text}</span>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Trust Stats */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-3xl mx-auto px-4">
+            {[
+              { icon: Users, value: "New", label: "Growing Platform" },
+              { icon: Star, value: "Quality", label: "Over Quantity" },
+              { icon: BookOpen, value: "Expert", label: "Curated Content" },
+              { icon: TrendingUp, value: "100%", label: "Honest Reviews" },
+            ].map((stat, index) => {
+              const StatIcon = stat.icon;
+              return (
+                <div
+                  key={index}
+                  className="bg-white/80 backdrop-blur-sm rounded-xl p-3 sm:p-4 shadow-md border border-purple-100 hover:shadow-lg transition-all hover:scale-105"
+                >
+                  <div className="flex flex-col items-center gap-1">
+                    <div className="w-8 h-8 bg-gradient-to-br from-purple-400 to-indigo-500 rounded-lg flex items-center justify-center mb-1">
+                      <StatIcon className="h-4 w-4 text-white" />
+                    </div>
+                    <div className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                      {stat.value}
+                    </div>
+                    <div className="text-xs text-gray-600 font-medium text-center">{stat.label}</div>
+                  </div>
                 </div>
               );
             })}

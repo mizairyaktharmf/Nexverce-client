@@ -165,37 +165,37 @@ export default function SolutionsPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-slate-900 via-purple-900 to-blue-900 py-20 lg:py-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="min-h-screen flex items-center bg-gradient-to-br from-slate-900 via-purple-900 to-blue-900 py-20 lg:py-28">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="text-center max-w-4xl mx-auto">
             <Badge className="mb-6 bg-gradient-to-r from-purple-500 to-blue-600 text-white border-0 px-6 py-2 text-base">
               <Sparkles className="h-4 w-4 mr-2" />
               The Nexverce Solution Framework
             </Badge>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6">
-              We Don't Just Sell Products.<br />
-              We <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">Solve Problems</span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 px-4">
+              We Don't Just Sell Products.<br className="hidden sm:block" />
+              <span className="block sm:inline">We <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">Solve Problems</span></span>
             </h1>
 
-            <p className="text-lg md:text-xl text-purple-100 mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-purple-100 mb-8 leading-relaxed px-4">
               Confused? Overwhelmed? Don't know what's right for you? You're not alone.
               Nexverce transforms decision paralysis into confident action.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center px-4">
               <Button
                 onClick={() => navigate("/product-finder")}
-                className="bg-white text-purple-600 hover:bg-purple-50 font-bold text-lg px-8 py-6 rounded-xl shadow-xl"
+                className="w-full sm:w-auto bg-white text-purple-600 hover:bg-purple-50 font-bold text-lg px-8 py-6 rounded-xl shadow-xl"
               >
                 <Target className="mr-2 h-5 w-5" />
                 Find Your Solution
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button
-                onClick={() => navigate("/community")}
+                onClick={() => window.open("https://t.me/nexverce", "_blank")}
                 variant="outline"
-                className="border-2 border-white text-white hover:bg-white/10 font-bold text-lg px-8 py-6 rounded-xl"
+                className="w-full sm:w-auto border-2 border-white text-white hover:bg-white/10 font-bold text-lg px-8 py-6 rounded-xl"
               >
                 <Users className="mr-2 h-5 w-5" />
                 Join Community
@@ -389,27 +389,27 @@ export default function SolutionsPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="bg-gradient-to-r from-purple-600 to-blue-600 py-20">
+      <section className="bg-gradient-to-r from-purple-600 to-blue-600 py-16 md:py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 md:mb-6">
             Ready to Stop Guessing and Start Knowing?
           </h2>
-          <p className="text-purple-100 text-lg mb-8 leading-relaxed">
+          <p className="text-purple-100 text-base sm:text-lg mb-6 md:mb-8 leading-relaxed">
             Join 250,000+ users who trust Nexverce to guide them from confusion to clarity
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               onClick={() => navigate("/product-finder")}
-              className="bg-white text-purple-600 hover:bg-purple-50 font-bold text-lg px-8 py-6 rounded-xl"
+              className="w-full sm:w-auto bg-white text-purple-600 hover:bg-purple-50 font-bold text-lg px-8 py-6 rounded-xl"
             >
               <Target className="mr-2 h-5 w-5" />
               Take the Solution Quiz
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             <Button
-              onClick={() => navigate("/community")}
+              onClick={() => window.open("https://t.me/nexverce", "_blank")}
               variant="outline"
-              className="border-2 border-white text-white hover:bg-white/10 font-bold text-lg px-8 py-6 rounded-xl"
+              className="w-full sm:w-auto border-2 border-white text-white hover:bg-white/10 font-bold text-lg px-8 py-6 rounded-xl"
             >
               <Users className="mr-2 h-5 w-5" />
               Join 50K+ Members

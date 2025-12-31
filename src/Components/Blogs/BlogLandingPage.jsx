@@ -61,7 +61,7 @@ export default function BlogLandingPage() {
             </Badge>
 
             {/* Heading */}
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white mb-6 leading-tight px-4">
               Your Source for{" "}
               <span className="bg-gradient-to-r from-purple-400 via-blue-400 to-pink-400 bg-clip-text text-transparent">
                 Product Insights
@@ -69,17 +69,17 @@ export default function BlogLandingPage() {
             </h1>
 
             {/* Subheading */}
-            <p className="text-lg md:text-xl lg:text-2xl text-purple-100 max-w-4xl mx-auto mb-10 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-purple-100 max-w-4xl mx-auto mb-10 leading-relaxed px-4">
               At Nexverce, we don't just recommend products — we dive deep into research, comparisons,
               and real-world testing to help you make informed decisions. Our blog is your guide to
               discovering the best tools, apps, and platforms across every category.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 px-4">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-purple-500 to-blue-600 hover:from-purple-600 hover:to-blue-700 text-white font-bold text-lg px-8 py-6 shadow-xl hover:shadow-2xl transition-all duration-300 group"
+                className="w-full sm:w-auto bg-gradient-to-r from-purple-500 to-blue-600 hover:from-purple-600 hover:to-blue-700 text-white font-bold text-lg px-8 py-6 shadow-xl hover:shadow-2xl transition-all duration-300 group"
                 onClick={() => navigate('/blogs')}
               >
                 Explore All Blogs
@@ -88,7 +88,7 @@ export default function BlogLandingPage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-2 border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white font-bold text-lg px-8 py-6 bg-transparent"
+                className="w-full sm:w-auto border-2 border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white font-bold text-lg px-8 py-6 bg-transparent"
                 onClick={() => document.getElementById('our-process').scrollIntoView({ behavior: 'smooth' })}
               >
                 How We Review
@@ -97,16 +97,16 @@ export default function BlogLandingPage() {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 max-w-4xl mx-auto px-4">
               {stats.map((stat, index) => {
                 const StatIcon = stat.icon;
                 return (
-                  <div key={index} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20">
-                    <StatIcon className={`h-8 w-8 mx-auto mb-3 text-purple-400`} />
-                    <div className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent mb-1">
+                  <div key={index} className="bg-white/10 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-white/20">
+                    <StatIcon className={`h-6 w-6 md:h-8 md:w-8 mx-auto mb-2 md:mb-3 text-purple-400`} />
+                    <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent mb-1">
                       {stat.value}
                     </div>
-                    <div className="text-sm text-purple-100 font-medium">{stat.label}</div>
+                    <div className="text-xs md:text-sm text-purple-100 font-medium">{stat.label}</div>
                   </div>
                 );
               })}

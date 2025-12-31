@@ -45,6 +45,7 @@ import OurServices from "./Components/OurServices/OurServices";
 import WhoWeAre from "./Components/WhoWeAre/WhoWeAre";
 import Reviews from "./Components/Reviews/Reviews";
 import TelegramHit from "./Components/FeaturedProducts/TelegramHit";
+import ComingSoon from "./Components/ComingSoon/ComingSoon";
 
 // Component to track page views
 function PageTracker() {
@@ -128,6 +129,9 @@ function App() {
         <Route path="/reviews" element={<><SocialProof/><Footer/></>} />
         <Route path="/solutions" element={<><SolutionsPage/><Footer/></>} />
         <Route path="/nexcode-nova" element={<><NexCodeNovaPage/><Footer/></>} />
+
+        {/* Coming Soon Pages */}
+        <Route path="/coming-soon/:feature" element={<><ComingSoon/><Footer/></>} />
 
         {/* Landing Page Route */}
         <Route path="/lp/:slug" element={<LandingPage/>} />

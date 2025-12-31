@@ -14,7 +14,7 @@ function NexCodeNova() {
         <div className="text-center mb-10">
           <Badge className="mb-4 bg-gradient-to-r from-primary to-purple-600 text-white border-0 px-4 py-1.5">
             <Sparkles className="h-3.5 w-3.5 mr-1.5" />
-            Part of the Fairam Family
+            Premium Partner of Nexverce
           </Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-3">
             <span className="bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">

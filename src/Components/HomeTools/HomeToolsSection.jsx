@@ -22,7 +22,7 @@ export default function HomeToolsSection() {
       description: "Compare up to 4 products side-by-side with detailed feature breakdowns, pricing, and specifications to make the best choice.",
       color: "from-blue-500 to-cyan-500",
       bgColor: "from-blue-50 to-cyan-50",
-      path: "/compare",
+      path: "/coming-soon/compare",
       features: ["Compare up to 4 products", "Side-by-side analysis", "Feature comparison tables"]
     },
     {
@@ -31,7 +31,7 @@ export default function HomeToolsSection() {
       description: "Expert-written guides covering how to choose the perfect product in every category with detailed comparisons and insights.",
       color: "from-cyan-500 to-teal-500",
       bgColor: "from-cyan-50 to-teal-50",
-      path: "/buying-guides",
+      path: "/coming-soon/buying-guides",
       features: ["Expert reviews", "In-depth research", "Category-specific guides"]
     },
     {
@@ -40,7 +40,7 @@ export default function HomeToolsSection() {
       description: "Discover exclusive deals and limited-time offers with up to 70% off on top products across all categories.",
       color: "from-orange-500 to-red-500",
       bgColor: "from-orange-50 to-red-50",
-      path: "/deals",
+      path: "/coming-soon/deals",
       features: ["Up to 70% off", "Expiring soon alerts", "Best deals curated"]
     }
   ];

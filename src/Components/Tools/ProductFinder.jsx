@@ -514,7 +514,7 @@ export default function ProductFinder() {
             </h1>
 
             <p className="text-xl text-purple-100 max-w-3xl mx-auto mb-8 leading-relaxed">
-              Answer 7 quick questions and get personalized product recommendations powered by smart matching technology
+              Answer 9 quick questions and get personalized product recommendations powered by smart matching technology
             </p>
 
             <Button

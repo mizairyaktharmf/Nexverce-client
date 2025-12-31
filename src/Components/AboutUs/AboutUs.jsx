@@ -1,5 +1,6 @@
 import React from 'react';
-import { ShoppingBag, BookOpen, TrendingUp, Users, Sparkles, Shield, Lightbulb, Globe, Mail, Linkedin, Instagram, Facebook } from 'lucide-react';
+import { ShoppingBag, BookOpen, TrendingUp, Users, Sparkles, Shield, Lightbulb, Globe, Mail, Linkedin, Instagram, Phone } from 'lucide-react';
+import { FaTelegram } from 'react-icons/fa';
 import Footer from '../Footer/Footer';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
@@ -60,6 +61,12 @@ function AboutUs() {
       link: "mailto:contact@nexverce.com"
     },
     {
+      icon: Phone,
+      label: "Phone",
+      value: "+971 562393573",
+      link: "tel:+971562393573"
+    },
+    {
       icon: Linkedin,
       label: "LinkedIn",
       value: "linkedin.com/company/nexverce",
@@ -72,10 +79,10 @@ function AboutUs() {
       link: "https://www.instagram.com/nexverce"
     },
     {
-      icon: Facebook,
-      label: "Facebook",
-      value: "facebook.com/nexverce",
-      link: "https://www.facebook.com/nexverce"
+      icon: FaTelegram,
+      label: "Telegram",
+      value: "t.me/nexverce",
+      link: "https://t.me/nexverce"
     }
   ];
 

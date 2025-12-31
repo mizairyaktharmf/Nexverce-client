@@ -8,6 +8,7 @@ import { Card, CardContent } from "../ui/card";
 import BlockRenderer from "../BlockRenderer";
 import { trackPostView, trackAffiliateClickBackend } from "../../utils/trackingAnalytics";
 import { trackPostView as trackPostViewGA, trackAffiliateClick } from "../../utils/analytics";
+import CommentSection from "../Comments/CommentSection";
 
 export default function PostPage() {
   const { id } = useParams();
@@ -318,6 +319,11 @@ export default function PostPage() {
                   </CardContent>
                 </Card>
               )}
+
+              {/* Comment Section */}
+              <div className="w-full">
+                <CommentSection postId={post._id || post.id} />
+              </div>
 
               {/* Category Card */}
               {post.category && (
