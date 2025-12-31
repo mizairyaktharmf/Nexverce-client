@@ -17,7 +17,8 @@ import {
   BookOpen,
   Video,
   Brain,
-  Globe
+  Globe,
+  Target
 } from "lucide-react";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
@@ -92,22 +93,22 @@ export default function EducationLandingPage() {
 
             {/* Badge */}
             <Badge className="mb-6 bg-gradient-to-r from-blue-500 to-cyan-600 text-white border-0 px-6 py-2 text-base shadow-lg">
-              <Shield className="h-4 w-4 mr-2" />
-              Verified Education & E-Learning
+              <Target className="h-4 w-4 mr-2" />
+              Learning Solutions
             </Badge>
 
             {/* Heading */}
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
-              Master New Skills with{" "}
+              Master Skills for{" "}
               <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-sky-400 bg-clip-text text-transparent">
-                Top Learning Platforms
+                YOUR Goals
               </span>
             </h1>
 
             {/* Subheading */}
             <p className="text-lg md:text-xl lg:text-2xl text-blue-100 max-w-4xl mx-auto mb-10 leading-relaxed">
-              Nexverce helps you find the best online courses, learning platforms, and educational tools —
-              carefully reviewed to accelerate your learning journey.
+              Don't know where to start learning? Wasting money on courses you never finish? Want skills that actually get you hired?
+              We guide you from YOUR learning goals to courses that fit YOUR style — with results, not just certificates.
             </p>
 
             {/* CTA Buttons */}
@@ -117,7 +118,7 @@ export default function EducationLandingPage() {
                 className="bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-bold text-lg px-8 py-6 shadow-xl hover:shadow-2xl transition-all duration-300 group"
                 onClick={() => document.getElementById('education-products').scrollIntoView({ behavior: 'smooth' })}
               >
-                Explore Learning Platforms
+                Explore Learning Solutions
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button
@@ -126,7 +127,7 @@ export default function EducationLandingPage() {
                 className="border-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white font-bold text-lg px-8 py-6 bg-transparent"
                 onClick={() => document.getElementById('our-process').scrollIntoView({ behavior: 'smooth' })}
               >
-                Our Review Process
+                How We Guide You
                 <Search className="ml-2 h-5 w-5" />
               </Button>
             </div>

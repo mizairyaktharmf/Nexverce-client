@@ -92,22 +92,22 @@ export default function TechnologyLandingPage() {
 
             {/* Badge */}
             <Badge className="mb-6 bg-gradient-to-r from-purple-500 to-indigo-600 text-white border-0 px-6 py-2 text-base shadow-lg">
-              <Shield className="h-4 w-4 mr-2" />
-              Verified Technology & Gadgets
+              <Target className="h-4 w-4 mr-2" />
+              Productivity Solutions
             </Badge>
 
             {/* Heading */}
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
-              Discover Cutting-Edge{" "}
+              Optimize{" "}
               <span className="bg-gradient-to-r from-purple-400 via-indigo-400 to-violet-400 bg-clip-text text-transparent">
-                Tech Solutions
+                YOUR Workflow
               </span>
             </h1>
 
             {/* Subheading */}
             <p className="text-lg md:text-xl lg:text-2xl text-indigo-100 max-w-4xl mx-auto mb-10 leading-relaxed">
-              Nexverce helps you find the best gadgets, software, and tech tools —
-              thoroughly tested and reviewed to simplify your digital life.
+              Overwhelmed by too many tools? Not sure which software fits YOUR needs? Want to work smarter, not harder?
+              We guide you from YOUR workflow problems to tech solutions that actually boost YOUR productivity.
             </p>
 
             {/* CTA Buttons */}

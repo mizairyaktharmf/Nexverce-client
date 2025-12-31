@@ -8,22 +8,22 @@ function WhyChoose() {
   const features = [
     {
       icon: CheckCircle,
-      title: "Verified Affiliate Partners",
-      desc: "Every link you click is from trusted, verified sources — so you always get genuine offers.",
+      title: "Problem-First Approach",
+      desc: "We start with YOUR problem, not products. Get educated first, then see solutions that actually fit your situation.",
       gradient: "from-green-400 to-emerald-500",
       bgGradient: "from-green-50 to-emerald-50"
     },
     {
       icon: Scale,
-      title: "Smart Comparison",
-      desc: "Compare tools, courses, and deals across top platforms — all in one place.",
+      title: "Honest Guidance",
+      desc: "We tell you who it's for AND who it's NOT for. No hype, no pressure — just clarity so you can decide with confidence.",
       gradient: "from-blue-400 to-cyan-500",
       bgGradient: "from-blue-50 to-cyan-50"
     },
     {
       icon: Tag,
-      title: "Best Deals Guaranteed",
-      desc: "Get exclusive discounts, rewards, and limited-time affiliate offers daily.",
+      title: "Solution Intelligence",
+      desc: "Get personalized recommendations based on your needs, not just what pays us the most. Your trust is our priority.",
       gradient: "from-purple-400 to-pink-500",
       bgGradient: "from-purple-50 to-pink-50"
     },
@@ -41,13 +41,13 @@ function WhyChoose() {
         <div className="text-center mb-16">
           <Badge variant="premium" className="mb-4">
             <Sparkles className="h-3 w-3 mr-1" />
-            Why Choose Us
+            The Nexverce Difference
           </Badge>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Why Choose Nexverce?
+            We're Not Sellers. We're <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Guides</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-            Discover smarter, verified deals — trusted by thousands of users worldwide.
+            Confused about choices? Nexverce brings clarity, not commissions. We help you solve problems, not just buy products.
           </p>
         </div>
 
@@ -79,16 +79,42 @@ function WhyChoose() {
           })}
         </div>
 
-        {/* CTA Section */}
-        <div className="text-center">
-          <div className="inline-block p-8 bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl border-2 border-primary/20 shadow-lg">
-            <p className="text-gray-700 mb-4 font-medium">Ready to discover amazing deals?</p>
-            <Link to="/about-us">
-              <Button variant="premium" size="lg" className="group shadow-lg hover:shadow-xl">
-                Explore Now
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
+        {/* Testimonial + CTA Section */}
+        <div className="max-w-3xl mx-auto">
+          {/* Honest Message */}
+          <div className="bg-white rounded-2xl p-8 shadow-xl border-2 border-purple-100 mb-8">
+            <div className="flex items-start gap-4 mb-4">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center flex-shrink-0">
+                <Sparkles className="h-6 w-6 text-white" />
+              </div>
+              <div className="flex-1">
+                <p className="text-gray-700 italic leading-relaxed mb-3">
+                  "We're tired of platforms that only care about commissions. Nexverce was built to actually help you — to guide you from confusion to clarity to the right solution. No hype, no pressure, just honest guidance."
+                </p>
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center text-white text-sm font-bold">
+                    N
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-900">Nexverce Team</p>
+                    <p className="text-xs text-gray-500">Building something better</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="text-center">
+            <div className="inline-block p-8 bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl border-2 border-primary/20 shadow-lg">
+              <p className="text-gray-700 mb-4 font-medium">Ready to find YOUR solution?</p>
+              <Link to="/product-finder">
+                <Button variant="premium" size="lg" className="group shadow-lg hover:shadow-xl">
+                  Take the Solution Quiz
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
 

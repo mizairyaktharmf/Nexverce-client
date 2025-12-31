@@ -138,22 +138,22 @@ export default function HealthLandingPage() {
 
             {/* Badge */}
             <Badge className="mb-6 bg-gradient-to-r from-emerald-500 to-green-600 text-white border-0 px-6 py-2 text-base shadow-lg">
-              <Shield className="h-4 w-4 mr-2" />
-              Verified Health & Fitness Products
+              <Target className="h-4 w-4 mr-2" />
+              Health Solutions
             </Badge>
 
             {/* Heading */}
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
-              Your Trusted Source for{" "}
+              Find Health Solutions That Work for{" "}
               <span className="bg-gradient-to-r from-emerald-400 via-green-400 to-teal-400 bg-clip-text text-transparent">
-                Health & Wellness
+                YOUR Body
               </span>
             </h1>
 
             {/* Subheading */}
             <p className="text-lg md:text-xl lg:text-2xl text-emerald-100 max-w-4xl mx-auto mb-10 leading-relaxed">
-              Discover scientifically-backed fitness apps, wellness tools, and health products —
-              carefully researched, tested, and recommended by our expert team at Nexverce.
+              Struggling with weight loss? Can't stay consistent with fitness? Want better sleep or mental wellness?
+              We guide you from YOUR problem to the right solution — with honesty, science, and real results.
             </p>
 
             {/* CTA Buttons */}
@@ -163,7 +163,7 @@ export default function HealthLandingPage() {
                 className="bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-bold text-lg px-8 py-6 shadow-xl hover:shadow-2xl transition-all duration-300 group"
                 onClick={() => document.getElementById('health-products').scrollIntoView({ behavior: 'smooth' })}
               >
-                Explore Health Products
+                Explore Health Solutions
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button
@@ -172,7 +172,7 @@ export default function HealthLandingPage() {
                 className="border-2 border-emerald-400 text-emerald-400 hover:bg-emerald-400 hover:text-white font-bold text-lg px-8 py-6 bg-transparent"
                 onClick={() => document.getElementById('our-process').scrollIntoView({ behavior: 'smooth' })}
               >
-                How We Research
+                How We Guide You
                 <Search className="ml-2 h-5 w-5" />
               </Button>
             </div>

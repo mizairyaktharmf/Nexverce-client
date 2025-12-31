@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom';
-import { Mail, Send, ExternalLink, Instagram, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Mail, Send, ExternalLink, Instagram, CheckCircle2, AlertCircle, Flame, BookOpen, Scale, Target, Calculator, MessageSquare, Star, Badge as BadgeIcon } from 'lucide-react';
 import { FaLinkedin, FaFacebook } from 'react-icons/fa';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
@@ -63,7 +63,7 @@ function Footer() {
 
   const quickLinks = [
     { name: "Home", path: "/" },
-    { name: "Categories", path: "/#categories" },
+    { name: "Solutions", path: "/#categories" },
     { name: "Blogs", path: "/blogs" },
     { name: "About Us", path: "/about-us" },
   ];
@@ -86,7 +86,7 @@ function Footer() {
               Nexverce
             </h3>
             <p className="text-gray-300 text-sm leading-relaxed mb-4">
-              Discover smarter, verified deals — trusted by thousands of users worldwide.
+              Your solution platform — guiding you from confusion to clarity to confidence. We don't just sell, we solve.
             </p>
             <div className="flex gap-3">
               {socialLinks.map((link) => {
@@ -129,43 +129,44 @@ function Footer() {
             <h4 className="text-lg font-semibold mb-4">Tools & Features</h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/deals" className="text-gray-300 hover:text-white hover:translate-x-1 inline-block transition-all duration-200">
-                  🔥 Hot Deals
+                <Link to="/deals" className="text-gray-300 hover:text-white hover:translate-x-1 inline-flex items-center gap-2 transition-all duration-200">
+                  <Flame className="h-4 w-4" /> Hot Deals
+                  <span className="ml-1 text-xs bg-purple-600 px-2 py-0.5 rounded-full">Soon</span>
                 </Link>
               </li>
               <li>
-                <Link to="/buying-guides" className="text-gray-300 hover:text-white hover:translate-x-1 inline-block transition-all duration-200">
-                  📚 Buying Guides
+                <Link to="/buying-guides" className="text-gray-300 hover:text-white hover:translate-x-1 inline-flex items-center gap-2 transition-all duration-200">
+                  <BookOpen className="h-4 w-4" /> Buying Guides
+                  <span className="ml-1 text-xs bg-purple-600 px-2 py-0.5 rounded-full">Soon</span>
                 </Link>
               </li>
               <li>
-                <Link to="/compare" className="text-gray-300 hover:text-white hover:translate-x-1 inline-block transition-all duration-200">
-                  ⚖️ Compare Products
+                <Link to="/compare" className="text-gray-300 hover:text-white hover:translate-x-1 inline-flex items-center gap-2 transition-all duration-200">
+                  <Scale className="h-4 w-4" /> Compare Products
+                  <span className="ml-1 text-xs bg-purple-600 px-2 py-0.5 rounded-full">Soon</span>
                 </Link>
               </li>
               <li>
-                <Link to="/product-finder" className="text-gray-300 hover:text-white hover:translate-x-1 inline-block transition-all duration-200">
-                  🎯 Product Finder
+                <Link to="/product-finder" className="text-gray-300 hover:text-white hover:translate-x-1 inline-flex items-center gap-2 transition-all duration-200">
+                  <Target className="h-4 w-4" /> Product Finder
                 </Link>
               </li>
               <li>
-                <Link to="/calculator" className="text-gray-300 hover:text-white hover:translate-x-1 inline-block transition-all duration-200">
-                  🧮 Calculator
+                <Link to="/calculator" className="text-gray-300 hover:text-white hover:translate-x-1 inline-flex items-center gap-2 transition-all duration-200">
+                  <Calculator className="h-4 w-4" /> Calculator
+                  <span className="ml-1 text-xs bg-purple-600 px-2 py-0.5 rounded-full">Soon</span>
                 </Link>
               </li>
               <li>
-                <Link to="/dashboard" className="text-gray-300 hover:text-white hover:translate-x-1 inline-block transition-all duration-200">
-                  👤 Dashboard
+                <Link to="/community" className="text-gray-300 hover:text-white hover:translate-x-1 inline-flex items-center gap-2 transition-all duration-200">
+                  <MessageSquare className="h-4 w-4" /> Community
+                  <span className="ml-1 text-xs bg-purple-600 px-2 py-0.5 rounded-full">Soon</span>
                 </Link>
               </li>
               <li>
-                <Link to="/community" className="text-gray-300 hover:text-white hover:translate-x-1 inline-block transition-all duration-200">
-                  💬 Community
-                </Link>
-              </li>
-              <li>
-                <Link to="/reviews" className="text-gray-300 hover:text-white hover:translate-x-1 inline-block transition-all duration-200">
-                  ⭐ Reviews
+                <Link to="/reviews" className="text-gray-300 hover:text-white hover:translate-x-1 inline-flex items-center gap-2 transition-all duration-200">
+                  <Star className="h-4 w-4" /> Reviews
+                  <span className="ml-1 text-xs bg-purple-600 px-2 py-0.5 rounded-full">Soon</span>
                 </Link>
               </li>
             </ul>

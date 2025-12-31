@@ -91,22 +91,22 @@ export default function MarketingLandingPage() {
 
             {/* Badge */}
             <Badge className="mb-6 bg-gradient-to-r from-orange-500 to-amber-600 text-white border-0 px-6 py-2 text-base shadow-lg">
-              <Shield className="h-4 w-4 mr-2" />
-              Verified Marketing & Business Tools
+              <Target className="h-4 w-4 mr-2" />
+              Business Solutions
             </Badge>
 
             {/* Heading */}
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
-              Grow Your Business with{" "}
+              Scale{" "}
               <span className="bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-400 bg-clip-text text-transparent">
-                Proven Marketing Tools
+                YOUR Business
               </span>
             </h1>
 
             {/* Subheading */}
             <p className="text-lg md:text-xl lg:text-2xl text-orange-100 max-w-4xl mx-auto mb-10 leading-relaxed">
-              Nexverce helps you discover powerful marketing platforms and business tools —
-              tested and verified to boost your growth and simplify your workflow.
+              Struggling to get customers? Marketing budget wasted? Don't know which tools actually work?
+              We guide you from YOUR business challenge to solutions that deliver real ROI — with strategy, clarity, and results.
             </p>
 
             {/* CTA Buttons */}
@@ -116,7 +116,7 @@ export default function MarketingLandingPage() {
                 className="bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white font-bold text-lg px-8 py-6 shadow-xl hover:shadow-2xl transition-all duration-300 group"
                 onClick={() => document.getElementById('marketing-products').scrollIntoView({ behavior: 'smooth' })}
               >
-                Explore Marketing Tools
+                Explore Business Solutions
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button
@@ -125,7 +125,7 @@ export default function MarketingLandingPage() {
                 className="border-2 border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white font-bold text-lg px-8 py-6 bg-transparent"
                 onClick={() => document.getElementById('our-process').scrollIntoView({ behavior: 'smooth' })}
               >
-                Our Vetting Process
+                How We Guide You
                 <Search className="ml-2 h-5 w-5" />
               </Button>
             </div>

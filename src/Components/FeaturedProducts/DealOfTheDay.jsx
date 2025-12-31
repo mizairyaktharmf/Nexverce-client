@@ -1,11 +1,50 @@
+import { useState, useEffect } from "react";
 import { Clock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 
-function DealOfTheDay({ deals }) {
+function DealOfTheDay() {
   const navigate = useNavigate();
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch products on mount
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const baseUrl = import.meta.env.MODE === "development"
+          ? "http://localhost:5000/api"
+          : "https://nexverce-backend.onrender.com/api";
+
+        const [postsResponse, blogsResponse] = await Promise.all([
+          fetch(`${baseUrl}/posts`),
+          fetch(`${baseUrl}/blogs`)
+        ]);
+
+        if (postsResponse.ok && blogsResponse.ok) {
+          const postsData = await postsResponse.json();
+          const blogsData = await blogsResponse.json();
+          const allContent = [...postsData, ...blogsData];
+          const published = allContent.filter((p) => p.status === "published");
+          setProducts(published);
+        }
+      } catch (err) {
+        console.error("Error fetching deals:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  // Filter deals
+  const deals = products.filter((p) =>
+    p.tag?.toLowerCase() === "deal" ||
+    p.tags?.[0]?.toLowerCase() === "deal"
+  );
 
   // Always show 8 card slots (6-8 as requested)
   const TOTAL_SLOTS = 8;
@@ -21,7 +60,9 @@ function DealOfTheDay({ deals }) {
   });
 
   return (
-    <div className="mb-16">
+    <section className="py-16 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="mb-0">
       {/* Header */}
       <div className="flex items-center gap-3 mb-8">
         <div className="bg-gradient-to-r from-red-500 to-orange-500 p-2 rounded-lg">
@@ -129,6 +170,8 @@ function DealOfTheDay({ deals }) {
         })}
       </div>
     </div>
+      </div>
+    </section>
   );
 }
 

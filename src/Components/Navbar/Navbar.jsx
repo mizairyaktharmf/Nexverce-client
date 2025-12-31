@@ -63,7 +63,7 @@ export default function Navbar() {
               Home
             </Link>
 
-            {/* Categories Dropdown */}
+            {/* Solution Domains Dropdown */}
             <div className="relative">
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -71,7 +71,7 @@ export default function Navbar() {
                 onMouseLeave={() => setIsDropdownOpen(false)}
                 className="flex items-center space-x-1 px-4 py-2 text-gray-700 hover:text-primary font-semibold transition-all rounded-lg hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50"
               >
-                <span>Categories</span>
+                <span>Solutions</span>
                 <ChevronDown className={cn("h-4 w-4 transition-transform", isDropdownOpen && "rotate-180")} />
               </button>
 
@@ -82,7 +82,7 @@ export default function Navbar() {
                   className="absolute top-full left-0 mt-3 w-72 bg-white/98 backdrop-blur-xl rounded-2xl shadow-2xl border-2 border-purple-100/50 py-4 animate-fade-in"
                 >
                   <div className="px-5 py-3 border-b border-gradient-to-r from-purple-100 to-blue-100 mb-3">
-                    <h3 className="text-xs font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent uppercase tracking-wider">Browse Categories</h3>
+                    <h3 className="text-xs font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent uppercase tracking-wider">Solution Domains</h3>
                   </div>
                   {categories.map((cat) => {
                     const IconComponent = cat.icon;

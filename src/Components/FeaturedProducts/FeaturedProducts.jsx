@@ -4,11 +4,12 @@ import { Flame, ShoppingCart, Sparkles } from "lucide-react";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
-import DealOfTheDay from "./DealOfTheDay";
-import TelegramHit from "./TelegramHit";
-import OurServices from "../OurServices/OurServices";
-import WhoWeAre from "../WhoWeAre/WhoWeAre";
-import Reviews from "../Reviews/Reviews";
+// Components moved to App.jsx for better page structure
+// import DealOfTheDay from "./DealOfTheDay";
+// import TelegramHit from "./TelegramHit";
+// import OurServices from "../OurServices/OurServices";
+// import WhoWeAre from "../WhoWeAre/WhoWeAre";
+// import Reviews from "../Reviews/Reviews";
 
 function FeaturedProducts() {
   const [products, setProducts] = useState([]);
@@ -58,20 +59,9 @@ function FeaturedProducts() {
            p.tag?.toLowerCase().includes("top") ||
            p.tags?.[0]?.toLowerCase().includes("top")
   );
-  const deals = products.filter((p) =>
-    p.tag?.toLowerCase() === "deal" ||
-    p.tags?.[0]?.toLowerCase() === "deal"
-  );
-  const telegramPosts = products.filter((p) =>
-    p.tag?.toLowerCase() === "telegram" ||
-    p.tags?.[0]?.toLowerCase() === "telegram"
-  );
   const marketplace = products.filter(
     (p) => p.type?.toLowerCase() === "marketplace"
   );
-
-  // Filter only blogs (type === "blog") for Reviews section
-  const blogs = products.filter((p) => p.type === "blog");
 
   // ✅ Loading state
   if (loading) {
@@ -220,25 +210,6 @@ function FeaturedProducts() {
         </div>
 
       </div>
-
-      {/* 🎯 Our Services - How We Curate Products */}
-      <OurServices />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* 📱 Telegram Hit - Exclusive Community Content */}
-        <TelegramHit telegramPosts={telegramPosts} />
-      </div>
-
-      {/* 👥 Who We Are - Meet the Team */}
-      <WhoWeAre />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* ⏳ Deal of the Day - New Clean Component */}
-        <DealOfTheDay deals={deals} />
-      </div>
-
-      {/* ⭐ Reviews - Expert Blog Reviews */}
-      <Reviews blogs={blogs} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 

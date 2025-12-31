@@ -1,9 +1,12 @@
-import { ExternalLink, Sparkles, Code2, Rocket, Zap, Award, Users } from 'lucide-react'
+import { ExternalLink, Sparkles, Code2, Rocket, Zap, Award, Users, ArrowRight } from 'lucide-react'
 import { Button } from '../ui/button'
 import { Card, CardContent } from '../ui/card'
 import { Badge } from '../ui/badge'
+import { useNavigate } from 'react-router-dom'
 
 function NexCodeNova() {
+  const navigate = useNavigate();
+
   return (
     <section id="nexcodenova" className="py-16 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -11,15 +14,15 @@ function NexCodeNova() {
         <div className="text-center mb-10">
           <Badge className="mb-4 bg-gradient-to-r from-primary to-purple-600 text-white border-0 px-4 py-1.5">
             <Sparkles className="h-3.5 w-3.5 mr-1.5" />
-            Premium Development Partner
+            Part of the Fairam Family
           </Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-3">
             <span className="bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-              Build Dream Projects with NexCode Nova
+              Solve YOUR Tech Needs with NexCode Nova
             </span>
           </h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Transform your ideas into reality with cutting-edge development solutions
+            Found your solution on Nexverce? Let NexCode Nova build it with professional development expertise
           </p>
         </div>
 
@@ -90,14 +93,25 @@ function NexCodeNova() {
                 Partner with NexCode Nova for professional web development, mobile apps, and custom software solutions.
               </p>
 
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-primary to-purple-600 hover:from-purple-600 hover:to-primary text-white shadow-lg hover:shadow-xl group font-semibold px-8 h-12 transition-all duration-300"
-                onClick={() => window.open("https://www.nexcodenova.com", "_blank")}
-              >
-                Explore NexCode Nova
-                <ExternalLink className="ml-2 h-5 w-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-primary to-purple-600 hover:from-purple-600 hover:to-primary text-white shadow-lg hover:shadow-xl group font-semibold px-8 h-12 transition-all duration-300"
+                  onClick={() => window.open("https://www.nexcodenova.com", "_blank")}
+                >
+                  Visit NexCode Nova
+                  <ExternalLink className="ml-2 h-5 w-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-2 border-primary hover:bg-primary hover:text-white font-semibold px-8 h-12 transition-all duration-300 group"
+                  onClick={() => navigate('/nexcode-nova')}
+                >
+                  Learn More
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                </Button>
+              </div>
 
               <p className="text-xs text-gray-500 mt-4">
                 Trusted by businesses worldwide

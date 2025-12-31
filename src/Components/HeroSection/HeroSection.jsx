@@ -14,43 +14,53 @@ function HeroSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-4xl mx-auto">
 
-          {/* Premium Badge */}
-          <Badge variant="premium" className="mb-6 shadow-lg hover:shadow-xl transition-shadow">
-            <Sparkles className="h-4 w-4 mr-2" />
-            Your Trusted Affiliate Hub
-          </Badge>
+          {/* Premium Badge with Social Proof */}
+          <div className="flex flex-col items-center gap-3 mb-6">
+            <Badge variant="premium" className="shadow-lg hover:shadow-xl transition-shadow">
+              <Sparkles className="h-4 w-4 mr-2" />
+              Your Solution Platform
+            </Badge>
+            <div className="flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full shadow-md border border-purple-100">
+              <div className="flex -space-x-2">
+                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-purple-400 to-blue-500 border-2 border-white"></div>
+                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-400 to-cyan-500 border-2 border-white"></div>
+                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-cyan-400 to-teal-500 border-2 border-white"></div>
+              </div>
+              <span className="text-xs font-semibold text-gray-700">Join our growing community</span>
+            </div>
+          </div>
 
           {/* Main Heading with Enhanced Gradient */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-4 md:mb-6 leading-tight px-4">
-            Discover. Compare.{" "}
+            Find the Right{" "}
             <span className="relative inline-block mt-2">
               <span className="bg-gradient-to-r from-purple-400 via-purple-500 to-indigo-500 bg-clip-text text-transparent">
-                Buy Smarter
+                Solution
               </span>
               <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-purple-400 via-purple-500 to-indigo-500 rounded-full opacity-60"></div>
             </span>
-            {" "}with{" "}
+            {" "}— Not Just{" "}
             <span className="bg-gradient-to-r from-purple-400 via-purple-500 to-indigo-500 bg-clip-text text-transparent">
-              nexverce
+              Products
             </span>
           </h1>
 
           {/* Description */}
           <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-8 md:mb-10 leading-relaxed max-w-3xl mx-auto px-4">
-            Your all-in-one affiliate hub to explore trusted tools. Find everything valuable in one place, compare the best offers, and shop smarter with Nexverce.
+            Confused? Overwhelmed? Don't know what's right for you? Nexverce guides you from problem to clarity to the perfect solution — with confidence.
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8 md:mb-12 px-4">
-            <Link to="/blogs" className="w-full sm:w-auto">
+            <Link to="/solutions" className="w-full sm:w-auto">
               <Button variant="premium" size="lg" className="w-full sm:w-auto group shadow-xl hover:shadow-2xl">
-                Explore Blogs
+                Explore Solutions
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
-            <Link to="/about-us" className="w-full sm:w-auto">
+            <Link to="/product-finder" className="w-full sm:w-auto">
               <Button variant="outline" size="lg" className="w-full sm:w-auto border-2 hover:border-primary hover:text-primary">
-                Learn More
+                Take Solution Quiz
               </Button>
             </Link>
           </div>
@@ -58,9 +68,9 @@ function HeroSection() {
           {/* Feature Pills */}
           <div className="flex flex-wrap justify-center gap-3 sm:gap-4 max-w-2xl mx-auto px-4">
             {[
-              { icon: Search, text: "Easy Discovery" },
-              { icon: Shield, text: "Verified Partners" },
-              { icon: Zap, text: "Best Deals" },
+              { icon: Search, text: "Problem-First Guidance" },
+              { icon: Shield, text: "Honest Recommendations" },
+              { icon: Zap, text: "Clarity, Not Sales" },
             ].map((feature, index) => {
               const Icon = feature.icon;
               return (

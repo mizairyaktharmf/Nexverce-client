@@ -36,22 +36,22 @@ export default function CommunitySection() {
               </div>
 
               <p className="text-gray-700 mb-6 leading-relaxed">
-                Connect with 50,000+ members, ask questions, share experiences, and get expert advice from our active community.
+                Be among the first to join our growing community. Ask questions, share experiences, and connect with others on their solution journey.
               </p>
 
-              {/* Quick Stats */}
+              {/* Quick Stats - Starting Community */}
               <div className="grid grid-cols-3 gap-4 mb-6 p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl">
                 <div className="text-center">
-                  <p className="text-2xl font-bold text-primary">50K+</p>
-                  <p className="text-xs text-gray-600">Members</p>
+                  <p className="text-2xl font-bold text-primary">New</p>
+                  <p className="text-xs text-gray-600">Community</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-2xl font-bold text-primary">15K+</p>
-                  <p className="text-xs text-gray-600">Discussions</p>
+                  <p className="text-2xl font-bold text-primary">Growing</p>
+                  <p className="text-xs text-gray-600">Daily</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-2xl font-bold text-primary">12K+</p>
-                  <p className="text-xs text-gray-600">Solved</p>
+                  <p className="text-2xl font-bold text-primary">Active</p>
+                  <p className="text-xs text-gray-600">Support</p>
                 </div>
               </div>
 
@@ -79,44 +79,39 @@ export default function CommunitySection() {
               </div>
 
               <p className="text-gray-700 mb-6 leading-relaxed">
-                See why 250,000+ users trust Nexverce for product recommendations. Real reviews from real people.
+                Help us build a trusted community. Share your experiences and be among the first to review solutions that work.
               </p>
 
-              {/* Featured Review */}
+              {/* Featured Message */}
               <div className="bg-gradient-to-r from-orange-50 to-pink-50 rounded-xl p-5 mb-6">
                 <Quote className="h-6 w-6 text-orange-300 mb-2" />
-                <div className="flex gap-1 mb-2">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-3 w-3 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
                 <p className="text-sm text-gray-700 italic mb-3">
-                  "Nexverce has completely transformed how I research products. Highly recommended!"
+                  "We're building something special — a platform where honesty comes first. Your reviews will help others make better decisions."
                 </p>
                 <div className="flex items-center gap-2">
                   <div className="w-6 h-6 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 flex items-center justify-center text-white text-xs font-bold">
-                    SJ
+                    NV
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-semibold text-gray-900">Sarah J.</span>
+                    <span className="text-xs font-semibold text-gray-900">Nexverce Team</span>
                     <Verified className="h-3 w-3 text-blue-500" />
                   </div>
                 </div>
               </div>
 
-              {/* Trust Metrics */}
+              {/* Trust Building Metrics */}
               <div className="grid grid-cols-3 gap-3 mb-6">
                 <div className="text-center p-3 bg-yellow-50 rounded-lg">
-                  <p className="text-lg font-bold text-gray-900">4.8/5</p>
-                  <p className="text-xs text-gray-600">Rating</p>
+                  <p className="text-lg font-bold text-gray-900">Honest</p>
+                  <p className="text-xs text-gray-600">Reviews</p>
                 </div>
                 <div className="text-center p-3 bg-green-50 rounded-lg">
-                  <p className="text-lg font-bold text-gray-900">98%</p>
-                  <p className="text-xs text-gray-600">Positive</p>
+                  <p className="text-lg font-bold text-gray-900">Real</p>
+                  <p className="text-xs text-gray-600">People</p>
                 </div>
                 <div className="text-center p-3 bg-purple-50 rounded-lg">
-                  <p className="text-lg font-bold text-gray-900">250K+</p>
-                  <p className="text-xs text-gray-600">Users</p>
+                  <p className="text-lg font-bold text-gray-900">Growing</p>
+                  <p className="text-xs text-gray-600">Platform</p>
                 </div>
               </div>
 

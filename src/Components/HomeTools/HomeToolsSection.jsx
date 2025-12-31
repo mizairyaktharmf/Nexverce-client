@@ -107,34 +107,6 @@ export default function HomeToolsSection() {
             );
           })}
         </div>
-
-        {/* Bottom CTA */}
-        <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl p-8 md:p-12 shadow-2xl">
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              Need More Help Finding Products?
-            </h3>
-            <p className="text-purple-100 text-lg mb-6 max-w-2xl mx-auto">
-              Explore more powerful tools to enhance your shopping experience
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button
-                onClick={() => navigate("/calculator")}
-                variant="outline"
-                className="bg-white text-purple-600 hover:bg-purple-50 border-2 border-white font-bold"
-              >
-                🧮 Price Calculator
-              </Button>
-              <Button
-                onClick={() => navigate("/dashboard")}
-                variant="outline"
-                className="bg-white text-purple-600 hover:bg-purple-50 border-2 border-white font-bold"
-              >
-                👤 My Dashboard
-              </Button>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );

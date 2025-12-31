@@ -1,10 +1,47 @@
+import { useState, useEffect } from "react";
 import { Star, ArrowRight, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Card, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 
-export default function Reviews({ blogs }) {
+export default function Reviews() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch products on mount
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const baseUrl = import.meta.env.MODE === "development"
+          ? "http://localhost:5000/api"
+          : "https://nexverce-backend.onrender.com/api";
+
+        const [postsResponse, blogsResponse] = await Promise.all([
+          fetch(`${baseUrl}/posts`),
+          fetch(`${baseUrl}/blogs`)
+        ]);
+
+        if (postsResponse.ok && blogsResponse.ok) {
+          const postsData = await postsResponse.json();
+          const blogsData = await blogsResponse.json();
+          const allContent = [...postsData, ...blogsData];
+          const published = allContent.filter((p) => p.status === "published");
+          setProducts(published);
+        }
+      } catch (err) {
+        console.error("Error fetching reviews:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  // Filter only blogs (type === "blog") for Reviews section
+  const blogs = products.filter((p) => p.type === "blog");
+
   // Show only first 8 blogs
   const reviewBlogs = blogs.slice(0, 8);
 

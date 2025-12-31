@@ -35,11 +35,17 @@ import BuyingGuideDetail from "./Components/BuyingGuides/BuyingGuideDetail";
 import ComparisonTool from "./Components/Comparison/ComparisonTool";
 import ProductFinder from "./Components/Tools/ProductFinder";
 import PriceCalculator from "./Components/Tools/PriceCalculator";
-import Dashboard from "./Components/UserDashboard/Dashboard";
 import HomeToolsSection from "./Components/HomeTools/HomeToolsSection";
 import CommunityForum from "./Components/Community/CommunityForum";
 import SocialProof from "./Components/SocialProof/SocialProof";
 import CommunitySection from "./Components/Home/CommunitySection";
+import SolutionsPage from "./Components/Solutions/SolutionsPage";
+import NexCodeNovaPage from "./Components/NexCodeNova/NexCodeNovaPage";
+import OurServices from "./Components/OurServices/OurServices";
+import WhoWeAre from "./Components/WhoWeAre/WhoWeAre";
+import Reviews from "./Components/Reviews/Reviews";
+import DealOfTheDay from "./Components/FeaturedProducts/DealOfTheDay";
+import TelegramHit from "./Components/FeaturedProducts/TelegramHit";
 
 // Component to track page views
 function PageTracker() {
@@ -65,18 +71,33 @@ function App() {
       <Navbar/>
       <ScrollToTop/>
       <Routes>
-        {/*  Home Page */}
+        {/*  Home Page - Optimal Flow for Trust & UX */}
         <Route
           path="/"
           element={
             <>
+              {/* PHASE 1: TRUST BUILDING */}
               <HeroSection/>
               <WhyChoose/>
+              <OurServices/>
+
+              {/* PHASE 2: SOLUTIONS PRESENTATION */}
               <Categories/>
-              <FeaturedProducts/>
               <HomeToolsSection/>
+              <FeaturedProducts/>
+
+              {/* PHASE 3: CREDIBILITY & SOCIAL PROOF */}
+              <WhoWeAre/>
+              <Reviews/>
+              <DealOfTheDay/>
+              <TelegramHit/>
+
+              {/* PHASE 4: ENGAGEMENT */}
               <CommunitySection/>
+
+              {/* PHASE 5: PARTNERSHIP */}
               <NexCodeNova/>
+
               <Footer/>
             </>
           }
@@ -104,9 +125,11 @@ function App() {
         <Route path="/compare" element={<><ComparisonTool/><Footer/></>} />
         <Route path="/product-finder" element={<><ProductFinder/><Footer/></>} />
         <Route path="/calculator" element={<><PriceCalculator/><Footer/></>} />
-        <Route path="/dashboard" element={<><Dashboard/><Footer/></>} />
+     
         <Route path="/community" element={<><CommunityForum/><Footer/></>} />
         <Route path="/reviews" element={<><SocialProof/><Footer/></>} />
+        <Route path="/solutions" element={<><SolutionsPage/><Footer/></>} />
+        <Route path="/nexcode-nova" element={<><NexCodeNovaPage/><Footer/></>} />
 
         {/* Landing Page Route */}
         <Route path="/lp/:slug" element={<LandingPage/>} />

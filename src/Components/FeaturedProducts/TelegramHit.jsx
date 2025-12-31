@@ -1,9 +1,46 @@
+import { useState, useEffect } from "react";
 import { Send } from "lucide-react";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 
-function TelegramHit({ telegramPosts }) {
+function TelegramHit() {
+  const [products, setProducts] = useState([]);
+
+  // Fetch products on mount
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const baseUrl = import.meta.env.MODE === "development"
+          ? "http://localhost:5000/api"
+          : "https://nexverce-backend.onrender.com/api";
+
+        const [postsResponse, blogsResponse] = await Promise.all([
+          fetch(`${baseUrl}/posts`),
+          fetch(`${baseUrl}/blogs`)
+        ]);
+
+        if (postsResponse.ok && blogsResponse.ok) {
+          const postsData = await postsResponse.json();
+          const blogsData = await blogsResponse.json();
+          const allContent = [...postsData, ...blogsData];
+          const published = allContent.filter((p) => p.status === "published");
+          setProducts(published);
+        }
+      } catch (err) {
+        console.error("Error fetching telegram posts:", err);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  // Filter telegram posts
+  const telegramPosts = products.filter((p) =>
+    p.tag?.toLowerCase() === "telegram" ||
+    p.tags?.[0]?.toLowerCase() === "telegram"
+  );
+
   // Always show 6 card slots
   const TOTAL_SLOTS = 6;
 
@@ -25,7 +62,9 @@ function TelegramHit({ telegramPosts }) {
   };
 
   return (
-    <div className="mb-16">
+    <section className="py-16 bg-gradient-to-br from-blue-50 via-white to-cyan-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="mb-0">
       {/* Header */}
       <div className="flex items-center gap-3 mb-8">
         <div className="bg-gradient-to-r from-blue-500 to-cyan-500 p-2 rounded-lg">
@@ -146,6 +185,8 @@ function TelegramHit({ telegramPosts }) {
         })}
       </div>
     </div>
+      </div>
+    </section>
   );
 }
 

@@ -14,58 +14,58 @@ import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 
-// ✅ Category data with Lucide React icons
+// ✅ Solution Domains data with Lucide React icons
 const categoriesData = [
   {
-    title: "Education & E-Learning",
+    title: "Learning Solutions",
     value: "Education",
     description:
-      "Find top courses, learning platforms, and tools to boost your knowledge.",
+      "Find the right courses, platforms, and tools that match YOUR learning goals and style.",
     icon: GraduationCap,
     slug: "education",
     gradient: "from-blue-500 to-cyan-500"
   },
   {
-    title: "Finance & Investment",
+    title: "Money Solutions",
     value: "Finance",
     description:
-      "Discover apps, tools, and platforms to manage money and invest wisely.",
+      "Build YOUR financial future with investing, budgeting, and income tools that fit your situation.",
     icon: DollarSign,
     slug: "finance",
     gradient: "from-green-500 to-emerald-500"
   },
   {
-    title: "Technology & Gadgets",
+    title: "Productivity Solutions",
     value: "Technology",
     description:
-      "Explore the latest tech products and software for personal & professional use.",
+      "Optimize YOUR workflow with tech and software solutions designed for your needs.",
     icon: Laptop,
     slug: "technology",
     gradient: "from-purple-500 to-indigo-500"
   },
   {
-    title: "Health & Fitness",
+    title: "Health Solutions",
     value: "Health",
     description:
-      "Get access to wellness apps, fitness tools, and health resources.",
+      "Find wellness, fitness, and health solutions that work for YOUR body and lifestyle.",
     icon: Heart,
     slug: "health",
     gradient: "from-red-500 to-pink-500"
   },
   {
-    title: "Marketing & Business",
+    title: "Business Solutions",
     value: "Marketing",
     description:
-      "Find digital marketing tools, SaaS, and productivity software to grow your business.",
+      "Scale YOUR business with marketing, automation, and growth tools that match your goals.",
     icon: TrendingUp,
     slug: "marketing",
     gradient: "from-orange-500 to-amber-500"
   },
   {
-    title: "Entertainment & Gaming",
+    title: "Lifestyle Solutions",
     value: "Lifestyle",
     description:
-      "Discover streaming services, gaming platforms, and entertainment tools.",
+      "Enhance YOUR quality of life with entertainment, hobbies, and personal development solutions.",
     icon: Gamepad2,
     slug: "lifestyle",
     gradient: "from-violet-500 to-purple-500"
@@ -92,13 +92,13 @@ function Categories() {
         <div className="text-center mb-16">
           <Badge variant="premium" className="mb-4">
             <Grid3x3 className="h-3 w-3 mr-1" />
-            Browse Categories
+            Solution Domains
           </Badge>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Explore Our Categories
+            Find <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">YOUR Solution</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-            Browse the main categories of tools and resources available at <strong className="text-primary">Nexverce</strong>.
+            Whatever your challenge, we have a solution path designed for <strong className="text-primary">YOU</strong>.
           </p>
         </div>
 

@@ -142,22 +142,22 @@ export default function FinanceLandingPage() {
 
             {/* Badge */}
             <Badge className="mb-6 bg-gradient-to-r from-amber-500 to-yellow-600 text-white border-0 px-6 py-2 text-base shadow-lg">
-              <Shield className="h-4 w-4 mr-2" />
-              Verified Financial & Investment Tools
+              <Target className="h-4 w-4 mr-2" />
+              Money Solutions
             </Badge>
 
             {/* Heading */}
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
-              Build Your Wealth with{" "}
+              Build{" "}
               <span className="bg-gradient-to-r from-amber-400 via-yellow-400 to-emerald-400 bg-clip-text text-transparent">
-                Trusted Financial Tools
+                YOUR Financial Future
               </span>
             </h1>
 
             {/* Subheading */}
             <p className="text-lg md:text-xl lg:text-2xl text-blue-100 max-w-4xl mx-auto mb-10 leading-relaxed">
-              Discover secure investment platforms, budgeting apps, and financial tools —
-              rigorously vetted, security-verified, and recommended by our expert financial analysts at Nexverce.
+              Struggling to save? Want to invest but don't know where to start? Need better budgeting tools?
+              We guide you from YOUR financial situation to solutions that actually work for you — with security, clarity, and confidence.
             </p>
 
             {/* CTA Buttons */}
@@ -167,7 +167,7 @@ export default function FinanceLandingPage() {
                 className="bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white font-bold text-lg px-8 py-6 shadow-xl hover:shadow-2xl transition-all duration-300 group"
                 onClick={() => document.getElementById('finance-products').scrollIntoView({ behavior: 'smooth' })}
               >
-                Explore Financial Tools
+                Explore Money Solutions
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button
@@ -176,7 +176,7 @@ export default function FinanceLandingPage() {
                 className="border-2 border-amber-400 text-amber-400 hover:bg-amber-400 hover:text-white font-bold text-lg px-8 py-6 bg-transparent"
                 onClick={() => document.getElementById('our-process').scrollIntoView({ behavior: 'smooth' })}
               >
-                Our Vetting Process
+                How We Guide You
                 <Search className="ml-2 h-5 w-5" />
               </Button>
             </div>

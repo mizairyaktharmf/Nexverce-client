@@ -17,7 +17,8 @@ import {
   Gamepad2,
   Music,
   Tv,
-  Star
+  Star,
+  Target
 } from "lucide-react";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
@@ -92,22 +93,22 @@ export default function LifestyleLandingPage() {
 
             {/* Badge */}
             <Badge className="mb-6 bg-gradient-to-r from-fuchsia-500 to-purple-600 text-white border-0 px-6 py-2 text-base shadow-lg">
-              <Shield className="h-4 w-4 mr-2" />
-              Verified Entertainment & Gaming
+              <Target className="h-4 w-4 mr-2" />
+              Lifestyle Solutions
             </Badge>
 
             {/* Heading */}
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
-              Elevate Your Entertainment with{" "}
+              Enhance{" "}
               <span className="bg-gradient-to-r from-fuchsia-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Premium Platforms
+                YOUR Lifestyle
               </span>
             </h1>
 
             {/* Subheading */}
             <p className="text-lg md:text-xl lg:text-2xl text-fuchsia-100 max-w-4xl mx-auto mb-10 leading-relaxed">
-              Nexverce helps you discover the best streaming services, gaming platforms, and entertainment tools —
-              reviewed and verified to enhance your leisure time.
+              Too many streaming options? Gaming library overwhelming? Want entertainment that matches YOUR taste?
+              We guide you from YOUR preferences to the perfect platforms — with value, variety, and zero regrets.
             </p>
 
             {/* CTA Buttons */}
@@ -117,7 +118,7 @@ export default function LifestyleLandingPage() {
                 className="bg-gradient-to-r from-fuchsia-500 to-purple-600 hover:from-fuchsia-600 hover:to-purple-700 text-white font-bold text-lg px-8 py-6 shadow-xl hover:shadow-2xl transition-all duration-300 group"
                 onClick={() => document.getElementById('entertainment-products').scrollIntoView({ behavior: 'smooth' })}
               >
-                Explore Entertainment
+                Explore Lifestyle Solutions
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button
@@ -126,7 +127,7 @@ export default function LifestyleLandingPage() {
                 className="border-2 border-fuchsia-400 text-fuchsia-400 hover:bg-fuchsia-400 hover:text-white font-bold text-lg px-8 py-6 bg-transparent"
                 onClick={() => document.getElementById('our-process').scrollIntoView({ behavior: 'smooth' })}
               >
-                Our Review Process
+                How We Guide You
                 <Search className="ml-2 h-5 w-5" />
               </Button>
             </div>
