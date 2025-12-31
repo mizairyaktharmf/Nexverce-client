@@ -44,7 +44,6 @@ import NexCodeNovaPage from "./Components/NexCodeNova/NexCodeNovaPage";
 import OurServices from "./Components/OurServices/OurServices";
 import WhoWeAre from "./Components/WhoWeAre/WhoWeAre";
 import Reviews from "./Components/Reviews/Reviews";
-import DealOfTheDay from "./Components/FeaturedProducts/DealOfTheDay";
 import TelegramHit from "./Components/FeaturedProducts/TelegramHit";
 
 // Component to track page views
@@ -89,7 +88,6 @@ function App() {
               {/* PHASE 3: CREDIBILITY & SOCIAL PROOF */}
               <WhoWeAre/>
               <Reviews/>
-              <DealOfTheDay/>
               <TelegramHit/>
 
               {/* PHASE 4: ENGAGEMENT */}

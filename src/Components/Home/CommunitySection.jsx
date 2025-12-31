@@ -73,7 +73,7 @@ export default function CommunitySection() {
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold text-gray-900">User Reviews</h3>
-                    <p className="text-gray-600">Trusted by thousands</p>
+                    <p className="text-gray-600">Join our new community</p>
                   </div>
                 </div>
               </div>

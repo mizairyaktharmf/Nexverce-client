@@ -62,21 +62,46 @@ function TelegramHit() {
   };
 
   return (
-    <section className="py-16 bg-gradient-to-br from-blue-50 via-white to-cyan-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 bg-gradient-to-br from-blue-50 via-purple-50/30 to-cyan-50 relative overflow-hidden">
+      {/* Decorative Background */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <div className="mb-0">
       {/* Header */}
-      <div className="flex items-center gap-3 mb-8">
-        <div className="bg-gradient-to-r from-blue-500 to-cyan-500 p-2 rounded-lg">
-          <Send className="h-6 w-6 text-white" />
+      <div className="text-center mb-12">
+        <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-blue-500 to-cyan-500 mb-6 shadow-lg">
+          <Send className="h-8 w-8 text-white" />
         </div>
-        <div>
-          <h3 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
-            Telegram Hit
-          </h3>
-          <p className="text-sm text-gray-500 mt-1">
-            Exclusive offers and content from our Telegram community
-          </p>
+        <h3 className="text-4xl md:text-5xl font-bold mb-4">
+          <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+            Exclusive Telegram Picks
+          </span>
+        </h3>
+        <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-6">
+          Join our Telegram community for handpicked products from trusted platforms
+        </p>
+        {/* Trust Badges */}
+        <div className="flex flex-wrap justify-center gap-4 mb-8">
+          <div className="inline-flex items-center gap-2 px-5 py-3 bg-white rounded-full shadow-md border border-blue-100">
+            <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-orange-500 rounded-lg flex items-center justify-center">
+              <span className="text-white text-xs font-bold">N</span>
+            </div>
+            <div className="text-left">
+              <p className="text-xs font-semibold text-gray-900">Noon UAE</p>
+              <p className="text-xs text-gray-500">Middle East's Best</p>
+            </div>
+          </div>
+          <div className="inline-flex items-center gap-2 px-5 py-3 bg-white rounded-full shadow-md border border-cyan-100">
+            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+              <span className="text-white text-xs font-bold">A</span>
+            </div>
+            <div className="text-left">
+              <p className="text-xs font-semibold text-gray-900">Amazon Global</p>
+              <p className="text-xs text-gray-500">Worldwide Trusted</p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -88,11 +113,11 @@ function TelegramHit() {
             return (
               <Card
                 key={post._id}
-                className="overflow-hidden hover:shadow-xl hover:scale-[1.02] transition-all duration-300 group cursor-pointer border-2 border-gray-100 hover:border-blue-400/50 bg-white"
+                className="overflow-hidden hover:shadow-2xl hover:scale-[1.03] transition-all duration-500 group cursor-pointer border-2 border-blue-100 hover:border-blue-400 bg-white"
                 onClick={() => handleExplore(post)}
               >
                 {/* Image */}
-                <div className="relative h-32 overflow-hidden bg-gradient-to-br from-blue-100 to-cyan-100">
+                <div className="relative h-40 overflow-hidden bg-gradient-to-br from-blue-100 to-cyan-100">
                   <img
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     src={post.image || "https://via.placeholder.com/400x200"}
@@ -184,6 +209,30 @@ function TelegramHit() {
           }
         })}
       </div>
+
+      {/* CTA Section */}
+      <div className="text-center mt-16">
+        <div className="inline-block p-8 bg-white rounded-2xl shadow-xl border-2 border-blue-100">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center">
+              <Send className="h-6 w-6 text-white" />
+            </div>
+            <h4 className="text-2xl font-bold text-gray-900">Join Our Telegram</h4>
+          </div>
+          <p className="text-gray-600 mb-6 max-w-md mx-auto">
+            Get exclusive access to the best products from Noon UAE and Amazon, handpicked by our team. Never miss a great deal!
+          </p>
+          <button
+            onClick={() => window.open('https://t.me/nexverce', '_blank', 'noopener,noreferrer')}
+            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
+          >
+            <Send className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            Join Telegram Channel
+            <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white/20 text-xs">→</span>
+          </button>
+        </div>
+      </div>
+
     </div>
       </div>
     </section>
