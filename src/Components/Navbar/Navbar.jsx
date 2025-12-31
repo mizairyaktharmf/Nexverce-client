@@ -25,12 +25,12 @@ export default function Navbar() {
 
   // Static categories matching homepage Categories.jsx
   const categories = [
-    { name: "Education", slug: "education", icon: GraduationCap },
-    { name: "Finance", slug: "finance", icon: DollarSign },
-    { name: "Technology", slug: "technology", icon: Laptop },
-    { name: "Health", slug: "health", icon: Heart },
-    { name: "Marketing", slug: "marketing", icon: TrendingUp },
-    { name: "Entertainment", slug: "lifestyle", icon: Film },
+    { name: "Learning Solutions", slug: "education", icon: GraduationCap },
+    { name: "Money Solutions", slug: "finance", icon: DollarSign },
+    { name: "Productivity Solutions", slug: "technology", icon: Laptop },
+    { name: "Health Solutions", slug: "health", icon: Heart },
+    { name: "Business Solutions", slug: "marketing", icon: TrendingUp },
+    { name: "Lifestyle Solutions", slug: "lifestyle", icon: Film },
   ];
 
   // Get category URL - all categories now have dedicated landing pages
@@ -79,27 +79,29 @@ export default function Navbar() {
                 <div
                   onMouseEnter={() => setIsDropdownOpen(true)}
                   onMouseLeave={() => setIsDropdownOpen(false)}
-                  className="absolute top-full left-0 mt-3 w-72 bg-white/98 backdrop-blur-xl rounded-2xl shadow-2xl border-2 border-purple-100/50 py-4 animate-fade-in"
+                  className="absolute top-full left-0 mt-3 w-[600px] bg-white/98 backdrop-blur-xl rounded-2xl shadow-2xl border-2 border-purple-100/50 py-4 animate-fade-in"
                 >
                   <div className="px-5 py-3 border-b border-gradient-to-r from-purple-100 to-blue-100 mb-3">
                     <h3 className="text-xs font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent uppercase tracking-wider">Solution Domains</h3>
                   </div>
-                  {categories.map((cat) => {
-                    const IconComponent = cat.icon;
-                    return (
-                      <Link
-                        key={cat.slug}
-                        to={getCategoryUrl(cat.slug)}
-                        onClick={() => setIsDropdownOpen(false)}
-                        className="flex items-center gap-4 px-5 py-3 mx-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 hover:text-primary transition-all group rounded-xl"
-                      >
-                        <div className="p-2 rounded-lg bg-gradient-to-br from-purple-50 to-blue-50 group-hover:from-purple-100 group-hover:to-blue-100 transition-all">
-                          <IconComponent className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
-                        </div>
-                        <span className="font-semibold">{cat.name}</span>
-                      </Link>
-                    );
-                  })}
+                  <div className="grid grid-cols-3 gap-2 px-3">
+                    {categories.map((cat) => {
+                      const IconComponent = cat.icon;
+                      return (
+                        <Link
+                          key={cat.slug}
+                          to={getCategoryUrl(cat.slug)}
+                          onClick={() => setIsDropdownOpen(false)}
+                          className="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 hover:text-primary transition-all group rounded-xl"
+                        >
+                          <div className="p-2 rounded-lg bg-gradient-to-br from-purple-50 to-blue-50 group-hover:from-purple-100 group-hover:to-blue-100 transition-all">
+                            <IconComponent className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
+                          </div>
+                          <span className="font-semibold">{cat.name}</span>
+                        </Link>
+                      );
+                    })}
+                  </div>
                 </div>
               )}
             </div>
